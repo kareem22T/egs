@@ -1,0 +1,182 @@
+.input-search, .page-head .container, .or, .register_wrapper > .container, .register_wrapper > .container form, .register_wrapper > .container form .head, .register_wrapper > .container form .sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+body {
+  max-width: 100vw;
+  overflow: hidden auto;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+input:focus {
+  outline: 1px solid #0b5177;
+}
+
+.input-search {
+  position: relative;
+}
+.input-search input {
+  padding: .8rem 1.2rem;
+  font-size: .8rem;
+  letter-spacing: 1px;
+  border-radius: .5rem;
+  border: 1px solid #d5dfe4;
+}
+.input-search i {
+  position: absolute;
+  right: 10px;
+  font-size: 1.25rem;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input input {
+  width: 100%;
+  padding: clamp(0.9rem, calc(0.7667rem + 0.5333vw), 1.1rem) clamp(2.8rem, calc(2.3333rem + 1.8667vw), 3.5rem);
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+  border: 1px solid #d5dfe4;
+  background-color: #f0f3f8;
+  color: #0b5177;
+}
+.input img {
+  width: clamp(1.2rem, calc(0.9333rem + 1.0667vw), 1.6rem);
+  position: absolute;
+  left: 1rem;
+}
+
+.button {
+  width: 100%;
+  padding: clamp(0.9rem, calc(0.7667rem + 0.5333vw), 1.1rem);
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+  border: 1px solid #e63b12;
+  background-color: #e63b12;
+  color: #fff;
+  transition: .3s all ease-in;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: transparent;
+  color: #e63b12;
+  font-weight: 500;
+}
+
+.page-head {
+  background-color: #f0f3f8;
+  margin-top: 2px;
+}
+.page-head .container {
+  justify-content: start;
+  padding: 1rem 0 1rem clamp(1rem, calc(-3.8889rem + 19.5556vw), 12rem) !important;
+  font-size: 1rem;
+  color: #0b5177;
+  font-weight: 400;
+}
+@media (max-width: 600px) {
+  .page-head .container {
+    justify-content: center;
+  }
+}
+.page-head .container i {
+  font-size: .8rem;
+}
+
+.or {
+  width: 80%;
+  font-weight: 300;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.or span {
+  width: 100%;
+  height: 1px;
+  background-color: #d5dfe4;
+}
+
+.register_wrapper {
+  padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
+}
+.register_wrapper > .container {
+  padding: clamp(1.5rem, calc(1.0556rem + 1.7778vw), 2.5rem) 0 0;
+}
+.register_wrapper > .container form {
+  flex-direction: column;
+  max-width: 32rem;
+  width: 100%;
+  gap: .8rem;
+}
+.register_wrapper > .container form .head {
+  text-align: center;
+  flex-direction: column;
+  gap: .2rem;
+}
+.register_wrapper > .container form .head h1 {
+  font-weight: 600;
+  font-size: clamp(1.25rem, calc(0.9167rem + 1.3333vw), 2rem);
+  color: #33332c;
+}
+.register_wrapper > .container form .head p {
+  font-size: clamp(0.8rem, calc(0.7111rem + 0.3556vw), 1rem);
+  font-weight: 400;
+  color: #717171;
+  margin-bottom: 5px;
+}
+.register_wrapper > .container form .head p a {
+  text-decoration: none;
+  border-bottom: 1px solid;
+  color: #e63b12;
+}
+.register_wrapper > .container form > p {
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  font-weight: 400;
+  color: #33332c;
+  text-align: center;
+}
+.register_wrapper > .container form > p a {
+  text-decoration: none;
+  color: #0662ec;
+}
+.register_wrapper > .container form .button {
+  margin-top: clamp(0.5rem, calc(0.1667rem + 1.3333vw), 1rem);
+}
+.register_wrapper > .container form .sign {
+  width: 100%;
+  padding: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem) clamp(4.8rem, calc(3.6364rem + 4.6545vw), 8rem);
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+  border: 1px solid #d5dfe4;
+  color: #33332c;
+  text-decoration: none;
+  font-weight: 500;
+  justify-content: start;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.register_wrapper > .container form .sign img {
+  width: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
+}
+
+/*# sourceMappingURL=account.css.map */
