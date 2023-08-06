@@ -1,4 +1,8 @@
-.input-search, .page-head .container, .or, .register_wrapper > .container, .register_wrapper > .container form, .register_wrapper > .container form .head, .register_wrapper > .container form .sign {
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide a {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px;
+}
+
+.input-search, .page-head .container, .or {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,67 +120,85 @@ input:focus {
   background-color: #d5dfe4;
 }
 
-.register_wrapper {
+.home_wrapper {
   padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
 }
-.register_wrapper > .container {
-  padding: clamp(1.5rem, calc(1.0556rem + 1.7778vw), 2.5rem) 0 0;
+.home_wrapper .hero {
+  padding: 3rem 0;
 }
-.register_wrapper > .container form {
-  flex-direction: column;
-  max-width: 32rem;
+.home_wrapper .hero .container {
+  padding: 0 8rem !important;
+}
+.home_wrapper .hero .container .row-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.home_wrapper .hero .container .row-1 .hero-slider {
+  height: 30rem;
+  grid-column: span 2;
   width: 100%;
-  gap: .8rem;
 }
-.register_wrapper > .container form .head {
-  text-align: center;
-  flex-direction: column;
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide {
   gap: .2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+  padding: 2.5rem;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
 }
-.register_wrapper > .container form .head h1 {
-  font-weight: 600;
-  font-size: clamp(1.25rem, calc(0.9167rem + 1.3333vw), 2rem);
-  color: #33332c;
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: grayscale(20%);
 }
-.register_wrapper > .container form .head p {
-  font-size: clamp(0.8rem, calc(0.7111rem + 0.3556vw), 1rem);
-  font-weight: 400;
-  color: #717171;
-  margin-bottom: 5px;
-}
-.register_wrapper > .container form .head p a {
-  text-decoration: none;
-  border-bottom: 1px solid;
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide h1 {
+  font-size: 1.75rem;
+  letter-spacing: 2px;
   color: #e63b12;
 }
-.register_wrapper > .container form > p {
-  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
-  font-weight: 400;
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide p {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
   color: #33332c;
-  text-align: center;
 }
-.register_wrapper > .container form > p a {
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide a {
+  letter-spacing: 1px;
+  font-size: 1.3rem;
   text-decoration: none;
-  color: #0662ec;
+  color: #0b5177;
+  padding: .5rem 2.5rem;
+  border-radius: .7rem;
+  display: block;
+  width: fit-content;
+  margin-top: .3rem;
+  background-color: #fff;
 }
-.register_wrapper > .container form .button {
-  margin-top: clamp(0.5rem, calc(0.1667rem + 1.3333vw), 1rem);
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination {
+  right: 2.5rem;
+  bottom: 2.5rem;
+  width: fit-content;
+  left: auto;
 }
-.register_wrapper > .container form .sign {
-  width: 100%;
-  padding: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem) clamp(4.8rem, calc(3.6364rem + 4.6545vw), 8rem);
-  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
-  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
   border: 1px solid #d5dfe4;
-  color: #33332c;
-  text-decoration: none;
-  font-weight: 500;
-  justify-content: start;
-  max-width: 100%;
-  white-space: nowrap;
+  opacity: 1;
+  box-sizing: content-box;
 }
-.register_wrapper > .container form .sign img {
-  width: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #e63b12;
+  border: none;
 }
 
-/*# sourceMappingURL=account.css.map */
+/*# sourceMappingURL=home.css.map */

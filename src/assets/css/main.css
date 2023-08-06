@@ -26,7 +26,7 @@ body {
   padding-left: 1.25rem !important;
   padding-right: 1.25rem !important;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -194,7 +194,7 @@ header.main .body .container .left img {
   max-width: clamp(5rem, calc(-0.4906rem + 9.0566vw), 8rem);
 }
 header.main .body .container .left nav {
-  gap: clamp(0.9rem, calc(-0.1364rem + 1.7455vw), 1.5rem);
+  gap: clamp(0.9rem, calc(-0.1364rem + 1.2vw), 1.5rem);
   white-space: nowrap;
 }
 @media (max-width: 855px) {
@@ -215,10 +215,10 @@ header.main .body .container .left nav {
   }
 }
 header.main .body .container .left nav a {
-  font-size: clamp(1rem, calc(-0.3125rem + 1.6667vw), 1.25rem);
+  font-size: clamp(1rem, calc(-0.3125rem + 1vw), 1.25rem);
   color: #0b5177;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 400;
   transition: .2s all ease-in;
 }
 header.main .body .container .left nav a span {
@@ -240,11 +240,11 @@ header.main .body .container .right .controls {
   gap: clamp(0.5rem, calc(-2.4483rem + 5.5172vw), 1rem);
 }
 header.main .body .container .right .controls a {
-  font-size: clamp(0.8rem, calc(-0.775rem + 2vw), 1.1rem);
-  font-weight: 300;
+  font-size: clamp(0.8rem, calc(-0.775rem + 1.2vw), 1.1rem);
+  font-weight: 400;
   color: #33332c;
   text-decoration: none;
-  gap: 3px;
+  gap: 0;
   width: min-content;
 }
 @media (max-width: 1540px) {
@@ -258,7 +258,7 @@ header.main .body .container .right .controls a {
   }
 }
 header.main .body .container .right .controls a i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 5px;
 }
 header.main .body .container .right .controls a.search-icon {

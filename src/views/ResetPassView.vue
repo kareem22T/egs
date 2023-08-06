@@ -9,29 +9,19 @@
             <form @submit.prevent>
                 <div class="head">
                     <h1>
-                        Account Login
+                        Reset your password
                     </h1>
-                    <p>Do have an account? <a href="/register">SignUp</a></p>
+                    <p>We will send you an email to reset your password.</p>
                 </div>
                 <div class="input">
-                    <input type="text" name="phone" id="phone" placeholder="Phone Number" v-model="phone">
-                    <img src="./../assets/imgs/phone-solid.svg" alt="phone icon">
+                    <input type="text" name="code" id="code" placeholder="Activation Code" v-model="reset_code">
+                    <img src="./../assets/imgs/file-pen-solid.svg" alt="lock icon">
                 </div>
                 <div class="input">
-                    <input type="password" name="password" id="password" placeholder="Password" v-model="password">
+                    <input type="password" name="new_password" id="new_password" placeholder="New Password" v-model="new_password">
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
-                <button type="submit" class="button" @click="login(this.phone, this.password)">Login</button>
-                <p>Forgot Your Password? <a href="/forgot-password">Click Here</a></p>
-                <div class="or">
-                    <span></span>
-                    or
-                    <span></span>
-                </div>
-                <a href="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With
-                    Facebook</a>
-                <a href="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With
-                    Google</a>
+                <button type="submit" class="button" @click="reset(this.reset_code, this.new_password)">Reset Now !</button>
             </form>
         </div>
     </main>
@@ -44,28 +34,25 @@ window.$ = $;
 
 
 import axios from 'axios';
-import { setCookie } from './../assets/js/set-cookie'
 
 export default {
-    name: 'LoginView',
+    name: 'ResetPassView',
     data() {
         return {
-            phone: null,
-            password: null,
+            reset_code: null,
+            new_password: null
         }
     },
     methods: {
-        async login(phone, password) {
+        async reset(code, pass) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.post(`${window.main_url}/login`, {
-                    email: phone,
-                    password: password,
+                const response = await axios.post(`${window.main_url}/resetPassword`, {
+                    reset_code: code,
+                    new_password: pass,
                 },
                 );
                 if (response.data.status === true) {
-                    sessionStorage.setItem('user_token', response.data.data.token)
-                    setCookie('user_token', response.data.data.token, 30)
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'success'
@@ -75,9 +62,10 @@ export default {
                     setTimeout(() => {
                         $('.loader').fadeOut()
                         $('#errors').fadeOut('slow')
-                        this.$router.push('/')
-                    }, 4000);
+                        this.$router.push('/login')
+                    }, 3000);
                 } else {
+                    $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
                     $.each(response.data.errors, function (key, value) {
                         let error = document.createElement('div')
@@ -113,4 +101,6 @@ export default {
 }
 </script>
 
-<style scoped>@import './../assets/css/account.css';</style>
+<style scoped>
+@import './../assets/css/account.css';
+</style>
