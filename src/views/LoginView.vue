@@ -75,9 +75,10 @@ export default {
                     setTimeout(() => {
                         $('.loader').fadeOut()
                         $('#errors').fadeOut('slow')
-                        this.$router.push('/')
-                    }, 4000);
+                        window.location.href = '/'
+                    }, 1300);
                 } else {
+                    $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
                     $.each(response.data.errors, function (key, value) {
                         let error = document.createElement('div')

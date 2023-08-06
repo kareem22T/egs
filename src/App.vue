@@ -60,7 +60,7 @@ export default {
   left: 0;
   justify-content: center;
   align-items: center;
-  z-index: 999999;
+  z-index: 99999999;
   background: #000000a1 !important;
   backdrop-filter: blur(1px);
   display: none;

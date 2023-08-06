@@ -85,7 +85,6 @@ window.$ = $;
 
 
 import axios from 'axios';
-import { getUser } from './../assets/js/get-user';
 import { destroyAllCookies } from './../assets/js/destroy-cookies';
 
 export default {
@@ -158,9 +157,7 @@ export default {
         },
     },
     mounted() {
-        getUser().then(() => {
-            this.user = sessionStorage.getItem('user') ? sessionStorage.getItem('user') : null 
-        })
+        this.user = sessionStorage.getItem('user') ? sessionStorage.getItem('user') : null 
         $(window).on('resize', function () {
             if ($(this).width() > 855) {
                 $('nav').css('display', 'flex');

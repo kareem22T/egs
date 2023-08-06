@@ -1,5 +1,5 @@
 <template>
-    <h1></h1>
+    <h1>home</h1>
     <!-- <main class="home_wrapper">
         <section class="hero">
             <div class="container">
@@ -57,7 +57,7 @@
 // import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
 
-// // import required modules
+// import required modules
 // import { Autoplay, Pagination } from 'swiper/modules';
 
 export default {
