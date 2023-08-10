@@ -1,6 +1,5 @@
 <template>
-    <h1>home</h1>
-    <!-- <main class="home_wrapper">
+    <main class="home_wrapper">
         <section class="hero">
             <div class="container">
                 <div class="row-1">
@@ -37,40 +36,91 @@
                     </swiper-slide>
                 </swiper>
                     <div class="cards">
-                        <div></div>
-                        <div></div>
+                        <div>
+                            <div class="content">
+                                <div>
+                                    <h1>Build Your PC!</h1>
+                                    <p>
+                                        We help you make your dream PC come true with Free installation CHeap Prices & Shipping Everywhere.
+                                    </p>
+                                </div>
+                                <a href="">Shop Now</a>
+                            </div>
+                            <img src="./../assets/imgs/hero-card-1.jpg" alt="">
+                        </div>
+                        <div>
+                            <a href="">ROBLOX GIFT CARDS >> Shop Now</a>
+                            <img src="./../assets/imgs/hero-card-2.jpg" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <div class="container">
+                <div class="row-2">
+                    <div>
+                        <img src="./../assets/imgs/hero-icon-1.png" alt="">
+                        <div class="text">
+                            <h1>World2Egypt</h1>
+                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="./../assets/imgs/hero-icon-2.png" alt="">
+                        <div class="text">
+                            <h1>Physical Store</h1>
+                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="./../assets/imgs/hero-icon-3.png" alt="">
+                        <div class="text">
+                            <h1>Digital Store</h1>
+                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="./../assets/imgs/hero-icon-4.png" alt="">
+                        <div class="text">
+                            <h1>Used Market</h1>
+                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg">
+                <div class="container">
+                    <span class="circle"></span>
+                </div>
+                <span class="square"></span>
+            </div>
         </section>
-    </main> -->
+    </main>
 </template>
 
 <script>
-// // Import Swiper Vue.js components
-// import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-// // Import Swiper styles
-// import 'swiper/css';
+// Import Swiper styles
+import 'swiper/css';
 
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 // import required modules
-// import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 export default {
     name: 'HomeView',
-    // components: {
-    //     Swiper,
-    //     SwiperSlide,
-    // },
-    // setup() {
-    //     return {
-    //         modules: [Autoplay, Pagination],
-    //     };
-    // },
+    components: {
+        Swiper,
+        SwiperSlide,
+    },
+    setup() {
+        return {
+            modules: [Autoplay, Pagination],
+        };
+    },
 }
 </script>
 
