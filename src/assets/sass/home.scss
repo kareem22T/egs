@@ -152,6 +152,9 @@
                     width: 100%;
                     @extend %flex-center;
                     gap: 1rem;
+                    img {
+                        width: 5rem;
+                    }
                     h1 {
                         font-size: 1.6rem;
                         font-weight: 600;
@@ -220,7 +223,7 @@
                 width: 100%;
                 padding: 1rem 1rem 3rem 1rem;
                 .swiper-slide {
-                    background: rgba(248, 248, 248, 0.0001);
+                    background: #fff;
                     border: 1px solid #CFDCE3;
                     padding: 1.25rem 1rem;
                     @extend %flex-center;
@@ -315,6 +318,213 @@
                         border-radius: 50px;
                         background-color: $main_color;
                     }
+                }
+            }
+        }
+    }
+    .ad-1 {
+        margin-top: 2.5rem;
+        .container {
+            padding: 0 7rem !important;
+            >div {
+                width: 100%;
+                padding: 1.2rem 1.6rem;
+                border-radius: 1.25rem;
+                overflow: hidden;
+                position: relative;
+                @extend %flex-center;
+                flex-direction: column;
+                align-items: end;
+                gap: .7rem;
+                img {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                    object-fit: cover;
+                    z-index: -1;
+                }
+                h1 {
+                    font-weight: 700;
+                    font-size: 1.6rem;
+                    color: $secondary_color;
+                    span {
+                        color: $main_color;
+                    }
+                }
+                a {
+                    font-size: 1.1rem;
+                    color: $main_color;
+                    padding: .5rem 2rem;
+                    border-radius: 50px;
+                    border: 1px solid $border-color;
+                    background-color: #fff;
+                    text-decoration: none;
+                    font-weight: 600;
+                    display: block;
+                    width: fit-content;
+                }
+                .text {
+                    @extend %flex-center;
+                    gap: .7rem;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+
+    .latest {
+        margin-top: 3rem;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        width: 100vw;
+        position: relative;
+        .bg {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            >* {
+                width: 100%;
+                background-color: $light_gray;
+            }
+            .circle {
+                height: 40%;
+                width: 110%;
+                border-radius: 50% 50% 0 0;
+            }
+            .square {
+                height: 60%;
+            }
+        }
+        .latest-slider {
+            width: 100%;
+            padding: 1rem 1rem 5rem 1rem;
+            max-width: 1900px;
+            .swiper-slide {
+                background: #fff;
+                border: 1px solid #CFDCE3;
+                @extend %shadow;
+                border-radius: 1.25rem;
+                padding: 1.6rem 1.25rem;
+                @extend %flex-center;
+                flex-direction: column;
+                gap: 1rem;
+                >* {
+                    width: 100%
+                }
+                .head {
+                    @extend %flex-center;
+                    justify-content: space-between;
+                    h1 {
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        color: $secondary_color;
+                    }
+                    a {
+                        i {
+                            color: #bababa;
+                            font-size: 1.7rem;
+                        }
+                    }
+                }
+                .body {
+                    @extend %flex-center;
+                    justify-content: space-between;
+                    align-items: center;
+                    .thumbanail {
+                        min-width: 43%;
+                        height: fit-content;
+                        border-radius: 1.25rem;
+                        background-color: $light_gray;
+                        padding: 1.1rem 1.5rem;
+                        @extend %flex-center;
+                        img {
+                            max-width: 100%;
+                            max-height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                    .details {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .6rem;
+                        .title {
+                            font-size: 1.1rem;
+                            font-weight: 700;
+                            color: $text_gray;
+                        }
+                        p {
+                            font-size: .9rem;
+                            font-weight: 400;
+                            color: $secondary_color;
+                        }
+                        .price {
+                            @extend %flex-center;
+                            width: fit-content;
+                            gap: .5rem;
+                            .new_price {
+                                font-size: 1.1rem;
+                                font-weight: 700;
+                                color: $main_color;
+                            }
+                            .old_price {
+                                font-size: .85rem;
+                                color: $secondary_color;
+                                font-weight: 700;
+                                position: relative;
+                                @extend %flex-center;
+                            
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 105%;
+                                    height: 1.5px;
+                                    transform: translateY(1px);
+                                    background-color: #000;
+                                }
+                            }
+                        }
+                        .rate {
+                            @extend %flex-center;
+                            width: fit-content;
+                            gap: .5rem;
+                            .stars {
+                                i {
+                                    font-size: 1rem;
+                                    color: $secondary_color;
+                                    opacity: .5;
+                                    &.active {
+                                        color: $main_color;
+                                    }
+                                }
+                                font-weight: 400;
+                                font-size: .9rem;
+                                color: $text_gray;
+                            }
+                        }
+                    }
+                }
+            }
+            .swiper-pagination-bullet {
+                width: 1rem;
+                height: 1rem;
+                opacity: 1;
+                border: 1px solid $border-color;
+                background-color: transparent;
+                &.swiper-pagination-bullet-active {
+                    background-color: $secondary_color;
+                    border: none;
                 }
             }
         }

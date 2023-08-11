@@ -318,6 +318,252 @@
             </swiper>
             </div>
         </section>
+        <section class="ad-1">
+            <div class="container">
+                <div>
+                    <div class="text">
+                        <h1><span>New</span> Accessories In The World Of Games</h1>
+                        <a href="">Shop Now</a>
+                    </div>
+                    <img src="./../assets/imgs/ad-1.png">
+                </div>
+            </div>
+        </section>
+        <section class="latest">
+            <div class="bg">
+                <div class="circle"></div>
+                <div class="square"></div>
+            </div>
+            <h1 class="section_head_b"><span>Latest</span> Products</h1>
+            <swiper
+                :spaceBetween="25"
+                :slidesPerView="4"
+                :slidesPerGroup="1"
+                :pagination="{
+                    clickable: true,
+                }"
+                :modules="modules"
+                class="latest-slider"
+            >
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <h1>Games</h1>
+                        <a href=""><i class="fa fa-heart"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/latest-1.png">
+                        </div>
+                        <div class="details">
+                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <p>
+                                lay through the key moments and toughest opponents of John Cena’s ......
+                            </p>
+                            <div class="price">
+                                <h1 class="new_price">2400 EGP</h1>
+                                <h3 class="old_price">3500 EGP</h3>
+                            </div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                ( 3 Reviews )
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+            </swiper>
+        </section>
     </main>
 </template>
 
