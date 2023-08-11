@@ -17,19 +17,19 @@
                     class="hero-slider"
                 >
                     <swiper-slide>
-                        <img src="./../assets/imgs/slider_bg.jpg">
+                        <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
                         <a href="">Shop Now</a>
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="./../assets/imgs/slider_bg.jpg">
+                        <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
                         <a href="">Shop Now</a>
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="./../assets/imgs/slider_bg.jpg">
+                        <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
                         <a href="">Shop Now</a>
@@ -92,6 +92,230 @@
                     <span class="circle"></span>
                 </div>
                 <span class="square"></span>
+            </div>
+        </section>
+        <section class="deals_of_week">
+            <div class="container">
+            <h1 class="section_head_r"><span>Deals</span> of the week!</h1>
+            <swiper
+                :spaceBetween="25"
+                :slidesPerView="4"
+                :slidesPerGroup="4"
+                :pagination="{
+                    clickable: true,
+                }"
+                :modules="modules"
+                class="deals-slider"
+            >
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Laptop</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-1.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Hardware</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-2.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Games</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-3.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Accessories</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-4.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Laptop</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-1.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Hardware</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-2.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Games</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-3.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="head">
+                        <div class="cat">Accessories</div>
+                        <div class="discount">Save: 5600 EGP</div>
+                    </div>
+                    <div class="thumbanail">
+                        <img src="./../assets/imgs/deals-4.png" alt="">
+                    </div>
+                    <div class="details">
+                        <h3>
+                            Lenovo Legion 5 Laptop AMD 
+                            Ryzen 7 6800H RTX 3060 16GB
+                            DDR5 Ram 512GB SSD
+                            82RD006EUS
+                        </h3>
+                        <p class="exp">
+                            EXP : 15/7/2023
+                        </p>
+                        <h1 class="price">
+                            85000 EGP
+                        </h1>
+                        <h1 class="old_price">
+                            95000 EGP
+                        </h1>
+                    </div>
+                </swiper-slide>
+            </swiper>
             </div>
         </section>
     </main>

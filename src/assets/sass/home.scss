@@ -182,9 +182,9 @@
                 bottom: 0;
                 display: flex;
                 justify-content: center;
-                height: 20%;
+                height: 17%;
                 transform: translateY(30%);
-                padding: 0 5rem !important;
+                padding: 0 2rem !important;
                 .circle {
                     width: 90%;
                     display: block;
@@ -202,6 +202,120 @@
                 bottom: 0;
                 left: 0;
                 background: $light_gray;
+            }
+        }
+    }
+
+    .deals_of_week {
+        margin-top: 5rem;
+        .container {
+            padding: 0 6.5rem !important;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            h1 {
+                text-align: center;
+            }
+            .deals-slider {
+                width: 100%;
+                padding: 1rem 1rem 3rem 1rem;
+                .swiper-slide {
+                    background: rgba(248, 248, 248, 0.0001);
+                    border: 1px solid #CFDCE3;
+                    padding: 1.25rem 1rem;
+                    @extend %flex-center;
+                    flex-direction: column;
+                    @extend %shadow;
+                    border-radius: 1.25rem;
+                    .head {
+                        @extend %flex-center;
+                        justify-content: space-between;
+                        width: 100%;
+                        .cat {
+                            background: rgba(248, 248, 248, 0.0001);
+                            border: 1px solid #CFDCE3;
+                            font-weight: 400;
+                            font-size: 1.05rem;
+                            line-height: 1.05rem;
+                            letter-spacing: 0.3px;
+                            color: $secondary_color;
+                            padding: .5rem 1rem;
+                            border-radius: 50px;
+                        }
+                        .discount {
+                            font-weight: 400;
+                            font-size: 1rem;
+                            color: #0CAE61;
+                        }
+                    }
+                    .thumbanail {
+                        border: 1px solid #CFDCE3;
+                        padding: 1.2rem;
+                        width: 100%;
+                        height: 13.5rem;
+                        border-radius: 1.25rem;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain
+                        }
+                    }
+                    .details {
+                        @extend %flex-center;
+                        flex-direction: column;
+                        gap: .5rem;
+                        h3 {
+                            
+                            font-weight: 700;
+                            font-size: 1.1rem;
+                            line-height: 1.3;
+                            color: $secondary_color;
+                            text-align: center;
+                            margin-bottom: .4rem;
+                        }
+                        .exp {
+                            font-weight: 400;
+                            font-size: 1rem;
+                            color: $secondary_color;
+                            text-align: center;
+                        }
+                        .price {
+                            background: #F8F8F8;
+                            border-radius: 3rem;
+                            padding: .5rem 2rem;
+                            font-weight: 700;
+                            font-size: 1.5rem;
+                            color: #0B5177;
+                            width: fit-content;
+                        }
+                        .old_price {
+                            font-weight: 700;
+                            font-size: 1.1rem;
+                            color: #0B5177;
+                            position: relative;
+                            @extend %flex-center;
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                width: 105%;
+                                height: 4px;
+                                background-color: #000;
+                            }
+                        }
+                    }
+                }
+                .swiper-pagination-bullet {
+                    width: 8px;
+                    height: 8px;
+                    background-color: $secondary_color;
+                    border-radius: 50%;
+                    opacity: 1;
+                    &.swiper-pagination-bullet-active {
+                        width: 2.2rem;
+                        border-radius: 50px;
+                        background-color: $main_color;
+                    }
+                }
             }
         }
     }
