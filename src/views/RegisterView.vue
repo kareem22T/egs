@@ -11,7 +11,7 @@
                     <h1>
                         Register Your Account
                     </h1>
-                    <p>Already have an account? <a href="/login">Login</a></p>
+                    <p>Already have an account? <router-link to="/login">Login</router-link></p>
                 </div>
                 <div class="input">
                     <input type="email" name="email" id="email" placeholder="Email" v-model="email">
@@ -35,14 +35,14 @@
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
                 <button type="submit" class="button" @click="registerMethod(this.email, this.phone, this.dob, this.password, this.password_confirmation)">Register Account</button>
-                <p>By clicking here and continuing, <br> I agree to the <a href="/terms">Terms</a> of Service and <a href="/privacy-policy">Privacy Policy</a></p>
+                <p>By clicking here and continuing, <br> I agree to the <router-link to="/terms">Terms</router-link> of Service and <router-link to="/privacy-policy">Privacy Policy</router-link></p>
                 <div class="or">
                     <span></span>
                     or
                     <span></span>
                 </div>
-                <a href="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With Facebook</a>
-                <a href="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With Google</a>
+                <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With Facebook</router-link>
+                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With Google</router-link>
             </form>
         </div>
     </main>

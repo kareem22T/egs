@@ -13,7 +13,7 @@
                     <img src="./../assets/imgs/customer_icon.png">
                     <p>
                         Got_questions? Call Us!
-                        <a href="tel:01145636999">01145636999</a>
+                        <router-link to="tel:01145636999">01145636999</router-link>
                     </p>
                 </div>
                 <img src="./../assets/imgs/banks.png" alt="">

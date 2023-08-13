@@ -26,7 +26,7 @@
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
                 <button type="submit" class="button" @click="change(this.old_password, this.new_password, this.new_password_confirmation)">Save & Update</button>
-                <p>Forgot Your Old Password? <a href="/forgot-password">Click Here</a></p>
+                <p>Forgot Your Old Password? <router-link to="/forgot-password">Click Here</router-link></p>
             </form>
         </div>
     </main>

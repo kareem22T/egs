@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/ContactView.vue'
 import TermsView from '../views/TermsView.vue'
+import FaqView from '../views/FaqView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import ForgotPassView from '../views/ForgotPassView.vue'
@@ -30,6 +31,12 @@ const routes = [
     path: '/terms',
     name: 'terms',
     component: TermsView,
+    meta: { auth: false }
+  },
+  {
+    path: '/faq',
+    name: 'faq',
+    component: FaqView,
     meta: { auth: false }
   },
   {

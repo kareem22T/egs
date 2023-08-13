@@ -20,19 +20,19 @@
                         <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
-                        <a href="">Shop Now</a>
+                        <router-link to="">Shop Now</router-link>
                     </swiper-slide>
                     <swiper-slide>
                         <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
-                        <a href="">Shop Now</a>
+                        <router-link to="">Shop Now</router-link>
                     </swiper-slide>
                     <swiper-slide>
                         <img src="./../assets/imgs/slider-bg.png">
                         <h1>Explore This Week's Offers Now !</h1>
                         <p>get a discount of up to 50%</p>
-                        <a href="">Shop Now</a>
+                        <router-link to="">Shop Now</router-link>
                     </swiper-slide>
                 </swiper>
                     <div class="cards">
@@ -44,12 +44,12 @@
                                         We help you make your dream PC come true with Free installation CHeap Prices & Shipping Everywhere.
                                     </p>
                                 </div>
-                                <a href="">Shop Now</a>
+                                <router-link to="">Shop Now</router-link>
                             </div>
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
                         <div>
-                            <a href="">ROBLOX GIFT CARDS >> Shop Now</a>
+                            <router-link to="">ROBLOX GIFT CARDS >> Shop Now</router-link>
                             <img src="./../assets/imgs/hero-card-2.jpg" alt="">
                         </div>
                     </div>
@@ -323,7 +323,7 @@
                 <div>
                     <div class="text">
                         <h1><span>New</span> Accessories In The World Of Games</h1>
-                        <a href="">Shop Now</a>
+                        <router-link to="">Shop Now</router-link>
                     </div>
                     <img src="./../assets/imgs/ad-1.png">
                 </div>
@@ -348,7 +348,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -379,7 +379,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -410,7 +410,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -441,7 +441,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -472,7 +472,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -503,7 +503,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -534,7 +534,7 @@
                 <swiper-slide>
                     <div class="head">
                         <h1>Games</h1>
-                        <a href=""><i class="fa fa-heart"></i></a>
+                        <router-link to=""><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
@@ -563,6 +563,88 @@
                     </div>
                 </swiper-slide>
             </swiper>
+        </section>
+        <section class="news">
+            <div class="container">
+                <div class="head">
+                    <div>
+                        <div class="thumbanail">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <div class="text">
+                            <h1>Free Delivery</h1>
+                            <p>From all orders over $10</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="thumbanail">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div class="text">
+                            <h1>Support 24/7</h1>
+                            <p>Shop with an expert</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="thumbanail">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <div class="text">
+                            <h1>Gift Voucher</h1>
+                            <p>Refer a friend</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="thumbanail">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <div class="text">
+                            <h1>Return & Refund</h1>
+                            <p>Free return over $200</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="thumbanail">
+                            <i class="fa-regular fa-credit-card"></i>
+                        </div>
+                        <div class="text">
+                            <h1>Secure Payment</h1>
+                            <p>100% protected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h1 class="section_head_bl"><span>Latest</span> News</h1>
+                <div class="news">
+                    <div class="news-card">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/news-thumbanail.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h1 class="title">Avatar: Frontiers of Pandora</h1>
+                            <p class="bref">
+                                Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, whenan unknown printer took a galley of ...
+                            </p>
+                            <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
+                            <router-link to="" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="thumbanail">
+                            <img src="./../assets/imgs/news-thumbanail.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h1 class="title">Avatar: Frontiers of Pandora</h1>
+                            <p class="bref">
+                                Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, whenan unknown printer took a galley of ...
+                            </p>
+                            <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
+                            <router-link to="" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </template>

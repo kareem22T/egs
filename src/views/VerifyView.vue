@@ -18,7 +18,7 @@
                     <img src="./../assets/imgs/file-pen-solid.svg" alt="lock icon">
                 </div>
                 <button type="submit" class="button" @click="verify(this.code)">Submit & Complete</button>
-                <p>Didn't Recive Code ? <a href="" @click.prevent="resend()">Send Again</a></p>
+                <p>Didn't Recive Code ? <router-link to="" @click.prevent="resend()">Send Again</router-link></p>
             </form>
         </div>
     </main>

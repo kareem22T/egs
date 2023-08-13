@@ -76,6 +76,9 @@ header {
                 .left {
                     @extend %flex-center;
                     gap: 1.7rem;
+                    >a{
+                        line-height: 0;
+                    }
                     img {
                         max-width: clamp(5rem, calc(-0.4906rem + 9.0566vw), 8rem);
                     }

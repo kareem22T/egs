@@ -11,7 +11,7 @@
                     <h1>
                         Account Login
                     </h1>
-                    <p>Do have an account? <a href="/register">SignUp</a></p>
+                    <p>Do have an account? <router-link to="/register">SignUp</router-link></p>
                 </div>
                 <div class="input">
                     <input type="text" name="phone" id="phone" placeholder="Phone Number" v-model="phone">
@@ -22,16 +22,16 @@
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
                 <button type="submit" class="button" @click="login(this.phone, this.password)">Login</button>
-                <p>Forgot Your Password? <a href="/forgot-password">Click Here</a></p>
+                <p>Forgot Your Password? <router-link to="/forgot-password">Click Here</router-link></p>
                 <div class="or">
                     <span></span>
                     or
                     <span></span>
                 </div>
-                <a href="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With
-                    Facebook</a>
-                <a href="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With
-                    Google</a>
+                <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With
+                    Facebook</router-link>
+                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With
+                    Google</router-link>
             </form>
         </div>
     </main>

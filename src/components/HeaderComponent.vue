@@ -5,31 +5,31 @@
                 <div class="left">
                     <p>Welcome To <span>EGYPT GAME STORE!</span></p>
                     <ul>
-                        <a href="/about-us">
+                        <router-link to="/about-us">
                             <li>About Us</li>
-                        </a>
-                        <a href="/careers">
+                        </router-link>
+                        <router-link to="/careers">
                             <li>Careers</li>
-                        </a>
-                        <a href="/contact-us">
+                        </router-link>
+                        <router-link to="/contact-us">
                             <li>Contact US</li>
-                        </a>
+                        </router-link>
                     </ul>
                 </div>
                 <div class="right">
                     <ul>
-                        <a href="tel:01145636999">
+                        <router-link to="tel:01145636999">
                             <img src="./../assets/imgs/phone-solid-white.svg" alt="phone icon">
                             <li>Need Help? Call Us: 01145636999</li>
-                        </a>
-                        <a href="mailto:support@egyptgamestore.com">
+                        </router-link>
+                        <router-link to="mailto:support@egyptgamestore.com">
                             <img src="./../assets/imgs/envelope-regular-white.svg" alt="email icon">
                             <li>support@egyptgamestore.com</li>
-                        </a>
-                        <a href="">
+                        </router-link>
+                        <router-link to="">
                             <img src="./../assets/imgs/globe-solid-white.svg" alt="email icon">
                             <li>EN</li>
-                        </a>
+                        </router-link>
                     </ul>
                 </div>
             </div>
@@ -37,40 +37,42 @@
         <div class="body">
             <div class="container">
                 <div class="left">
-                    <img src="./../assets/imgs/logo.png" alt="logo">
+                    <router-link to="/">
+                        <img src="./../assets/imgs/logo.png" alt="logo">
+                    </router-link>
                     <div class="input-search">
                         <input type="text" name="search" id="search" placeholder="Search for items">
                         <i class="fa fa-search"></i>
                     </div>
                     <nav>
-                        <a href="/" class="active">Home<span></span></a>
-                        <a href="">World2Egypt<span></span></a>
-                        <a href="">Physical Store<span></span></a>
-                        <a href="">Digital Store<span></span></a>
-                        <a href="">Used Market<span></span></a>
-                        <a href="">Deals<span></span></a>
+                        <router-link to="/" class="active">Home<span></span></router-link>
+                        <router-link to="">World2Egypt<span></span></router-link>
+                        <router-link to="">Physical Store<span></span></router-link>
+                        <router-link to="">Digital Store<span></span></router-link>
+                        <router-link to="">Used Market<span></span></router-link>
+                        <router-link to="">Deals<span></span></router-link>
                     </nav>
                 </div>
                 <div class="right">
                     <div class="controls">
-                        <a href="" class="account_btn">
+                        <router-link to="" class="account_btn">
                             <i class="fa-regular fa-user"></i><span>Account</span>
-                        </a>
+                        </router-link>
                         <ul v-if="user == null">
-                            <a href="/login"><i class="fa-solid fa-chevron-right"></i> Login</a>
-                            <a href="/register"><i class="fa-solid fa-chevron-right"></i> Register</a>
+                            <router-link to="/login"><i class="fa-solid fa-chevron-right"></i> Login</router-link>
+                            <router-link to="/register"><i class="fa-solid fa-chevron-right"></i> Register</router-link>
                         </ul>
                         <ul v-if="user != null">
-                            <a href="/edit-profile"><i class="fa-solid fa-chevron-right"></i> My Profile</a>
-                            <a href="/my-orders"><i class="fa-solid fa-chevron-right"></i> My Orders</a>
-                            <a href="/change-password"><i class="fa-solid fa-chevron-right"></i> Change password</a>
-                            <a href="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> log-out</a>
+                            <router-link to="/edit-profile"><i class="fa-solid fa-chevron-right"></i> My Profile</router-link>
+                            <router-link to="/my-orders"><i class="fa-solid fa-chevron-right"></i> My Orders</router-link>
+                            <router-link to="/change-password"><i class="fa-solid fa-chevron-right"></i> Change password</router-link>
+                            <router-link to="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> log-out</router-link>
                         </ul>
-                        <a href="" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
-                        <a href=""><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
-                        <a href=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></a>
-                        <a href="" class="search-icon"><i class="fa-solid fa-search"></i><span>Search</span></a>
-                        <a href="" class="more"><i class="fa-solid fa-bars"></i></a>
+                        <router-link to="" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
+                        <router-link to=""><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></router-link>
+                        <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></router-link>
+                        <router-link to="" class="search-icon"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
+                        <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>
                     </div>
                 </div>
             </div>
@@ -171,6 +173,14 @@ export default {
             $(this).width($(this).parent().width() + 10)
         })
         $(document).on('click', '.account_btn', function (e) {
+            e.preventDefault();
+            if ($('.controls >ul').hasClass('animate__bounceIn')) {
+                $('.controls >ul').fadeOut().removeClass('animate__animated animate__bounceIn')
+            } else {
+                $('.controls >ul').attr("style", "display: block !important;").addClass('animate__animated animate__bounceIn')
+            }
+        })
+        $(document).on('click', '.controls >ul', function (e) {
             e.preventDefault();
             if ($('.controls >ul').hasClass('animate__bounceIn')) {
                 $('.controls >ul').fadeOut().removeClass('animate__animated animate__bounceIn')
