@@ -99,10 +99,24 @@
             <h1 class="section_head_r"><span>Deals</span> of the week!</h1>
             <swiper
                 :spaceBetween="25"
-                :slidesPerView="4"
-                :slidesPerGroup="4"
+                :slidesPerView="1"
+                :slidesPerGroup="1"
                 :pagination="{
                     clickable: true,
+                }"
+                :breakpoints="{
+                    600: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2
+                    },
+                    850: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
+                    },
+                    1300: {
+                        slidesPerView: 4,
+                        slidesPerGroup: 4
+                    },
                 }"
                 :modules="modules"
                 class="deals-slider"

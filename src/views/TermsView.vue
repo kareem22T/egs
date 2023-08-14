@@ -22,7 +22,7 @@ export default {
         async getTerms() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://egs23.egyptgamestore.com/api/terms`,
+                const response = await axios.get(`http://api.egyptgamestore.com/api/terms`,
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()

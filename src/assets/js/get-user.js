@@ -15,7 +15,7 @@ export async function getUser() {
     if (user_token) {
         $('.loader').fadeIn().css('display', 'flex')
         try {
-        const response = await axios.get('https://egs23.egyptgamestore.com/api/users/getProfile',
+        const response = await axios.get('http://api.egyptgamestore.com/api/users/getProfile',
         {
             headers: {
                 'AUTHORIZATION': `Bearer ${user_token}`

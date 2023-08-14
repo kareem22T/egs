@@ -4,30 +4,40 @@
 .home_wrapper {
     padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
     .hero {
-        padding: 3rem 0 ;
+        padding: clamp(1.5rem, calc(0.9545rem + 2.1818vw), 3rem) 0 ;
         background-color: $light_gray;
         .container {
             &:first-child {
-                padding: 0 7rem !important;
+                padding: 0 clamp(1rem, calc(-1.1818rem + 8.7273vw), 7rem) !important;
             }
             .row-1 {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 1.25rem;
+                @media (max-width: 600px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
                 .hero-slider {
-                    height: 28rem;
+                    height: clamp(17rem, calc(13rem + 16vw), 28rem);
                     grid-column: span 2;
                     width: 100%;
+                    @media (max-width: 600px) {
+                        grid-column: span 1;
+                    }
                     .swiper-slide {
                         gap: .2rem;
                         display: flex;
                         flex-direction: column;
                         align-items: start;
                         justify-content: end;
-                        padding: 2.5rem;
+                        padding: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem);
                         position: relative;
                         border-radius: .7rem;
                         overflow: hidden;
+                        @media (max-width: 600px) {
+                            align-items: center;
+                            text-align: center;
+                        }
                         img {
                             position: absolute;
                             left: 0;
@@ -43,21 +53,25 @@
                             }
                         }
                         h1 {
-                            font-size: 1.75rem;
+                            font-size: clamp(1.2rem, calc(1rem + 0.8vw), 1.75rem);
                             letter-spacing: 2px;
                             color: $main_color;
+                            @media (max-width: 600px) {
+                                padding: 0 10px;
+                                letter-spacing: 1px;
+                            }
                         }
                         p {
-                            font-size: 1.3rem;
+                            font-size: clamp(1.1rem, calc(1.0273rem + 0.2909vw), 1.3rem);
                             letter-spacing: 1px;
                             color: $text_gray;
                         }
                         a {
                             letter-spacing: 1px;
-                            font-size: 1.3rem;
+                            font-size: clamp(1rem, calc(0.8909rem + 0.4364vw), 1.3rem);
                             text-decoration: none;
                             color: $secondary_color;
-                            padding: .5rem 2.5rem;
+                            padding: clamp(0.3rem, calc(0.2273rem + 0.2909vw), 0.5rem) clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem);
                             border-radius: .7rem;
                             @extend %shadow;
                             display: block;
@@ -71,6 +85,9 @@
                         bottom: 2.5rem;
                         width: fit-content;
                         left: auto;
+                        @media (max-width: 600px) {
+                            display: none;
+                        }
                         .swiper-pagination-bullet {
                             width: 1rem;
                             height: 1rem;
@@ -91,6 +108,9 @@
                     display: grid;
                     grid-template-rows: repeat(2,1fr);
                     gap: 1.25rem;
+                    @media (max-width: 600px) {
+                        min-height: 400px;
+                    }
                     >div {
                         position: relative;
                         border-radius: .7rem;
@@ -106,11 +126,11 @@
                             gap: 1rem;
                         }
                         p {
-                            font-size: .9rem;
+                            font-size: clamp(0.7rem, calc(0.6273rem + 0.2909vw), 0.9rem);
                             color: white;
                         }
                         h1 {
-                            font-size: 1.5rem;
+                            font-size: clamp(1.3rem, calc(1.2273rem + 0.2909vw), 1.5rem);
                             color: white;
                         }
                         a {
@@ -146,23 +166,34 @@
             }
             .row-2 {
                 @extend %flex-center;
-                gap: 2rem;
-                margin-top: 3.5em;
+                gap: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
+                margin-top: clamp(2.5rem, calc(2.1364rem + 1.4545vw), 3.5rem);
+                @media (max-width: 600px) {
+                    flex-wrap: wrap;
+                }
                 >div {
                     width: 100%;
                     @extend %flex-center;
-                    gap: 1rem;
+                    gap: clamp(0.1rem, calc(-0.2273rem + 1.3091vw), 1rem);
+                    @media (max-width: 600px) {
+                        flex-direction: column;
+                    }
                     img {
-                        width: 5rem;
+                        width: clamp(4rem, calc(3.6364rem + 1.4545vw), 5rem);
+                    }
+                    .text {
+                        @media (max-width: 600px) {
+                            text-align: center;
+                        }
                     }
                     h1 {
-                        font-size: 1.6rem;
+                        font-size: clamp(1.3rem, calc(1.1909rem + 0.4364vw), 1.6rem);
                         font-weight: 600;
                         color: $main_color;
                         margin-bottom: .3rem;
                     }
                     p {
-                        font-size: .8rem;
+                        font-size: clamp(0.7rem, calc(0.6636rem + 0.1455vw), 0.8rem);
                         letter-spacing: 1px;
                         font-weight: 400;
                         color: $text_gray;
@@ -188,6 +219,9 @@
                 height: 17%;
                 transform: translateY(30%);
                 padding: 0 2rem !important;
+                @media (max-width: 600px) {
+                    height: 6%;
+                }
                 .circle {
                     width: 90%;
                     display: block;
@@ -210,12 +244,12 @@
     }
 
     .deals_of_week {
-        margin-top: 5rem;
+        margin-top: clamp(3.5rem, calc(2.9545rem + 2.1818vw), 5rem);
         .container {
-            padding: 0 6.5rem !important;
+            padding: 0 clamp(1.5rem, calc(-0.3182rem + 7.2727vw), 6.5rem) !important;
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
+            gap: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem);
             h1 {
                 text-align: center;
             }
@@ -230,15 +264,17 @@
                     flex-direction: column;
                     @extend %shadow;
                     border-radius: 1.25rem;
+                    gap: clamp(1rem, calc(0.9091rem + 0.3636vw), 1.25rem);
                     .head {
                         @extend %flex-center;
                         justify-content: space-between;
                         width: 100%;
+                        gap: .5rem;
                         .cat {
                             background: rgba(248, 248, 248, 0.0001);
                             border: 1px solid #CFDCE3;
                             font-weight: 400;
-                            font-size: 1.05rem;
+                            font-size: clamp(0.8rem, calc(0.7091rem + 0.3636vw), 1.05rem);
                             line-height: 1.05rem;
                             letter-spacing: 0.3px;
                             color: $secondary_color;
@@ -247,15 +283,19 @@
                         }
                         .discount {
                             font-weight: 400;
-                            font-size: 1rem;
+                            font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
                             color: #0CAE61;
+                            white-space: nowrap;
+                            @media (min-width: 1300px) and  (max-width: 1400px) {
+                                font-size: .8rem;
+                            }
                         }
                     }
                     .thumbanail {
                         border: 1px solid #CFDCE3;
                         padding: 1.2rem;
                         width: 100%;
-                        height: 13.5rem;
+                        height: clamp(10.5rem, calc(9.4091rem + 4.3636vw), 13.5rem);
                         border-radius: 1.25rem;
                         img {
                             width: 100%;
@@ -270,24 +310,24 @@
                         h3 {
                             
                             font-weight: 700;
-                            font-size: 1.1rem;
-                            line-height: 1.3;
+                            font-size: clamp(0.9rem, calc(0.8273rem + 0.2909vw), 1.1rem);
+                            line-height: 1.6;
                             color: $secondary_color;
                             text-align: center;
-                            margin-bottom: .4rem;
+                            margin-bottom: clamp(0rem, calc(-0.1455rem + 0.5818vw), 0.4rem);
                         }
                         .exp {
                             font-weight: 400;
-                            font-size: 1rem;
+                            font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
                             color: $secondary_color;
                             text-align: center;
                         }
                         .price {
                             background: #F8F8F8;
                             border-radius: 3rem;
-                            padding: .5rem 2rem;
+                            padding: clamp(0.3rem, calc(0.2273rem + 0.2909vw), 0.5rem) clamp(1.3rem, calc(1.0455rem + 1.0182vw), 2rem);
                             font-weight: 700;
-                            font-size: 1.5rem;
+                            font-size: clamp(1.2rem, calc(1.0909rem + 0.4364vw), 1.5rem);
                             color: #0B5177;
                             width: fit-content;
                         }
@@ -314,7 +354,7 @@
                     border-radius: 50%;
                     opacity: 1;
                     &.swiper-pagination-bullet-active {
-                        width: 2.2rem;
+                        width: clamp(1.2rem, calc(0.8364rem + 1.4545vw), 2.2rem);
                         border-radius: 50px;
                         background-color: $main_color;
                     }
