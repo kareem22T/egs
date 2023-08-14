@@ -351,10 +351,21 @@
             <h1 class="section_head_b"><span>Latest</span> Products</h1>
             <swiper
                 :spaceBetween="25"
-                :slidesPerView="4"
+                :slidesPerView="1"
                 :slidesPerGroup="1"
                 :pagination="{
                     clickable: true,
+                }"
+                :breakpoints="{
+                    600: {
+                        slidesPerView: 2
+                    },
+                    1100: {
+                        slidesPerView: 3
+                    },
+                    1480: {
+                        slidesPerView: 4
+                    }
                 }"
                 :modules="modules"
                 class="latest-slider"
