@@ -90,7 +90,7 @@ input:focus, textarea:focus {
 }
 .page-head .container {
   justify-content: start;
-  padding: 1rem 0 1rem 6.5rem !important;
+  padding: 1rem 0 1rem clamp(0rem, calc(-2.3636rem + 9.4545vw), 6.5rem) !important;
   font-size: 1rem;
   color: #0b5177;
   font-weight: 400;

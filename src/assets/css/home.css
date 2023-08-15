@@ -94,7 +94,7 @@ input:focus, textarea:focus {
 }
 .page-head .container {
   justify-content: start;
-  padding: 1rem 0 1rem 6.5rem !important;
+  padding: 1rem 0 1rem clamp(0rem, calc(-2.3636rem + 9.4545vw), 6.5rem) !important;
   font-size: 1rem;
   color: #0b5177;
   font-weight: 400;
@@ -867,8 +867,8 @@ input:focus, textarea:focus {
 .home_wrapper .news .container:last-child {
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
-  margin-top: 4rem;
+  gap: clamp(2rem, calc(1.2rem + 3.2vw), 4.2rem);
+  margin-top: clamp(2rem, calc(1.2rem + 3.2vw), 4.2rem);
 }
 .home_wrapper .news .container:last-child .news {
   display: grid;
@@ -876,12 +876,22 @@ input:focus, textarea:focus {
   gap: 1.25rem;
   margin: 0;
 }
+@media (max-width: 600px) {
+  .home_wrapper .news .container:last-child .news {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .home_wrapper .news .container:last-child .news .news-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border: 1px solid #d5dfe4;
   border-radius: 1.25rem;
   overflow: hidden;
+}
+@media (max-width: 500px) {
+  .home_wrapper .news .container:last-child .news .news-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .home_wrapper .news .container:last-child .news .news-card .thumbanail {
   background-color: #0b5177;
@@ -931,18 +941,23 @@ input:focus, textarea:focus {
   padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
 }
 .contact_wrapper > .container {
-  padding: 2.5rem 6.5rem !important;
+  padding: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem) clamp(1.5rem, calc(-0.3182rem + 7.2727vw), 6.5rem) !important;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 .contact_wrapper > .container .head {
   flex-direction: column;
-  gap: .6rem;
+  gap: clamp(0.3rem, calc(0.1909rem + 0.4364vw), 0.6rem);
   align-items: start;
 }
+@media (max-width: 850px) {
+  .contact_wrapper > .container .head {
+    align-items: center;
+  }
+}
 .contact_wrapper > .container .head h1 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
   color: #8897b7;
 }
 .contact_wrapper > .container .head p {
@@ -962,10 +977,15 @@ input:focus, textarea:focus {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
+@media (max-width: 850px) {
+  .contact_wrapper > .container .body {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .contact_wrapper > .container .body form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem 1.5rem;
+  gap: clamp(0.7rem, calc(0.5rem + 0.8vw), 1.25rem) clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem);
 }
 .contact_wrapper > .container .body form input, .contact_wrapper > .container .body form textarea, .contact_wrapper > .container .body form button {
   grid-column: span 4;
@@ -982,15 +1002,20 @@ input:focus, textarea:focus {
   resize: none;
 }
 .contact_wrapper > .container .body form button {
-  grid-column: span 1 !important;
+  grid-column: span 2 !important;
   font-size: 1rem;
   background-color: transparent;
   font-weight: 500;
   color: #435ca1;
   cursor: pointer;
 }
+@media (max-width: 850px) {
+  .contact_wrapper > .container .body form button {
+    grid-column: span 4 !important;
+  }
+}
 .contact_wrapper > .container .body iframe {
-  border-radius: 1rem;
+  border-radius: clamp(0.4rem, calc(0.1818rem + 0.8727vw), 1rem);
   overflow: hidden;
   border: 1px solid #d5dfe4 !important;
   width: 100%;
@@ -1001,9 +1026,15 @@ input:focus, textarea:focus {
   padding: 2rem 0;
 }
 .contact_wrapper .contact-info .container {
-  padding: 0 6.5rem !important;
+  padding: 0 clamp(1.5rem, calc(-0.3182rem + 7.2727vw), 6.5rem) !important;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+@media (max-width: 620px) {
+  .contact_wrapper .contact-info .container {
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 .contact_wrapper .contact-info .container > div {
   display: flex;
@@ -1015,6 +1046,14 @@ input:focus, textarea:focus {
   text-align: left;
   align-items: start;
 }
+@media (max-width: 1040px) {
+  .contact_wrapper .contact-info .container > div:first-child {
+    text-align: center;
+    align-items: center;
+    flex-basis: 100%;
+    flex-grow: 1;
+  }
+}
 .contact_wrapper .contact-info .container > div:not(:first-child) {
   max-width: 13rem;
 }
@@ -1022,56 +1061,69 @@ input:focus, textarea:focus {
   color: #066ba3;
 }
 .contact_wrapper .contact-info .container > div i {
-  font-size: 4.5rem;
+  font-size: clamp(2.5rem, calc(1.7727rem + 2.9091vw), 4.5rem);
   margin-bottom: .1rem;
 }
 .contact_wrapper .contact-info .container > div p, .contact_wrapper .contact-info .container > div a {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
   font-weight: 400;
   color: #717171;
   text-decoration: none;
 }
 .contact_wrapper .contact-info .container > div h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem);
   text-align: left;
   font-weight: 700;
 }
+@media (max-width: 1040px) {
+  .contact_wrapper .contact-info .container > div h1 {
+    text-align: center;
+  }
+}
 .contact_wrapper .contact-info .container > div h3 {
-  font-size: 1.7rem;
+  font-size: clamp(1.3rem, calc(1.1545rem + 0.5818vw), 1.7rem);
   font-weight: 600;
 }
 
+.faq_wrapper {
+  padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
+}
 .faq_wrapper > .container {
-  margin-top: 3rem;
-  padding: 0 6.5rem !important;
+  margin-top: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem);
+  padding: 0 clamp(0.5rem, calc(-1.6818rem + 8.7273vw), 6.5rem) !important;
   flex-direction: column;
 }
 .faq_wrapper > .container > h1 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0rem, calc(-0.3636rem + 1.4545vw), 1rem);
 }
 .faq_wrapper > .container .questions {
   flex-direction: column;
   width: 80%;
 }
+@media (max-width: 600px) {
+  .faq_wrapper > .container .questions {
+    width: 95%;
+  }
+}
 .faq_wrapper > .container .questions .question {
   width: 100%;
   border: 1px solid #d5dfe4;
   border-radius: 1.25rem;
-  padding: 1.5rem 1.2rem;
+  padding: clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem) clamp(0.9rem, calc(0.7909rem + 0.4364vw), 1.2rem);
   display: flex;
   flex-direction: column;
   gap: .7rem;
   cursor: pointer;
+  font-size: clamp(0.9rem, calc(0.7727rem + 0.5091vw), 1.25rem);
 }
 .faq_wrapper > .container .questions .question .question-value {
   color: #33332c;
-  font-size: 1.25rem;
   font-weight: 500;
   justify-content: space-between;
 }
 .faq_wrapper > .container .questions .question .question-value i {
-  font-size: 1.3rem;
+  font-size: clamp(0.9rem, calc(0.7545rem + 0.5818vw), 1.3rem);
   font-weight: 700;
   color: #000;
 }

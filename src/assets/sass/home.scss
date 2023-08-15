@@ -696,13 +696,16 @@
             &:last-child {
                 display: flex;
                 flex-direction: column;
-                gap: 4.5rem;
-                margin-top: 4rem;
+                gap: clamp(2rem, calc(1.2rem + 3.2vw), 4.2rem);
+                margin-top: clamp(2rem, calc(1.2rem + 3.2vw), 4.2rem);
                 .news {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     gap: 1.25rem;
                     margin: 0;
+                    @media (max-width: 600px) {
+                        grid-template-columns: repeat(1, 1fr);
+                    }
                     .news-card {
                         display: grid;
                         grid-template-columns: repeat(2, 1fr);
@@ -710,6 +713,9 @@
                         @extend %shadow;
                         border-radius: 1.25rem;
                         overflow: hidden;
+                        @media (max-width: 500px) {
+                            grid-template-columns: repeat(1, 1fr);
+                        }
                         .thumbanail {
                             background-color: $secondary_color;
                             img {
@@ -767,17 +773,20 @@
 .contact_wrapper {
     padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
     >.container {
-        padding: 2.5rem 6.5rem !important;
+        padding: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem) clamp(1.5rem, calc(-0.3182rem + 7.2727vw), 6.5rem)!important;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
         .head {
             @extend %flex-center;
             flex-direction: column;
-            gap: .6rem;
+            gap: clamp(0.3rem, calc(0.1909rem + 0.4364vw), 0.6rem);
             align-items: start;
+            @media (max-width: 850px) {
+                align-items: center;
+            }
             h1 {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
                 color: #8897b7;
             }
             p {
@@ -797,10 +806,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
+            @media (max-width: 850px) {
+                grid-template-columns: repeat(1, 1fr);
+            }
             form {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
-                gap: 1.25rem 1.5rem;
+                gap: clamp(0.7rem, calc(0.5rem + 0.8vw), 1.25rem) clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem);
                 input, textarea, button {
                     grid-column: span 4;
                     border: 1px solid $border-color;
@@ -816,16 +828,19 @@
                     resize: none;
                 }
                 button {
-                    grid-column: span 1 !important;
+                    grid-column: span 2 !important;
                     font-size: 1rem;
                     background-color: transparent;
                     font-weight: 500;
                     color: #435ca1;
                     cursor: pointer;
+                    @media (max-width: 850px) {
+                        grid-column: span 4 !important;
+                    }
                 }
             }
             iframe {
-                border-radius: 1rem;
+                border-radius: clamp(0.4rem, calc(0.1818rem + 0.8727vw), 1rem);
                 overflow: hidden;
                 border: 1px solid $border-color !important;
                 width: 100%;
@@ -837,37 +852,53 @@
         background-color: $light_blue;
         padding: 2rem 0;
         .container {
-            padding: 0 6.5rem !important;
+            padding: 0 clamp(1.5rem, calc(-0.3182rem + 7.2727vw), 6.5rem) !important;
             @extend %flex-center;
             justify-content: space-between;
             flex-wrap: wrap;
+            @media (max-width: 620px) {
+                justify-content: center;
+                flex-direction: column;
+            }
             >div {
                 display: flex;
                 align-items: center;
                 flex-direction: column;
                 text-align: center;
-                &:first-child {text-align: left; align-items: start;}
+                &:first-child {
+                    text-align: left; 
+                    align-items: start;
+                    @media (max-width: 1040px) {
+                        text-align: center;
+                        align-items: center;
+                        flex-basis: 100%;
+                        flex-grow: 1;
+                    }
+                }
                 &:not(:first-child) {max-width: 13rem;}
                 * {
                     color: #066ba3
                 }
                 i {
-                    font-size: 4.5rem;
+                    font-size: clamp(2.5rem, calc(1.7727rem + 2.9091vw), 4.5rem);
                     margin-bottom: .1rem;
                 }
                 p, a {
-                    font-size: 1rem;
+                    font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
                     font-weight: 400;
                     color: $text_light_gray;
                     text-decoration: none;
                 }
                 h1 {
-                    font-size: 2.5rem;
+                    font-size: clamp(1.5rem, calc(1.1364rem + 1.4545vw), 2.5rem);
                     text-align: left;
                     font-weight: 700;
+                    @media (max-width: 1040px) {
+                        text-align: center;
+                    }
                 }
                 h3 {
-                    font-size: 1.7rem;
+                    font-size: clamp(1.3rem, calc(1.1545rem + 0.5818vw), 1.7rem);
                     font-weight: 600;
                 }
             }
@@ -876,36 +907,40 @@
 }
 
 .faq_wrapper {
+    padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
     >.container {
-        margin-top: 3rem;
-        padding: 0 6.5rem !important;
+        margin-top: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem);
+        padding: 0 clamp(0.5rem, calc(-1.6818rem + 8.7273vw), 6.5rem) !important;
         @extend %flex-center;
         flex-direction: column;
         >h1 {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0rem, calc(-0.3636rem + 1.4545vw), 1rem);
         }
         .questions {
             @extend %flex-center;
             flex-direction: column;
             width: 80%;
+            @media (max-width: 600px) {
+                width: 95%;
+            }
             .question {
                 width: 100%;
                 border: 1px solid $border-color;
                 border-radius: 1.25rem;
-                padding: 1.5rem 1.2rem;
+                padding: clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem) clamp(0.9rem, calc(0.7909rem + 0.4364vw), 1.2rem);
                 display: flex;
                 flex-direction: column;
                 gap: .7rem;
                 cursor: pointer;
+                font-size: clamp(0.9rem, calc(0.7727rem + 0.5091vw), 1.25rem);
                 .question-value {
                     color: $text_gray;
-                    font-size: 1.25rem;
                     font-weight: 500;
                     @extend %flex-center;
                     justify-content: space-between;
                     i {
-                        font-size: 1.3rem;
+                        font-size: clamp(0.9rem, calc(0.7545rem + 0.5818vw), 1.3rem);
                         font-weight: 700;
                         color: #000;
                     }
