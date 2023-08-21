@@ -4,12 +4,6 @@
 // })
 module.exports = {
   devServer: {
-    proxy: {
-      '^/users': {
-        target: 'http://api.egyptgamestore.com/',
-        ws: true,
-        changeOrigin: true
-      },
-    }
-  }
+      proxy: 'http://api.egyptgamestore.com/'
+  } 
 }
