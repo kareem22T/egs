@@ -4,28 +4,17 @@ module.exports = defineConfig({
 })
 
 
-  //  module.exports = {
-  //    devServer: {
-  //      proxy: {
-  //        '/api': {
-  //          target: 'http://api.egyptgamestore.com',
-  //          changeOrigin: true,
-  //          pathRewrite: {
-  //            '^/api': ''
-  //          }
-  //        }
-  //      }
-  //    }
-  //  };
-   
-  module.exports = {
-  proxy: {
-    '/api': {
-      target: 'http://api.egyptgamestore.com',
-      changeOrigin: true,
-      cors: {
-        origin: '*',
+   module.exports = {
+     devServer: {
+      proxy: {
+        '/api': {
+          target: 'http://api.egyptgamestore.com',
+          changeOrigin: true,
+          cors: {
+            origin: '*',
+          },
+        },
       },
-    },
-  },
-};
+   }
+  }
+   
