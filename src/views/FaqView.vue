@@ -35,7 +35,7 @@ export default {
         async getFaq() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`http://api.egyptgamestore.com/api/web/faqs`);
+                const response = await axios.get(`/api/web/faqs`);
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
                     this.questions = response.data.data
