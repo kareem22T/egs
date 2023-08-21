@@ -185,6 +185,7 @@ input:focus, textarea:focus {
 @media (max-width: 1140px) {
   .home_wrapper .hero .container .row-1 .hero-slider {
     grid-column: span 1;
+    max-width: calc(100vw - 2rem);
   }
 }
 .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide {

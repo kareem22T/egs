@@ -26,6 +26,7 @@
                     width: 100%;
                     @media (max-width: 1140px) {
                         grid-column: span 1;
+                        max-width: calc(100vw - 2rem);
                     }
                     .swiper-slide {
                         gap: .2rem;
