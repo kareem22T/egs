@@ -134,7 +134,7 @@ export default {
 
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.post(`http://api.egyptgamestore.com/api/users/web/logout`, {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/users/web/logout`, {
                 },
                     {
                         headers: {

@@ -35,7 +35,7 @@ export default {
         async getFaq() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/aboutCompany`, 
+                const response = await axios.get(`https://api.egyptgamestore.com/api/web/faqs`, 
                 {
                     headers: {
                         'Referrer-Policy': 'strict-origin-when-cross-origin',

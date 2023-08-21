@@ -8,7 +8,7 @@ module.exports = defineConfig({
      devServer: {
       proxy: {
         '/api': {
-          target: 'http://api.egyptgamestore.com',
+          target: 'https://api.egyptgamestore.com',
           changeOrigin: true,
           cors: {
             origin: '*',
