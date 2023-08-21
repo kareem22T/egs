@@ -888,6 +888,11 @@ input:focus, textarea:focus {
   border-radius: 1.25rem;
   overflow: hidden;
 }
+@media (max-width: 950px) and (min-width: 600px) {
+  .home_wrapper .news .container:last-child .news .news-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 @media (max-width: 500px) {
   .home_wrapper .news .container:last-child .news .news-card {
     grid-template-columns: repeat(1, 1fr);
@@ -899,6 +904,7 @@ input:focus, textarea:focus {
 .home_wrapper .news .container:last-child .news .news-card .thumbanail img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .home_wrapper .news .container:last-child .news .news-card .text {
   height: 100%;

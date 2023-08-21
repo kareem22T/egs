@@ -703,6 +703,9 @@
                     grid-template-columns: repeat(2, 1fr);
                     gap: 1.25rem;
                     margin: 0;
+                    // @media (max-width: 1070px) and (min-width: 850px) {
+                    //     grid-template-columns: repeat(1, 1fr);
+                    // }
                     @media (max-width: 600px) {
                         grid-template-columns: repeat(1, 1fr);
                     }
@@ -713,6 +716,9 @@
                         @extend %shadow;
                         border-radius: 1.25rem;
                         overflow: hidden;
+                        @media (max-width: 950px) and (min-width: 600px) {
+                            grid-template-columns: repeat(1, 1fr);
+                        }
                         @media (max-width: 500px) {
                             grid-template-columns: repeat(1, 1fr);
                         }
@@ -720,7 +726,8 @@
                             background-color: $secondary_color;
                             img {
                                 width: 100%;
-                                height: 100%
+                                height: 100%;
+                                object-fit: cover;
                             }
                         }
                         .text {

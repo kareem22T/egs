@@ -14,6 +14,9 @@
                         <router-link to="/contact-us">
                             <li>Contact US</li>
                         </router-link>
+                        <router-link to="/faq">
+                            <li>FAQ</li>
+                        </router-link>
                     </ul>
                 </div>
                 <div class="right">
@@ -45,13 +48,43 @@
                         <i class="fa fa-search"></i>
                     </div>
                     <nav>
+                        <a href="" class="close"><i class="fa fa-close"></i></a>
                         <router-link to="/" class="active">Home<span></span></router-link>
                         <router-link to="">World2Egypt<span></span></router-link>
                         <router-link to="">Physical Store<span></span></router-link>
                         <router-link to="">Digital Store<span></span></router-link>
                         <router-link to="">Used Market<span></span></router-link>
                         <router-link to="">Deals<span></span></router-link>
+
+                        <div class="mobile-more">
+                            <ul>
+                                <a href="tel:01145636999">
+                                    <i class="fa fa-phone"></i>
+                                </a>
+                                <a href="mailto:support@egyptgamestore.com">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-globe"></i>
+                                </a>
+                            </ul>
+                            <ul>
+                                <router-link to="/about-us">
+                                    <li>About Us</li>
+                                </router-link>
+                                <router-link to="/careers">
+                                    <li>Careers</li>
+                                </router-link>
+                                <router-link to="/contact-us">
+                                    <li>Contact US</li>
+                                </router-link>
+                                <router-link to="/faq">
+                                    <li>FAQ</li>
+                                </router-link>
+                            </ul>
+                        </div>
                     </nav>
+                    <div class="hide"></div>
                 </div>
                 <div class="right">
                     <div class="controls">
@@ -190,13 +223,12 @@ export default {
         })
         $(document).on('click', '.more .fa-bars', function (e) {
             e.preventDefault();
-            $('nav').attr("style", "display: flex !important;").addClass('animate__animated animate__bounceIn')
-            $(this).removeClass('fa-bars').addClass('fa-close')
+            $('nav').attr("style", "display: flex !important;").addClass('animate__animated animate__fadeInRight')
+            $('.hide').fadeIn()
         })
-        $(document).on('click', '.more .fa-close', function (e) {
+        $(document).on('click', '.close, .hide', function (e) {
             e.preventDefault()
-            $(this).addClass('fa-bars').removeClass('fa-close')
-            $('nav').fadeOut().removeClass('animate__animated animate__bounceIn')
+            $('nav, .hide').fadeOut()
         })
     },
 }
