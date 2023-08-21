@@ -35,7 +35,7 @@ export default {
         async getFaq() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`http://localhost:8080/api/web/faqs`
+                const response = await axios.get(`https://egs-sigma.vercel.app/api/web/faqs`
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
