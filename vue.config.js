@@ -4,6 +4,8 @@
 // })
 module.exports = {
   devServer: {
-      proxy: 'http://api.egyptgamestore.com/'
+      proxy: 'http://api.egyptgamestore.com/',
+      transpileDependencies: true,
+      changeOrigin: true,
   } 
 }
