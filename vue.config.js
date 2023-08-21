@@ -6,7 +6,7 @@ module.exports = {
   devServer: {
     proxy: {
       '^/users': {
-        target: 'https://egs-sigma.vercel.app/',
+        target: 'http://api.egyptgamestore.com/',
         ws: true,
         changeOrigin: true
       },
