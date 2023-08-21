@@ -14,9 +14,9 @@
                         <router-link to="/contact-us">
                             <li>Contact US</li>
                         </router-link>
-                        <router-link to="/faq">
+                        <a href="/faq">
                             <li>FAQ</li>
-                        </router-link>
+                        </a>
                     </ul>
                 </div>
                 <div class="right">
@@ -78,9 +78,9 @@
                                 <router-link to="/contact-us">
                                     <li>Contact US</li>
                                 </router-link>
-                                <router-link to="/faq">
+                                <a href="/faq">
                                     <li>FAQ</li>
-                                </router-link>
+                                </a>
                             </ul>
                         </div>
                     </nav>
