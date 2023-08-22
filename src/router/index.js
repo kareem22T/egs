@@ -11,8 +11,13 @@ import ChangePassView from '../views/ChangePassView.vue'
 import ResetPassView from '../views/ResetPassView.vue'
 import VerifyView from '../views/VerifyView.vue'
 
+import CategoryView from '../views/CategoryView.vue'
+import PhysicalStoreView from '../views/PhysicalStoreView.vue'
+import DigitalStoreView from '../views/DigitalStoreView.vue'
+
 import authMiddleware from '@/middleware/auth';
 import guestMiddleware from '@/middleware/guest';
+
 
 const routes = [
   {
@@ -81,12 +86,47 @@ const routes = [
     component: VerifyView,
     meta: { auth: true }
   },
+  {
+    path: '/physical-store/:name/:id',
+    component: PhysicalStoreView,
+    meta: {type: 1, category_name: 'Physical Store', category_path: 'physical-store'}
+  },
+  {
+    path: '/digital-store/:name/:id',
+    component: DigitalStoreView,
+    meta: {type: 1, category_name: 'Digital Store', category_path: 'digital-store'}
+  },
+  {
+    path: '/category',
+    component: CategoryView,
+    children: [
+      {
+        path: '/category/:cat',
+        component: CategoryView,
+      },
+      {
+        path: '/category/World2Egypt',
+        component: CategoryView,
+        meta: {id: 1, type: 0}
+      },
+      {
+        path: '/category/physical-store',
+        component: CategoryView,
+        meta: {id: 2, type: 0, category_name: 'Physical Store', category_path: 'physical-store'}
+      },
+      {
+        path: '/category/digital-store',
+        component: CategoryView,
+        meta: {id: 3, type: 0, category_name: 'Digital Store', category_path: 'digital-store'}
+      },
+    ],
+  },
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
 router.beforeEach(guestMiddleware);
 router.beforeEach(authMiddleware);
 export default router

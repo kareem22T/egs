@@ -50,9 +50,9 @@
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
                         <router-link to="/" class="active">Home<span></span></router-link>
-                        <router-link to="">World2Egypt<span></span></router-link>
-                        <router-link to="">Physical Store<span></span></router-link>
-                        <router-link to="">Digital Store<span></span></router-link>
+                        <a href="https://w2eg.com/">World2Egypt<span></span></a>
+                        <a href="/category/physical-store" class="physical-store">Physical Store<span></span></a>
+                        <a href="/category/digital-store" class="digital-store">Digital Store<span></span></a>
                         <router-link to="">Used Market<span></span></router-link>
                         <router-link to="">Deals<span></span></router-link>
 

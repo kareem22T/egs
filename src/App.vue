@@ -19,7 +19,10 @@ export default {
     MainFooter
   },
   mounted() {
-
+    const routes = this.$router.options.routes;
+    for (const route of routes) {
+      console.log(route);
+    }
   },
 }
 </script>
