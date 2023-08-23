@@ -198,6 +198,9 @@ input:focus, textarea:focus {
   border-radius: .7rem;
   overflow: hidden;
 }
+.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide.slide_3, .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide.slide_4 {
+  display: none;
+}
 @media (max-width: 600px) {
   .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide {
     align-items: center;
@@ -230,7 +233,7 @@ input:focus, textarea:focus {
 .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide p {
   font-size: clamp(1.1rem, calc(1.0273rem + 0.2909vw), 1.3rem);
   letter-spacing: 1px;
-  color: #33332c;
+  color: #fff;
 }
 .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide a {
   letter-spacing: 1px;
@@ -306,7 +309,7 @@ input:focus, textarea:focus {
   color: white;
 }
 .home_wrapper .hero .container .row-1 .cards > div h1 {
-  font-size: clamp(1.3rem, calc(1.2273rem + 0.2909vw), 1.5rem);
+  font-size: clamp(1.3rem, calc(1.2273rem + 0.2909vw), 1.4rem);
   color: white;
 }
 .home_wrapper .hero .container .row-1 .cards > div a {

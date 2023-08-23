@@ -37,6 +37,9 @@
                         position: relative;
                         border-radius: .7rem;
                         overflow: hidden;
+                        &.slide_3, &.slide_4 {
+                            display: none;
+                        }
                         @media (max-width: 600px) {
                             align-items: center;
                             text-align: center;
@@ -67,7 +70,7 @@
                         p {
                             font-size: clamp(1.1rem, calc(1.0273rem + 0.2909vw), 1.3rem);
                             letter-spacing: 1px;
-                            color: $text_gray;
+                            color: #fff;
                         }
                         a {
                             letter-spacing: 1px;
@@ -140,7 +143,7 @@
                             color: white;
                         }
                         h1 {
-                            font-size: clamp(1.3rem, calc(1.2273rem + 0.2909vw), 1.5rem);
+                            font-size: clamp(1.3rem, calc(1.2273rem + 0.2909vw), 1.4rem);
                             color: white;
                         }
                         a {

@@ -49,7 +49,7 @@
                     </div>
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
-                        <router-link to="/" class="active">Home<span></span></router-link>
+                        <router-link to="/" class="active home_link">Home<span></span></router-link>
                         <a href="https://w2eg.com/">World2Egypt<span></span></a>
                         <a href="/category/physical-store" class="physical-store">Physical Store<span></span></a>
                         <a href="/category/digital-store" class="digital-store">Digital Store<span></span></a>

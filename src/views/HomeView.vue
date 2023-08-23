@@ -16,32 +16,20 @@
                     :modules="modules"
                     class="hero-slider"
                 >
-                    <swiper-slide>
-                        <img src="./../assets/imgs/slider-bg.png">
-                        <h1>Explore This Week's Offers Now !</h1>
-                        <p>get a discount of up to 50%</p>
-                        <router-link to="">Shop Now</router-link>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="./../assets/imgs/slider-bg.png">
-                        <h1>Explore This Week's Offers Now !</h1>
-                        <p>get a discount of up to 50%</p>
-                        <router-link to="">Shop Now</router-link>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="./../assets/imgs/slider-bg.png">
-                        <h1>Explore This Week's Offers Now !</h1>
-                        <p>get a discount of up to 50%</p>
+                    <swiper-slide v-for="item in hero_slider" :key="item.id" :class="`slide_${item.id}`">
+                        <img :src="item.img">
+                        <h1>{{ item.title }}</h1>
+                        <p>{{ item.desc }}</p>
                         <router-link to="">Shop Now</router-link>
                     </swiper-slide>
                 </swiper>
-                    <div class="cards">
+                    <div class="cards" v-if="hero_slider">
                         <div>
                             <div class="content">
                                 <div>
-                                    <h1>Build Your PC!</h1>
+                                    <h1>{{ hero_slider[2].title }}</h1>
                                     <p>
-                                        We help you make your dream PC come true with Free installation CHeap Prices & Shipping Everywhere.
+                                        {{ hero_slider[2].desc }}
                                     </p>
                                 </div>
                                 <router-link to="">Shop Now</router-link>
@@ -49,8 +37,8 @@
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
                         <div>
-                            <router-link to="">ROBLOX GIFT CARDS >> Shop Now</router-link>
-                            <img src="./../assets/imgs/hero-card-2.jpg" alt="">
+                            <router-link to="">{{ hero_slider[3].title }} >> Shop Now</router-link>
+                            <img :src="hero_slider[3].img" alt="">
                         </div>
                     </div>
                 </div>
@@ -675,6 +663,11 @@
 </template>
 
 <script>
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
+import axios from 'axios';
+
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -689,6 +682,11 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 export default {
     name: 'HomeView',
+    data() {
+        return {
+            hero_slider: null,
+        }
+    },
     components: {
         Swiper,
         SwiperSlide,
@@ -697,6 +695,56 @@ export default {
         return {
             modules: [Autoplay, Pagination],
         };
+    },
+    methods: {
+        async getHomeSLider() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.hero_slider = response.data.data
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        }
+    },
+    created() {
+        this.getHomeSLider()
+    },
+    mounted() {
+        $(`.home_link`).addClass('active')
+        $(`.home_link`).siblings().removeClass('active')
     },
 }
 </script>
