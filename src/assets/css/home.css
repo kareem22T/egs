@@ -1393,6 +1393,13 @@ input:focus, textarea:focus {
   background: transparent;
   border: none;
   border-radius: .3rem;
+  display: flex;
+  gap: .7rem;
+  width: 100%;
+  justify-content: center;
+}
+.category_wrapper .products .body .product .add-to-wishlist i {
+  font-size: 1.25rem;
 }
 
 /*# sourceMappingURL=home.css.map */
