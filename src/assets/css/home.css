@@ -1291,6 +1291,11 @@ input:focus, textarea:focus {
   gap: 1.1rem;
   margin-top: 2rem;
 }
+@media (max-width: 555px) {
+  .category_wrapper .products .body {
+    justify-items: center;
+  }
+}
 .category_wrapper .products .body .product {
   max-width: 400px;
   border: 1px solid #d5dfe4;
@@ -1300,9 +1305,9 @@ input:focus, textarea:focus {
   flex-direction: column;
   gap: .7rem;
 }
-@media (max-width: 600px) {
+@media (max-width: 555px) {
   .category_wrapper .products .body .product {
-    margin: auto;
+    width: 300px;
   }
 }
 .category_wrapper .products .body .product a {

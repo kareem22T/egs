@@ -1087,9 +1087,12 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.1rem;
             margin-top: 2rem;
+            @media (max-width: 555px) {
+                justify-items: center;
+            }
             .product {
-                @media (max-width: 600px) {
-                    margin: auto;
+                @media (max-width: 555px) {
+                    width: 300px;
                 }
                 max-width: 400px;
                 border: 1px solid $border-color;
