@@ -1292,13 +1292,18 @@ input:focus, textarea:focus {
   margin-top: 2rem;
 }
 .category_wrapper .products .body .product {
-  max-width: 100%;
+  max-width: 400px;
   border: 1px solid #d5dfe4;
   border-radius: 1rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: .7rem;
+}
+@media (max-width: 600px) {
+  .category_wrapper .products .body .product {
+    margin: auto;
+  }
 }
 .category_wrapper .products .body .product a {
   width: 100%;
