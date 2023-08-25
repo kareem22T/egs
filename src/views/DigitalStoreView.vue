@@ -39,13 +39,14 @@ export default {
     },
     methods: {
         async fetchSubCategories(categoryId) {
+            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/categories/children/children?category_id=${categoryId}`);
                 if (response.data.status === true) {
                     this.subCategories = response.data.data
+                    $('.loader').fadeOut()
                     setTimeout(() => {
                         $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
                     }, 4000);
                 } else {
                     $('.loader').fadeOut()

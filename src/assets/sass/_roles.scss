@@ -166,3 +166,31 @@ input, textarea {
         border-bottom: 4px solid #000;
     }
 }
+
+.pagination {
+    @extend %flex-center;
+    justify-content: start;
+    gap: .5rem;
+    margin-top: 1.5rem;
+    >div {
+        label {
+            border: 1px solid $border-color;
+            border-radius: .2rem;
+            color: $secondary_color;
+            font-size: 1.2rem;
+            font-weight: 600;
+            @extend %flex-center;
+            width: 2.6rem;
+            height: 2.6rem;
+            cursor: pointer;
+            &.active {
+                border: none;
+                background-color: $main_color;
+                color: #fff;
+            }
+        }
+        input {
+            display: none;
+        }
+    }
+}

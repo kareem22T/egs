@@ -2,7 +2,7 @@
   box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
 }
 
-.input-search, .page-head .container, .or, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .faq_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value {
+.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .faq_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +151,30 @@ input:focus, textarea:focus {
 .section_head_bl span {
   font-weight: 600;
   border-bottom: 4px solid #000;
+}
+
+.pagination {
+  justify-content: start;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+.pagination > div label {
+  border: 1px solid #d5dfe4;
+  border-radius: .2rem;
+  color: #0b5177;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 2.6rem;
+  height: 2.6rem;
+  cursor: pointer;
+}
+.pagination > div label.active {
+  border: none;
+  background-color: #e63b12;
+  color: #fff;
+}
+.pagination > div input {
+  display: none;
 }
 
 .home_wrapper {
@@ -1201,6 +1225,164 @@ input:focus, textarea:focus {
   border-radius: .5rem;
   box-shadow: 0 0 50px rgba(55, 125, 255, 0.4) !important;
   z-index: 9999;
+}
+.category_wrapper .products {
+  padding: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem) clamp(1rem, calc(-1rem + 8vw), 6.5rem) clamp(2rem, calc(0.9091rem + 4.3636vw), 5rem) !important;
+}
+.category_wrapper .products .head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+@media (max-width: 930px) {
+  .category_wrapper .products .head {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.category_wrapper .products .head .sort {
+  display: flex;
+}
+@media (max-width: 800px) {
+  .category_wrapper .products .head .sort {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+.category_wrapper .products .head .sort > div {
+  padding: 0 1.25rem;
+  font-size: 1rem;
+  color: #0473b0;
+}
+.category_wrapper .products .head .sort > div:not(:last-child) {
+  border-right: 1px solid #d5dfe4;
+}
+@media (max-width: 800px) {
+  .category_wrapper .products .head .sort > div:not(:last-child) {
+    border: none;
+  }
+}
+.category_wrapper .products .head .sort > div span {
+  color: #717171;
+}
+.category_wrapper .products .head .sort > div select {
+  background: transparent;
+  width: min-content;
+  border: none;
+  font-size: 1rem;
+  width: 135px;
+  text-align: center;
+  color: #717171;
+}
+.category_wrapper .products .head h2 {
+  color: #8897b7;
+  font-weight: 600;
+}
+.category_wrapper .products hr {
+  border: none;
+  height: 1px;
+  background-color: #d5dfe4;
+}
+.category_wrapper .products .body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
+  margin-top: 2rem;
+}
+.category_wrapper .products .body .product {
+  max-width: 100%;
+  border: 1px solid #d5dfe4;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+.category_wrapper .products .body .product a {
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.category_wrapper .products .body .product a h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #0473b0;
+}
+.category_wrapper .products .body .product a p {
+  font-size: .9rem;
+  color: #717171;
+}
+.category_wrapper .products .body .product a .rate {
+  width: fit-content;
+  gap: .5rem;
+}
+.category_wrapper .products .body .product a .rate .stars {
+  font-weight: 400;
+  font-size: .9rem;
+  color: #33332c;
+}
+.category_wrapper .products .body .product a .rate .stars i {
+  font-size: 1rem;
+  color: #0b5177;
+  opacity: .5;
+}
+.category_wrapper .products .body .product a .rate .stars i.active {
+  color: #e63b12;
+}
+.category_wrapper .products .body .product a .price {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.category_wrapper .products .body .product a .price h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0b5177;
+}
+.category_wrapper .products .body .product a .price h1:nth-child(2) {
+  font-size: 1.25rem;
+  color: #8897b7;
+  position: relative;
+}
+.category_wrapper .products .body .product a .price h1:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  width: 105%;
+  height: 1px;
+  background-color: #0b5177;
+}
+.category_wrapper .products .body .product a .img {
+  max-width: 100%;
+  overflow: hidden;
+}
+.category_wrapper .products .body .product a .img img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+}
+.category_wrapper .products .body .product .add-to-cart {
+  padding: .5rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #435ca1;
+  background: transparent;
+  border: 1px solid #425a8c;
+  border-radius: .3rem;
+}
+.category_wrapper .products .body .product .add-to-wishlist {
+  font-size: .9rem;
+  font-weight: 400;
+  color: #597b94;
+  background: transparent;
+  border: none;
+  border-radius: .3rem;
 }
 
 /*# sourceMappingURL=home.css.map */
