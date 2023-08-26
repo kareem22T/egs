@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/ContactView.vue'
+import AboutView from '../views/AboutView.vue'
 import TermsView from '../views/TermsView.vue'
 import FaqView from '../views/FaqView.vue'
 import RegisterView from '../views/RegisterView.vue'
@@ -30,6 +31,12 @@ const routes = [
     path: '/contact-us',
     name: 'contact-us',
     component: ContactView,
+    meta: { auth: false }
+  },
+  {
+    path: '/about-us',
+    name: 'about-us',
+    component: AboutView,
     meta: { auth: false }
   },
   {

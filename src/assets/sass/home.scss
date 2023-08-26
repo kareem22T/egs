@@ -858,6 +858,26 @@
                 border: 1px solid $border-color !important;
                 width: 100%;
             }
+            .img {
+                border-radius: 1.25rem;
+                overflow: hidden;
+                border: 1px solid $border-color;
+                @extend %shadow;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            >div {
+                font-size: clamp(1rem, calc(0.7455rem + 1.0182vw), 1.7rem);
+                text-align: left;
+                font-weight: 400;
+                color: $secondary_color;
+                @media (max-width: 850px) {
+                    text-align: center;
+                }
+            }
         }
     }
     .contact-info {

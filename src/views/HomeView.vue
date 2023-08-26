@@ -629,21 +629,8 @@
             </div>
             <div class="container">
                 <h1 class="section_head_bl"><span>Latest</span> News</h1>
-                <div class="news">
-                    <div class="news-card">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/news-thumbanail.png" alt="">
-                        </div>
-                        <div class="text">
-                            <h1 class="title">Avatar: Frontiers of Pandora</h1>
-                            <p class="bref">
-                                Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, whenan unknown printer took a galley of ...
-                            </p>
-                            <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
-                            <router-link to="" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
-                        </div>
-                    </div>
-                    <div class="news-card">
+                <div class="news" v-if="news">
+                    <div class="news-card" v-for="article in news" :key="article.id">
                         <div class="thumbanail">
                             <img src="./../assets/imgs/news-thumbanail.png" alt="">
                         </div>
@@ -685,6 +672,7 @@ export default {
     data() {
         return {
             hero_slider: null,
+            news: null,
         }
     },
     components: {
@@ -737,10 +725,52 @@ export default {
 
                 console.error(error);
             }
+        },
+        async getHomeNews() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/news?per_page=2&page=1`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.news = response.data.data.news
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
         }
     },
     created() {
         this.getHomeSLider()
+        this.getHomeNews()
     },
     mounted() {
         $(`.home_link`).addClass('active')
