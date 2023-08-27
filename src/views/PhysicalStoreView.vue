@@ -42,7 +42,7 @@
             <hr>
             <div class="body">
                 <div class="product" v-for="item in products" :key="item.id">
-                    <a :href="'/'" @click.prevent>
+                    <a :href="`/product/${item.id}`">
                         <div class="img">
                             <img :src="item.main_image" :alt="item.name">
                             <p>{{ item.sub_category.name }}</p>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="container not_products" v-if="(!products || !products[0]) && (!subCategories || !subCategories[0])">
-            <h1 style="margin: 5rem 0; text-align:center;color: #717171;" v-if="showNotProducts">This Category does not contain any products yet!</h1>
+            <h1 style="margin: 5rem 0; text-align:center;color: #717171;" v-if="showNotProducts">This Category does not contain any product yet!</h1>
         </div>
     </div>
 </template>

@@ -15,6 +15,8 @@ import VerifyView from '../views/VerifyView.vue'
 import CategoryView from '../views/CategoryView.vue'
 import PhysicalStoreView from '../views/PhysicalStoreView.vue'
 import DigitalStoreView from '../views/DigitalStoreView.vue'
+import ProductView from '../views/ProductView.vue'
+import CardView from '../views/CardView.vue'
 
 import authMiddleware from '@/middleware/auth';
 import guestMiddleware from '@/middleware/guest';
@@ -102,6 +104,24 @@ const routes = [
     path: '/digital-store/:name/:id',
     component: DigitalStoreView,
     meta: {type: 1, category_name: 'Digital Store', category_path: 'digital-store'}
+  },
+  {
+    path: '/digital-store/sub_category/:name/:id',
+    component: DigitalStoreView,
+    meta: {type: 2, category_name: 'Digital Store', category_path: 'digital-store'}
+  },
+  {
+    path: '/digital-store/:countray_name/:country_id/:category_name/:id',
+    component: DigitalStoreView,
+    meta: {type: 3, category_name: 'Digital Store', category_path: 'digital-store'}
+  },
+  {
+    path: '/product/:id',
+    component: ProductView,
+  },
+  {
+    path: '/card/:id',
+    component: CardView,
   },
   {
     path: '/category',

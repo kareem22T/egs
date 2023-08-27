@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories" >
-            <a :href="`/${this.$route.meta.category_path}/${item.name.toLowerCase().replace(/\s+/g, '-')}/${item.id}`" v-for="item in subCategories" :key="item.id">
+            <a :href="`/${this.$route.meta.category_path}/${item.name.toLowerCase().replace(/\s+/g, '-').replace(/\//g, ',')}/${item.id}`" v-for="item in subCategories" :key="item.id">
                 <div class="img">
                     <img :src="item.logo" :alt="item.name">
                 </div>
