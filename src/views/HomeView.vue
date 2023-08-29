@@ -370,8 +370,7 @@
                         </div>
                         <div class="details">
                             <h1 class="title">{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}</h1>
-                            <p>
-                                {{ product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc }}
+                            <p v-html="product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc">
                             </p>
                             <div class="price">
                                 <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
