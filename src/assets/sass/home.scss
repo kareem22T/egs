@@ -503,6 +503,9 @@
                 @extend %flex-center;
                 flex-direction: column;
                 gap: 1rem;
+                height: auto;
+                justify-content: space-between;
+                cursor: pointer;
                 >* {
                     width: 100%
                 }
@@ -541,8 +544,12 @@
                         min-width: 43%;
                         height: fit-content;
                         border-radius: 1.25rem;
-                        background-color: $light_gray;
-                        padding: 1.1rem 1.5rem;
+                        background-color: #fff;
+                        padding: 1.1rem 0.3rem;
+                        min-width: 43%;
+                        height: 190px;
+                        border: 1px solid #d5dfe44d;
+                        box-shadow: 0px 0px 7.5px rgba(211, 211, 211, 0.23);
                         @extend %flex-center;
                         @media (min-width: 1480px) and (max-width: 1830px){
                             width: 100%;

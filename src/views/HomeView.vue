@@ -357,210 +357,25 @@
                 }"
                 :modules="modules"
                 class="latest-slider"
+                v-if="latest && latest.length"
             >
-                <swiper-slide>
+                <swiper-slide v-for="product in latest" :key="product.id" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)">
                     <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
+                        <h1>{{ product.sub_category.name }}</h1>
+                        <router-link to="" @click.prevent><i class="fa fa-heart"></i></router-link>
                     </div>
                     <div class="body">
                         <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
+                            <img :src="product.product_type == 1 ? product.main_image : product.img">
                         </div>
                         <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
+                            <h1 class="title">{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}</h1>
                             <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
+                                {{ product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc }}
                             </p>
                             <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
-                            </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                ( 3 Reviews )
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <h1>Games</h1>
-                        <router-link to=""><i class="fa fa-heart"></i></router-link>
-                    </div>
-                    <div class="body">
-                        <div class="thumbanail">
-                            <img src="./../assets/imgs/latest-1.png">
-                        </div>
-                        <div class="details">
-                            <h1 class="title">WWE 2K23 - PS5</h1>
-                            <p>
-                                lay through the key moments and toughest opponents of John Cena’s ......
-                            </p>
-                            <div class="price">
-                                <h1 class="new_price">2400 EGP</h1>
-                                <h3 class="old_price">3500 EGP</h3>
+                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
+                                <h1>{{ product.price }}</h1>
                             </div>
                             <div class="rate">
                                 <div class="stars">
@@ -673,6 +488,9 @@ export default {
         return {
             hero_slider: null,
             news: null,
+            products: null,
+            cards: null,
+            latest: null,
         }
     },
     components: {
@@ -766,11 +584,64 @@ export default {
 
                 console.error(error);
             }
+        },
+        async getLatest() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/latest?limit=7`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.products = response.data.data.products
+                    for (let i = 0; i < this.products.length; i++) {
+                        this.products[i].product_type = 1;
+                    }
+                    this.cards = response.data.data.cards
+                    for (let i = 0; i < this.cards.length; i++) {
+                        this.cards[i].product_type = 2;
+                    }
+                    this.latest = this.products.concat(this.cards)
+                    this.latest.sort(function (a, b) {
+                        return new Date(b.created_at) - new Date(a.created_at);
+                    });
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
         }
     },
     created() {
         this.getHomeSLider()
         this.getHomeNews()
+        this.getLatest()
     },
     mounted() {
         $(`.home_link`).addClass('active')
