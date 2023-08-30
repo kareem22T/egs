@@ -202,18 +202,18 @@ export default {
         },
     },
     mounted() {
+    },
+    created() {
         $(function () {
             $(document).on('click', '.side .img', function () {
                 let src = $(this).find('img').attr('src')
                 $(this).find('img').attr('src', $('.main_img img').attr('src'))
                 $('.main_img img').attr('src', src)
             })
-
+    
             $(`.physical-store`).addClass('active')
             $(`.physical-store`).siblings().removeClass('active')
         })
-    },
-    created() {
         this.fetchProduct(this.productId)
     },
 }

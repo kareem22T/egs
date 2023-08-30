@@ -108,213 +108,26 @@
                 }"
                 :modules="modules"
                 class="deals-slider"
+                v-if="deals && deals.length"
             >
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Laptop</div>
-                        <div class="discount">Save: 5600 EGP</div>
+                <swiper-slide v-for="product in deals" :key="product.id" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)" style="height: auto;justify-content: space-between; cursor: pointer">
+                    <div style="width: 100%;display: flex;flex-direction: column;gap: 1rem;">
+                        <div class="head">
+                            <div class="cat">{{ product.sub_category.name }}</div>
+                            <div class="discount" v-if="product.price_after_discount">Save: {{ product.price - product.price_after_discount }} EGP</div>
+                        </div>
+                        <div class="thumbanail">
+                            <img :src="product.product_type == 1 ? product.main_image : product.img">
+                        </div>
                     </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-1.png" alt="">
-                    </div>
-                    <div class="details">
+                    <div class="details" style="height: 100%; display: flex; flex-dirction: column; justify-content: space-between; align-items: center">
                         <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
+                            {{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}
                         </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Hardware</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-2.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Games</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-3.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Accessories</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-4.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Laptop</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-1.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Hardware</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-2.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Games</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-3.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="head">
-                        <div class="cat">Accessories</div>
-                        <div class="discount">Save: 5600 EGP</div>
-                    </div>
-                    <div class="thumbanail">
-                        <img src="./../assets/imgs/deals-4.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>
-                            Lenovo Legion 5 Laptop AMD 
-                            Ryzen 7 6800H RTX 3060 16GB
-                            DDR5 Ram 512GB SSD
-                            82RD006EUS
-                        </h3>
-                        <p class="exp">
-                            EXP : 15/7/2023
-                        </p>
-                        <h1 class="price">
-                            85000 EGP
-                        </h1>
-                        <h1 class="old_price">
-                            95000 EGP
-                        </h1>
+                            <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + '...' : product.desc">
+                            </p>
+                            <h1 class="price" v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
+                            <h1 :class="product.price_after_discount ? 'old_price' : 'price'">{{ product.price }}</h1>
                     </div>
                 </swiper-slide>
             </swiper>
@@ -490,6 +303,9 @@ export default {
             products: null,
             cards: null,
             latest: null,
+            deal_products: null,
+            deal_cards: null,
+            deals: null,
         }
     },
     components: {
@@ -635,12 +451,65 @@ export default {
 
                 console.error(error);
             }
-        }
+        },
+        async getDeals() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/deals`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.deal_products = response.data.data.products
+                    for (let i = 0; i < this.deal_products.length; i++) {
+                        this.deal_products[i].product_type = 1;
+                    }
+                    this.deal_cards = response.data.data.cards
+                    for (let i = 0; i < this.deal_cards.length; i++) {
+                        this.deal_cards[i].product_type = 2;
+                    }
+                    this.deals = this.deal_products.concat(this.deal_cards)
+                    this.deals.sort(function (a, b) {
+                        return new Date(b.created_at) - new Date(a.created_at);
+                    });
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
     },
     created() {
         this.getHomeSLider()
         this.getHomeNews()
         this.getLatest()
+        this.getDeals()
     },
     mounted() {
         $(`.home_link`).addClass('active')

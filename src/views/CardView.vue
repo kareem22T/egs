@@ -202,6 +202,8 @@ export default {
         },
     },
     mounted() {
+    },
+    created() {
         $(function () {
             $(document).on('click', '.side .img', function () {
                 let src = $(this).find('img').attr('src')
@@ -211,8 +213,6 @@ export default {
             $(`.digital-store`).addClass('active')
             $(`.digital-store`).siblings().removeClass('active')
         })
-    },
-    created() {
         this.fetchProduct(this.productId)
     },
 }
