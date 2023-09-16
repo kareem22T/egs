@@ -101,8 +101,8 @@
                             <router-link to="/change-password"><i class="fa-solid fa-chevron-right"></i> Change password</router-link>
                             <router-link to="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> log-out</router-link>
                         </ul>
-                        <router-link to="" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
-                        <router-link to=""><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></router-link>
+                        <router-link to="/my-wishlist" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
+                        <router-link to="/my-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></router-link>
                         <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></router-link>
                         <router-link to="" class="search-icon"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
                         <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>

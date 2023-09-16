@@ -13,7 +13,7 @@
                 </div>
                 <div class="right">
                     <div>
-                        <a href=""><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
+                        <a href="" class="add-to-wish" @click.prevent="likeProduct(product.id, 1)"><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
                     </div>
                     <div>
                         <p>Share</p>
@@ -72,7 +72,7 @@
                                     <span @click="this.quantity += 1">+</span>
                                 </span>
                             </div>
-                            <button><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
+                            <button @click="addProductToCart(product.id, quantity)"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -178,6 +178,117 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async likeProduct(product_id) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 1000);
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+                async addProductToCart(product_id, qty) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/add-cart`, {
+                    qty: qty
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 1000);
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

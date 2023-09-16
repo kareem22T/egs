@@ -4,6 +4,9 @@ import ContactView from '../views/ContactView.vue'
 import AboutView from '../views/AboutView.vue'
 import TermsView from '../views/TermsView.vue'
 import FaqView from '../views/FaqView.vue'
+import WishlishView from '@/views/WishlishView.vue'
+import CartView from '@/views/CartView.vue'
+import OrdersView from '@/views/OrdersView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import ForgotPassView from '../views/ForgotPassView.vue'
@@ -52,6 +55,24 @@ const routes = [
     name: 'faq',
     component: FaqView,
     meta: { auth: false }
+  },
+  {
+    path: '/my-wishlist',
+    name: 'wishlist',
+    component: WishlishView,
+    meta: { auth: true }
+  },
+  {
+    path: '/my-cart',
+    name: 'cart',
+    component: CartView,
+    meta: { auth: true }
+  },
+  {
+    path: '/my-orders',
+    name: 'orders',
+    component: OrdersView,
+    meta: { auth: true }
   },
   {
     path: '/register',

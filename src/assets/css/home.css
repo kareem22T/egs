@@ -2,7 +2,7 @@
   box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
 }
 
-.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .faq_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child {
+.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container, .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -696,7 +696,6 @@ input:focus, textarea:focus {
   gap: 1rem;
   height: auto;
   justify-content: space-between;
-  cursor: pointer;
 }
 .home_wrapper .latest .latest-slider .swiper-slide > * {
   width: 100%;
@@ -709,11 +708,19 @@ input:focus, textarea:focus {
   font-weight: 700;
   color: #0b5177;
 }
+.home_wrapper .latest .latest-slider .swiper-slide .head a {
+  cursor: pointer;
+}
 .home_wrapper .latest .latest-slider .swiper-slide .head a i {
+  transition: color .2s ease-in;
   color: #bababa;
   font-size: 1.7rem;
 }
+.home_wrapper .latest .latest-slider .swiper-slide .head a:hover i {
+  color: #e63b12;
+}
 .home_wrapper .latest .latest-slider .swiper-slide .body {
+  cursor: pointer;
   justify-content: space-between;
   align-items: center;
 }
@@ -945,9 +952,10 @@ input:focus, textarea:focus {
 }
 .home_wrapper .news .container:last-child .news .news-card .text {
   height: 100%;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   gap: 1.2rem;
+  text-align: center;
   padding: 1.5rem 1.25rem;
 }
 .home_wrapper .news .container:last-child .news .news-card .text .title {
@@ -955,10 +963,16 @@ input:focus, textarea:focus {
   color: #0b5177;
   font-weight: 700;
 }
-.home_wrapper .news .container:last-child .news .news-card .text .bref, .home_wrapper .news .container:last-child .news .news-card .text .date {
+.home_wrapper .news .container:last-child .news .news-card .text .bref, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text strong {
   font-size: .9rem;
   color: #33332c;
-  font-weight: 400;
+  font-weight: 400 !important;
+}
+.home_wrapper .news .container:last-child .news .news-card .text .bref h1, .home_wrapper .news .container:last-child .news .news-card .text .bref img, .home_wrapper .news .container:last-child .news .news-card .text .bref br, .home_wrapper .news .container:last-child .news .news-card .text .date h1, .home_wrapper .news .container:last-child .news .news-card .text .date img, .home_wrapper .news .container:last-child .news .news-card .text .date br, .home_wrapper .news .container:last-child .news .news-card .text strong h1, .home_wrapper .news .container:last-child .news .news-card .text strong img, .home_wrapper .news .container:last-child .news .news-card .text strong br {
+  display: none;
+}
+.home_wrapper .news .container:last-child .news .news-card .text .bref > h2, .home_wrapper .news .container:last-child .news .news-card .text .date > h2, .home_wrapper .news .container:last-child .news .news-card .text strong > h2 {
+  display: none !important;
 }
 .home_wrapper .news .container:last-child .news .news-card .text .date {
   gap: 1rem;
@@ -1149,28 +1163,28 @@ input:focus, textarea:focus {
   font-weight: 600;
 }
 
-.faq_wrapper {
+.faq_wrapper, .wishlist_wrapper, .orders_wrapper {
   padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
 }
-.faq_wrapper > .container {
+.faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container {
   margin-top: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem);
   padding: 0 clamp(0.5rem, calc(-1.6818rem + 8.7273vw), 6.5rem) !important;
   flex-direction: column;
 }
-.faq_wrapper > .container > h1 {
+.faq_wrapper > .container > h1, .wishlist_wrapper > .container > h1, .orders_wrapper > .container > h1 {
   text-align: center;
   margin-bottom: clamp(0rem, calc(-0.3636rem + 1.4545vw), 1rem);
 }
-.faq_wrapper > .container .questions {
+.faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions {
   flex-direction: column;
   width: 80%;
 }
 @media (max-width: 600px) {
-  .faq_wrapper > .container .questions {
+  .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions {
     width: 95%;
   }
 }
-.faq_wrapper > .container .questions .question {
+.faq_wrapper > .container .questions .question, .wishlist_wrapper > .container .questions .question, .orders_wrapper > .container .questions .question {
   width: 100%;
   border: 1px solid #d5dfe4;
   border-radius: 1.25rem;
@@ -1181,23 +1195,244 @@ input:focus, textarea:focus {
   cursor: pointer;
   font-size: clamp(0.9rem, calc(0.7727rem + 0.5091vw), 1.25rem);
 }
-.faq_wrapper > .container .questions .question .question-value {
+.faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value {
   color: #33332c;
   font-weight: 500;
   justify-content: space-between;
 }
-.faq_wrapper > .container .questions .question .question-value i {
+.faq_wrapper > .container .questions .question .question-value i, .wishlist_wrapper > .container .questions .question .question-value i, .orders_wrapper > .container .questions .question .question-value i {
   font-size: clamp(0.9rem, calc(0.7545rem + 0.5818vw), 1.3rem);
   font-weight: 700;
   color: #000;
 }
-.faq_wrapper > .container .questions .question .answer {
+.faq_wrapper > .container .questions .question .answer, .wishlist_wrapper > .container .questions .question .answer, .orders_wrapper > .container .questions .question .answer {
   border-top: 1px solid #d5dfe4bd;
   text-align: 1.25rem;
   color: #717171;
   font-weight: 400;
   padding: .7rem 0;
   display: none;
+}
+
+.wishlist_wrapper > .container > h1, .card_wrapper > .container > h1, .card_wrapper > .container > h1 {
+  font-size: clamp(1.25rem, calc(0.9516rem + 1.2903vw), 2rem) !important;
+}
+
+.wishlist_wrapper .table_wrapper, .card_wrapper .table_wrapper, .orders_wrapper .table_wrapper {
+  width: 100%;
+}
+.wishlist_wrapper .table_wrapper table, .card_wrapper .table_wrapper table, .orders_wrapper .table_wrapper table {
+  width: 100%;
+  border: 1px solid #d5dfe4;
+  border-radius: 1rem;
+}
+.wishlist_wrapper .table_wrapper table td, .card_wrapper .table_wrapper table td, .orders_wrapper .table_wrapper table td {
+  padding: clamp(0.4rem, calc(0.1613rem + 1.0323vw), 1rem);
+}
+.wishlist_wrapper .table_wrapper table td > *, .card_wrapper .table_wrapper table td > *, .orders_wrapper .table_wrapper table td > * {
+  color: #33332c;
+}
+@media (max-width: 600px) {
+  .wishlist_wrapper .table_wrapper table td:nth-child(3), .card_wrapper .table_wrapper table td:nth-child(3), .orders_wrapper .table_wrapper table td:nth-child(3) {
+    display: none;
+  }
+}
+.wishlist_wrapper .table_wrapper table td .head, .card_wrapper .table_wrapper table td .head, .orders_wrapper .table_wrapper table td .head {
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+  align-items: center;
+}
+.wishlist_wrapper .table_wrapper table td .head img, .card_wrapper .table_wrapper table td .head img, .orders_wrapper .table_wrapper table td .head img {
+  width: clamp(4.375rem, calc(3.3804rem + 4.3011vw), 6.875rem);
+  height: clamp(3.75rem, calc(3.5013rem + 1.0753vw), 4.375rem);
+  object-fit: contain;
+}
+.wishlist_wrapper .table_wrapper table td .head p, .card_wrapper .table_wrapper table td .head p, .orders_wrapper .table_wrapper table td .head p {
+  font-size: clamp(0.8rem, calc(0.6011rem + 0.8602vw), 1.3rem);
+}
+@media (max-width: 600px) {
+  .wishlist_wrapper .table_wrapper table td .head, .card_wrapper .table_wrapper table td .head, .orders_wrapper .table_wrapper table td .head {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    text-align: center;
+  }
+}
+.wishlist_wrapper .table_wrapper table td .price span, .wishlist_wrapper .table_wrapper table td .stock span, .wishlist_wrapper .table_wrapper table td .total span, .wishlist_wrapper .table_wrapper table td .qty span, .card_wrapper .table_wrapper table td .price span, .card_wrapper .table_wrapper table td .stock span, .card_wrapper .table_wrapper table td .total span, .card_wrapper .table_wrapper table td .qty span, .orders_wrapper .table_wrapper table td .price span, .orders_wrapper .table_wrapper table td .stock span, .orders_wrapper .table_wrapper table td .total span, .orders_wrapper .table_wrapper table td .qty span {
+  font-size: clamp(0.7rem, calc(0.5409rem + 0.6882vw), 1.1rem);
+  font-weight: 400;
+}
+.wishlist_wrapper .table_wrapper table td .price p, .wishlist_wrapper .table_wrapper table td .stock p, .wishlist_wrapper .table_wrapper table td .total p, .wishlist_wrapper .table_wrapper table td .qty p, .card_wrapper .table_wrapper table td .price p, .card_wrapper .table_wrapper table td .stock p, .card_wrapper .table_wrapper table td .total p, .card_wrapper .table_wrapper table td .qty p, .orders_wrapper .table_wrapper table td .price p, .orders_wrapper .table_wrapper table td .stock p, .orders_wrapper .table_wrapper table td .total p, .orders_wrapper .table_wrapper table td .qty p {
+  font-size: clamp(0.8rem, calc(0.5613rem + 1.0323vw), 1.4rem);
+  font-weight: 400;
+}
+.wishlist_wrapper .table_wrapper table td .price p.in, .wishlist_wrapper .table_wrapper table td .stock p.in, .wishlist_wrapper .table_wrapper table td .total p.in, .wishlist_wrapper .table_wrapper table td .qty p.in, .card_wrapper .table_wrapper table td .price p.in, .card_wrapper .table_wrapper table td .stock p.in, .card_wrapper .table_wrapper table td .total p.in, .card_wrapper .table_wrapper table td .qty p.in, .orders_wrapper .table_wrapper table td .price p.in, .orders_wrapper .table_wrapper table td .stock p.in, .orders_wrapper .table_wrapper table td .total p.in, .orders_wrapper .table_wrapper table td .qty p.in {
+  color: #80b800;
+}
+.wishlist_wrapper .table_wrapper table td .price p.out, .wishlist_wrapper .table_wrapper table td .stock p.out, .wishlist_wrapper .table_wrapper table td .total p.out, .wishlist_wrapper .table_wrapper table td .qty p.out, .card_wrapper .table_wrapper table td .price p.out, .card_wrapper .table_wrapper table td .stock p.out, .card_wrapper .table_wrapper table td .total p.out, .card_wrapper .table_wrapper table td .qty p.out, .orders_wrapper .table_wrapper table td .price p.out, .orders_wrapper .table_wrapper table td .stock p.out, .orders_wrapper .table_wrapper table td .total p.out, .orders_wrapper .table_wrapper table td .qty p.out {
+  color: #f34135;
+}
+.wishlist_wrapper .table_wrapper table td .qty, .card_wrapper .table_wrapper table td .qty, .orders_wrapper .table_wrapper table td .qty {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.wishlist_wrapper .table_wrapper table td .qty div, .card_wrapper .table_wrapper table td .qty div, .orders_wrapper .table_wrapper table td .qty div {
+  display: flex;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.wishlist_wrapper .table_wrapper table td .qty div span, .card_wrapper .table_wrapper table td .qty div span, .orders_wrapper .table_wrapper table td .qty div span {
+  background: white;
+  border: 1px solid #d5dfe4;
+  width: 27px;
+  height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.wishlist_wrapper .table_wrapper table td .remove button, .card_wrapper .table_wrapper table td .remove button, .orders_wrapper .table_wrapper table td .remove button {
+  font-size: clamp(0.8125rem, calc(0.5638rem + 1.0753vw), 1.4375rem);
+  width: clamp(1.5rem, calc(1.3011rem + 0.8602vw), 2rem);
+  height: clamp(1.5rem, calc(1.3011rem + 0.8602vw), 2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background: #f24235;
+  color: #fff;
+  cursor: pointer;
+}
+.wishlist_wrapper .table_wrapper table td .add_to_cart i, .card_wrapper .table_wrapper table td .add_to_cart i, .orders_wrapper .table_wrapper table td .add_to_cart i {
+  display: none;
+}
+.wishlist_wrapper .table_wrapper table td .add_to_cart button, .card_wrapper .table_wrapper table td .add_to_cart button, .orders_wrapper .table_wrapper table td .add_to_cart button {
+  padding: .5rem 1.9rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.1rem;
+  background: #f0f3f8;
+}
+@media (max-width: 855px) {
+  .wishlist_wrapper .table_wrapper table td .add_to_cart button, .card_wrapper .table_wrapper table td .add_to_cart button, .orders_wrapper .table_wrapper table td .add_to_cart button {
+    padding: .7rem !important;
+  }
+  .wishlist_wrapper .table_wrapper table td .add_to_cart i, .card_wrapper .table_wrapper table td .add_to_cart i, .orders_wrapper .table_wrapper table td .add_to_cart i {
+    display: block;
+  }
+  .wishlist_wrapper .table_wrapper table td .add_to_cart span, .card_wrapper .table_wrapper table td .add_to_cart span, .orders_wrapper .table_wrapper table td .add_to_cart span {
+    display: none;
+  }
+}
+.wishlist_wrapper .table_wrapper table tr:not(:last-child) td, .wishlist_wrapper .table_wrapper table thead td, .card_wrapper .table_wrapper table tr:not(:last-child) td, .card_wrapper .table_wrapper table thead td, .orders_wrapper .table_wrapper table tr:not(:last-child) td, .orders_wrapper .table_wrapper table thead td {
+  border-bottom: 1px solid #d5dfe4;
+}
+.wishlist_wrapper .table_wrapper table td:not(:last-child), .card_wrapper .table_wrapper table td:not(:last-child), .orders_wrapper .table_wrapper table td:not(:last-child) {
+  border-right: 1px solid #d5dfe4;
+}
+
+.orders_wrapper {
+  text-align: center !important;
+}
+.orders_wrapper .table_wrapper {
+  overflow: auto;
+  white-space: nowrap;
+}
+.orders_wrapper thead td {
+  color: #717171;
+}
+.orders_wrapper .done {
+  color: #0CAE61 !important;
+}
+.orders_wrapper .canceled {
+  color: #717171 !important;
+}
+.orders_wrapper tbody td:first-child {
+  font-weight: 600;
+  color: #0b5177;
+}
+.orders_wrapper tbody td button {
+  padding: .4rem 1.2rem;
+  border-radius: 50px;
+  border: none;
+  color: #fff !important;
+  background-color: #e63b12;
+}
+
+.card_wrapper > .container {
+  margin-top: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem);
+  margin-bottom: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem);
+  padding: 0 clamp(0.5rem, calc(-1.6818rem + 8.7273vw), 6.5rem) !important;
+  display: flex;
+  gap: 1rem;
+}
+@media (max-width: 1100px) {
+  .card_wrapper > .container {
+    flex-direction: column;
+  }
+}
+.card_wrapper > .container > .total {
+  min-width: 350px;
+  border: 1px solid #d5dfe4;
+  border-radius: 1rem;
+  height: max-content;
+}
+.card_wrapper > .container > .total .head {
+  padding: 1rem;
+  border-bottom: 1px solid #d5dfe4;
+  color: #33332c;
+  font-size: 1.25rem;
+}
+.card_wrapper > .container > .total .bottom {
+  padding: 1rem;
+}
+.card_wrapper > .container > .total .bottom h4 {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 400;
+  color: #0b5177;
+}
+.card_wrapper > .container > .total .bottom button {
+  width: 100%;
+  padding: .7rem;
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+  border: 1px solid #e63b12;
+  background-color: #e63b12;
+  color: #fff;
+  transition: .3s all ease-in;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+.card_wrapper .table_wrapper table {
+  width: 100%;
+  border: none;
+}
+.card_wrapper .table_wrapper table tr {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: clamp(7.5rem, calc(3.0242rem + 19.3548vw), 18.75rem) minmax(100px, 1fr) minmax(100px, 1fr) 1fr min-content;
+  background: #f0f3f8;
+  border-radius: 1rem;
+  border: 1px solid #d5dfe4;
+}
+.card_wrapper .table_wrapper table tr td {
+  border-bottom: none !important;
+}
+.card_wrapper .table_wrapper table tr td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .category_wrapper .sub_categories {
@@ -1418,6 +1653,12 @@ input:focus, textarea:focus {
   background: transparent;
   border: 1px solid #425a8c;
   border-radius: .3rem;
+  transition: color .3s ease-in;
+  cursor: pointer;
+}
+.category_wrapper .products .body .product .add-to-cart:hover {
+  color: #fff;
+  background-color: #425a8c;
 }
 .category_wrapper .products .body .product .add-to-wishlist {
   font-size: .9rem;
@@ -1430,9 +1671,14 @@ input:focus, textarea:focus {
   gap: .7rem;
   width: 100%;
   justify-content: center;
+  transition: color .3s ease-in;
+  cursor: pointer;
 }
 .category_wrapper .products .body .product .add-to-wishlist i {
   font-size: 1.25rem;
+}
+.category_wrapper .products .body .product .add-to-wishlist:hover {
+  color: #e63b12;
 }
 
 .product_wrapper {
@@ -1709,6 +1955,7 @@ input:focus, textarea:focus {
   background: #0472af;
   background: linear-gradient(270deg, #0472af 0%, #0d4361 100%);
   margin-top: clamp(0.3rem, calc(-3.2rem + 4.48vw), 1rem);
+  cursor: pointer;
 }
 .product_wrapper .container .body .content .bottom .quantity {
   display: flex;
@@ -1938,6 +2185,14 @@ input:focus, textarea:focus {
   color: #008fcc;
   border-right: 1px solid #d5dfe4;
   max-width: 30%;
+}
+
+.add-to-wish {
+  transition: color .3s ease-in;
+  cursor: pointer;
+}
+.add-to-wish:hover {
+  color: #e63b12 !important;
 }
 
 /*# sourceMappingURL=home.css.map */

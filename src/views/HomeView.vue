@@ -124,7 +124,7 @@
                         <h3>
                             {{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}
                         </h3>
-                            <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + '...' : product.desc">
+                            <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + ' more...' : product.desc">
                             </p>
                             <h1 class="price" v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
                             <h1 :class="product.price_after_discount ? 'old_price' : 'price'">{{ product.price }}</h1>
@@ -172,12 +172,12 @@
                 class="latest-slider"
                 v-if="latest && latest.length"
             >
-                <swiper-slide v-for="product in latest" :key="product.id" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)">
+                <swiper-slide v-for="product in latest" :key="product.id" >
                     <div class="head">
                         <h1>{{ product.sub_category.name }}</h1>
-                        <router-link to="" @click.prevent><i class="fa fa-heart"></i></router-link>
+                        <a href @click.prevent="product.product_type == 1 ? likeProduct(product.id) : likeCard(product.id)"><i class="fa fa-heart"></i></a>
                     </div>
-                    <div class="body">
+                    <div class="body" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)">
                         <div class="thumbanail">
                             <img :src="product.product_type == 1 ? product.main_image : product.img">
                         </div>
@@ -259,12 +259,11 @@
                 <div class="news" v-if="news">
                     <div class="news-card" v-for="article in news" :key="article.id">
                         <div class="thumbanail">
-                            <img src="./../assets/imgs/news-thumbanail.png" alt="">
+                            <img :src="article.img" alt="">
                         </div>
                         <div class="text">
-                            <h1 class="title">Avatar: Frontiers of Pandora</h1>
-                            <p class="bref">
-                                Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, whenan unknown printer took a galley of ...
+                            <h1 class="title">{{ article.title}}</h1>
+                            <p class="bref" v-html="article.desc.length >= 750 ? article.desc.slice(0, 750) + '...' : article.desc">
                             </p>
                             <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
                             <router-link to="" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
@@ -471,6 +470,116 @@ export default {
                     this.deals.sort(function (a, b) {
                         return new Date(b.created_at) - new Date(a.created_at);
                     });
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async likeProduct(product_id) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 1000);
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async likeCard(card_id) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${card_id}/liked`, {
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 1000);
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
