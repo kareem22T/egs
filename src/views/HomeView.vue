@@ -175,7 +175,7 @@
                 <swiper-slide v-for="product in latest" :key="product.id" >
                     <div class="head">
                         <h1>{{ product.sub_category.name }}</h1>
-                        <a href @click.prevent="product.product_type == 1 ? likeProduct(product.id) : likeCard(product.id)"><i class="fa fa-heart"></i></a>
+                        <a :class="product.isFav ? 'active' : ''" @click.prevent="product.product_type == 1 ? likeProduct(product.id) : likeCard(product.id)"><i class="fa fa-heart"></i></a>
                     </div>
                     <div class="body" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)">
                         <div class="thumbanail">
@@ -266,10 +266,11 @@
                             <p class="bref" v-html="article.desc.length >= 750 ? article.desc.slice(0, 750) + '...' : article.desc">
                             </p>
                             <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
-                            <router-link to="" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
+                            <router-link :to="`/news/${article.id}`" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
                         </div>
                     </div>
                 </div>
+                <router-link to="/news">View All</router-link>
             </div>
         </section>
     </main>
@@ -520,11 +521,7 @@ export default {
                     error.classList = 'success'
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    setTimeout(() => {
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 1000);
+                    $('.loader').fadeOut()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -575,11 +572,7 @@ export default {
                     error.classList = 'success'
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    setTimeout(() => {
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 1000);
+                    $('.loader').fadeOut()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

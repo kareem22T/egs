@@ -13,7 +13,7 @@
                 </div>
                 <div class="right">
                     <div>
-                        <a href="" class="add-to-wish" @click.prevent="likeCard(product.id)"><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
+                        <a href="" :class="product.isFav ? 'active' : ''" class="add-to-wish" @click.prevent="likeCard(product.id)"><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
                     </div>
                     <div>
                         <p>Share</p>
@@ -217,11 +217,8 @@ export default {
                     error.classList = 'success'
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    setTimeout(() => {
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 1000);
+                    $('.add-to-wish').toggleClass('active')
+                    $('.loader').fadeOut()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

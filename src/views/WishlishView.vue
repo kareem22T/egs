@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container">
-            <h1>My Wishlist</h1>
+            <h1  v-if="wishlist && wishlist.length > 0">My Wishlist</h1>
             <div class="table_wrapper" v-if="wishlist && wishlist.length > 0">
                 <table>
                     <tbody>
@@ -38,13 +38,14 @@
                             </td>
                             <td>
                                 <div class="remove">
-                                    <button><i class="fa fa-close"></i></button>
+                                    <button @click="product.product_type == 1 ? removeProductFromWishlist(product.id) : removeCardFromWishlist(product.id)"><i class="fa fa-close"></i></button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <h1 v-if="!wishlist || wishlist.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Wishlist is Empty</h1>
         </div>
     </main>
 </template>
@@ -230,6 +231,114 @@ export default {
                 console.error(error);
             }
         },
+        async removeProductFromWishlist(product_id) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    this.getWishlist()
+                    setTimeout(() => {
+                        $('.loader').fadeOut()
+                    }, 200);
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async removeCardFromWishlist(product_id) {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${product_id}/liked`, {
+                },
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'success'
+                    error.innerHTML = response.data.message
+                    document.getElementById('errors').append(error)
+                    this.getWishlist()
+                    setTimeout(() => {
+                        $('.loader').fadeOut()
+                    }, 200);
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    $('form input').css('outline', '2px solid #e41749')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        }
     },
     created() {
         this.getWishlist()

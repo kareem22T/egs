@@ -69,7 +69,7 @@
                     <button class="add-to-cart" @click="addProductToCart(item.id, 1)">
                         Add To Cart
                     </button>
-                    <button class="add-to-wishlist" @click="likeProduct(item.id)">
+                    <button :class="item.isFav ? 'active' : ''" class="add-to-wishlist" @click="likeProduct(item.id)">
                         <i class="fa-regular fa-heart"></i> Add To Wishlist
                     </button>
                 </div>
@@ -217,11 +217,8 @@ export default {
                     error.classList = 'success'
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    setTimeout(() => {
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 1000);
+                    $('.add-to-wishlist').toggleClass('active')
+                    $('.loader').fadeOut()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

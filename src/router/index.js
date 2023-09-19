@@ -4,6 +4,8 @@ import ContactView from '../views/ContactView.vue'
 import AboutView from '../views/AboutView.vue'
 import TermsView from '../views/TermsView.vue'
 import FaqView from '../views/FaqView.vue'
+import NewsView from '../views/NewsView.vue'
+import ArticleView from '../views/ArticleView.vue'
 import WishlishView from '@/views/WishlishView.vue'
 import CartView from '@/views/CartView.vue'
 import OrdersView from '@/views/OrdersView.vue'
@@ -54,6 +56,18 @@ const routes = [
     path: '/faq',
     name: 'faq',
     component: FaqView,
+    meta: { auth: false }
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: NewsView,
+    meta: { auth: false }
+  },
+  {
+    path: '/news/:id',
+    name: 'newsView',
+    component: ArticleView,
     meta: { auth: false }
   },
   {
