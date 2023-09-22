@@ -33,7 +33,7 @@
 
             <div class="pagination" v-if="last_page > 1">
             <div v-for="pageNumber in displayedPages" :key="pageNumber">
-                <label :for="`page_num_${pageNumber}`" :class="pageNumber == page ? 'active' : ''">{{ pageNumber }}</label>
+                <label :for="`page_num_${pageNumber}`" :class="pageNumber == page ? 'active' : ''" @click="goToTop">{{ pageNumber }}</label>
                 <input type="radio" name="page_num" :id="`page_num_${pageNumber}`" v-model="page" :value="pageNumber" @change="getNews(pageNumber)">
             </div>
             </div>
@@ -103,6 +103,12 @@ export default {
 
                 console.error(error);
             }
+        },
+        goToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
         },
     },
     created() {

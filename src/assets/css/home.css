@@ -503,7 +503,7 @@ input:focus, textarea:focus {
 }
 .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head .discount {
   font-weight: 400;
-  font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
+  font-size: .7rem;
   color: #0CAE61;
   white-space: nowrap;
 }
@@ -516,7 +516,7 @@ input:focus, textarea:focus {
   border: 1px solid #CFDCE3;
   padding: 1.2rem;
   width: 100%;
-  height: clamp(10.5rem, calc(9.4091rem + 4.3636vw), 13.5rem);
+  height: clamp(7rem, calc(5.9865rem + 4.3243vw), 9.5rem);
   border-radius: 1.25rem;
 }
 .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .thumbanail img {
@@ -530,7 +530,7 @@ input:focus, textarea:focus {
 }
 .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details h3 {
   font-weight: 700;
-  font-size: clamp(0.9rem, calc(0.8273rem + 0.2909vw), 1.1rem);
+  font-size: clamp(0.9rem, calc(0.8595rem + 0.173vw), 1rem);
   line-height: 1.6;
   color: #0b5177;
   text-align: center;
@@ -538,7 +538,7 @@ input:focus, textarea:focus {
 }
 .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .exp {
   font-weight: 400;
-  font-size: clamp(0.8rem, calc(0.7273rem + 0.2909vw), 1rem);
+  font-size: .8rem;
   color: #0b5177;
   text-align: center;
 }
