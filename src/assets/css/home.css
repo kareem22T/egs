@@ -494,7 +494,7 @@ input:focus, textarea:focus {
   background: rgba(248, 248, 248, 0.0001);
   border: 1px solid #CFDCE3;
   font-weight: 400;
-  font-size: clamp(0.8rem, calc(0.7091rem + 0.3636vw), 1.05rem);
+  font-size: .85rem;
   line-height: 1.05rem;
   letter-spacing: 0.3px;
   color: #0b5177;
