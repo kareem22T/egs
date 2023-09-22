@@ -86,7 +86,7 @@
             <div class="container">
             <h1 class="section_head_r"><span>Deals</span> of the week!</h1>
             <swiper
-                :spaceBetween="25"
+                :spaceBetween="20"
                 :slidesPerView="1"
                 :slidesPerGroup="1"
                 :pagination="{
@@ -101,9 +101,13 @@
                         slidesPerView: 3,
                         slidesPerGroup: 3
                     },
-                    1300: {
+                    1190: {
                         slidesPerView: 4,
-                        slidesPerGroup: 4
+                        slidesPerGroup: 4,
+                    },
+                    1300: {
+                        slidesPerView: 5,
+                        slidesPerGroup: 5
                     },
                 }"
                 :modules="modules"
