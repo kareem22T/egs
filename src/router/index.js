@@ -128,7 +128,7 @@ const routes = [
     path: '/verify',
     name: 'verify',
     component: VerifyView,
-    meta: { auth: true }
+    meta: { auth: false }
   },
   {
     path: '/physical-store/:name/:id',

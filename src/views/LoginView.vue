@@ -75,7 +75,23 @@ export default {
                     setTimeout(() => {
                         $('.loader').fadeOut()
                         $('#errors').fadeOut('slow')
-                        window.location.href = '/'
+                        if (response.data.data.activation_str == 'Active') {
+                            window.location.href = '/'
+                        } else if (response.data.data.activation_str == 'waiting_Active') {
+                            window.location.href = '/verify'
+                        } else if (response.data.data.activation_str == 'deactivated') {
+                            document.getElementById('errors').innerHTML = ''
+                            let error = document.createElement('div')
+                            error.classList = 'error'
+                            error.innerHTML = 'Your account has been banned'
+                            document.getElementById('errors').append(error)
+                            $('#errors').fadeIn('slow')
+
+                            setTimeout(() => {
+                                $('input').css('outline', 'none')
+                                $('#errors').fadeOut('slow')
+                            }, 3500);
+                        }
                     }, 1300);
                 } else {
                     $('.loader').fadeOut()
@@ -87,7 +103,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

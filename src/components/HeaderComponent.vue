@@ -122,11 +122,19 @@ window.$ = $;
 import axios from 'axios';
 import { destroyAllCookies } from './../assets/js/destroy-cookies';
 
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
     name: 'MainHeader',
+    setup() {
+        const store = useStore();
+        const cartLength = computed(() => store.state.cartLength);
+        return { cartLength };
+    },
     data() {
         return {
             user: null,
+            cartItemCount: 0
         }
     },
     methods: {
@@ -167,7 +175,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

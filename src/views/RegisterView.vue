@@ -93,7 +93,7 @@ export default {
                         $('#errors').fadeIn('slow')
                         setTimeout(() => {
                             $('#errors').fadeOut('slow')
-                            this.$router.push('/verify');
+                            window.location.href = '/verify';
                         }, 4000);
                     } else {
                         document.getElementById('errors').innerHTML = ''
@@ -104,7 +104,7 @@ export default {
                             document.getElementById('errors').append(error)
                         });
                         $('#errors').fadeIn('slow')
-                        $('form input').css('outline', '2px solid #e41749')
+                        
                         setTimeout(() => {
                             $('input').css('outline', 'none')
                             $('#errors').fadeOut('slow')

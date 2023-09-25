@@ -21,7 +21,7 @@
                             <td>
                                 <div class="price">
                                     <span>Price</span>
-                                    <p>{{ product.price_after_discount ? product.price_after_discount : product.price }} EGP
+                                    <p>{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }} EGP
                                     </p>
                                 </div>
                             </td>
@@ -66,7 +66,7 @@
                             <td>
                                 <div class="total">
                                     <span>Total</span>
-                                    <p >{{ product.total_price }}</p>
+                                    <p >{{ product.total_price.toLocaleString() }}</p>
                                 </div>
                             </td>
                             <td>
@@ -89,7 +89,7 @@
                     Cart Total
                 </div>
                 <div class="bottom">
-                    <h4>Total <span>{{total}} EGP</span></h4>
+                    <h4>Total <span>{{total.toLocaleString() }} EGP</span></h4>
                     <button>Process To Checkout</button>
                 </div>
             </div>
@@ -152,7 +152,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -206,7 +206,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -260,7 +260,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -312,7 +312,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -364,7 +364,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

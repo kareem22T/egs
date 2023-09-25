@@ -15,7 +15,7 @@
                             <td>
                                 <div class="price">
                                     <span>Price</span>
-                                    <p>{{ product.price_after_discount ? product.price_after_discount : product.price }} EGP</p>
+                                    <p>{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }} EGP</p>
                             </div>
                             </td>
                             <td>
@@ -96,7 +96,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -152,7 +152,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -208,7 +208,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -262,7 +262,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -316,7 +316,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

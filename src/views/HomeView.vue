@@ -48,7 +48,7 @@
                     <div>
                         <img src="./../assets/imgs/hero-icon-1.png" alt="">
                         <div class="text">
-                            <h1>World2Egypt</h1>
+                            <h1 @click="testEmit()">World2Egypt</h1>
                             <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                     <div style="width: 100%;display: flex;flex-direction: column;gap: 1rem;">
                         <div class="head">
                             <div class="cat">{{ product.sub_category.name }}</div>
-                            <div class="discount" v-if="product.price_after_discount">Save: {{ product.price - product.price_after_discount }} EGP</div>
+                            <div class="discount" v-if="product.price_after_discount">Save: {{ (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
                         </div>
                         <div class="thumbanail">
                             <img :src="product.product_type == 1 ? product.main_image : product.img">
@@ -130,8 +130,8 @@
                         </h3>
                             <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + ' more...' : product.desc">
                             </p>
-                            <h1 class="price" v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
-                            <h1 :class="product.price_after_discount ? 'old_price' : 'price'">{{ product.price }}</h1>
+                            <h1 class="price" v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }}</h1>
+                            <h1 :class="product.price_after_discount ? 'old_price' : 'price'">{{ product.price.toLocaleString() }}</h1>
                     </div>
                 </swiper-slide>
             </swiper>
@@ -190,8 +190,8 @@
                             <p v-html="product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc">
                             </p>
                             <div class="price">
-                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }}</h1>
-                                <h1>{{ product.price }}</h1>
+                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }}</h1>
+                                <h1>{{ product.price.toLocaleString() }}</h1>
                             </div>
                             <div class="rate">
                                 <div class="stars">
@@ -340,7 +340,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -381,7 +381,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -433,7 +433,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -485,7 +485,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -536,7 +536,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -587,7 +587,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

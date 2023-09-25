@@ -56,11 +56,11 @@
                                 ( 3 Reviews ) 
                             </div>
                             <div class="price">
-                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount : '' }} <span>EGP</span></h1>
-                                <h1><span>{{ product.price }}</span> <span>EGP</span></h1>
+                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>EGP</span></h1>
+                                <h1><span>{{ product.price.toLocaleString() }}</span> <span>EGP</span></h1>
                             </div>
 
-                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> Saved: {{ product.price - product.price_after_discount }} EGP</div>
+                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> Saved: {{ (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
                         </div>
 
                         <div class="bottom">
@@ -229,7 +229,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -285,7 +285,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')

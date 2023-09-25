@@ -61,8 +61,8 @@
                                 ( 3 Reviews ) 
                             </div>
                             <div class="price">
-                                <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount : '' }}</h1>
-                                <h1>{{ item.price }}</h1>
+                                <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
+                                <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
                         </div>
                     </a>
@@ -229,7 +229,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -285,7 +285,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    $('form input').css('outline', '2px solid #e41749')
+                    
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
