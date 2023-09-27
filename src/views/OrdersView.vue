@@ -26,7 +26,7 @@
                             <td>{{order.payment_method }}</td>
                             <td>{{order.total_price.toLocaleString()}} EGP</td>
                             <td>{{order.created_at }}</td>
-                            <td><button>View Order</button></td>
+                            <td><button @click="this.$router.push(`/order/${order.id}`)">View Order</button></td>
                         </tr>
                     </tbody>
                 </table>

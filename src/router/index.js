@@ -9,6 +9,7 @@ import ArticleView from '../views/ArticleView.vue'
 import WishlishView from '@/views/WishlishView.vue'
 import CartView from '@/views/CartView.vue'
 import OrdersView from '@/views/OrdersView.vue'
+import OrderView from '@/views/OrderView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import ForgotPassView from '../views/ForgotPassView.vue'
@@ -134,6 +135,10 @@ const routes = [
     path: '/physical-store/:name/:id',
     component: PhysicalStoreView,
     meta: {type: 1, category_name: 'Physical Store', category_path: 'physical-store'}
+  },
+  {
+    path: '/order/:id',
+    component: OrderView,
   },
   {
     path: '/digital-store/:name/:id',
