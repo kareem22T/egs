@@ -2,7 +2,7 @@
     <main class="wishlist_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Order
+                Home <i class="fa-solid fa-chevron-right"></i> Order Details
             </div>
         </div>
         <div class="container">
