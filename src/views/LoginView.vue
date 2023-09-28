@@ -14,8 +14,8 @@
                     <p>Do have an account? <router-link to="/register">SignUp</router-link></p>
                 </div>
                 <div class="input">
-                    <input type="text" name="phone" id="phone" placeholder="Phone Number" v-model="phone">
-                    <img src="./../assets/imgs/phone-solid.svg" alt="phone icon">
+                    <input type="text" name="phone" id="phone" placeholder="Email or Phone Number" v-model="phone">
+                    <img src="./../assets/imgs/user-solid.svg" alt="phone icon">
                 </div>
                 <div class="input">
                     <input type="password" name="password" id="password" placeholder="Password" v-model="password">
