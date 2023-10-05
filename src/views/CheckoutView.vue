@@ -2,7 +2,7 @@
     <main class="card_wrapper checkout_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Cart
+                Home <i class="fa-solid fa-chevron-right"></i> Checkout
             </div>
         </div>
         <div class="container">
