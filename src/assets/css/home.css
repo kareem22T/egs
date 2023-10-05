@@ -2,7 +2,7 @@
   box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
 }
 
-.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container, .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child, .news_wrapper > .container .news .news .news-card .text, .article_wrapper > .container .news .news .news-card .text, .news_wrapper > .container .news .news .news-card .text .date, .article_wrapper > .container .news .news .news-card .text .date, .news_wrapper > .container .news .news .news-card .text .read-more, .article_wrapper > .container .news .news .news-card .text .read-more {
+.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container, .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child, .news_wrapper > .container .news .news .news-card .text, .article_wrapper > .container .news .news .news-card .text, .news_wrapper > .container .news .news .news-card .text .date, .article_wrapper > .container .news .news .news-card .text .date, .news_wrapper > .container .news .news .news-card .text .read-more, .article_wrapper > .container .news .news .news-card .text .read-more, .checkout_wrapper > .container .table_wrapper .head {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2374,6 +2374,112 @@ input:focus, textarea:focus {
   margin: clamp(0.625rem, calc(0.4337rem + 0.8163vw), 1.25rem) 0;
   border-radius: .3rem;
   border-bottom: 1px solid #d5dfe4;
+}
+
+.checkout_wrapper > .container {
+  gap: 2rem;
+}
+.checkout_wrapper > .container .table_wrapper .head {
+  flex-direction: column;
+  gap: clamp(0.3rem, calc(0.1909rem + 0.4364vw), 0.6rem);
+  align-items: start;
+}
+@media (max-width: 850px) {
+  .checkout_wrapper > .container .table_wrapper .head {
+    align-items: center;
+  }
+}
+.checkout_wrapper > .container .table_wrapper .head h1 {
+  font-size: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
+  color: #8897b7;
+}
+.checkout_wrapper > .container .table_wrapper .head p {
+  font-size: .85rem;
+  letter-spacing: 1px;
+  color: #435ca1;
+}
+.checkout_wrapper > .container .table_wrapper .head hr {
+  height: 1px;
+  width: 90%;
+  border: none;
+  background: #d5dfe4;
+}
+.checkout_wrapper > .container .table_wrapper form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.7rem, calc(0.5rem + 0.8vw), 1.25rem) clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem);
+  margin-top: 2rem;
+}
+.checkout_wrapper > .container .table_wrapper form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkout_wrapper > .container .table_wrapper form label {
+  color: #33332c;
+}
+.checkout_wrapper > .container .table_wrapper form input,
+.checkout_wrapper > .container .table_wrapper form textarea,
+.checkout_wrapper > .container .table_wrapper form button {
+  grid-column: span 4;
+  border: 1px solid #d5dfe4;
+  border-radius: .5rem;
+  padding: .9rem 1.2rem;
+  color: #0b5177;
+  width: 100%;
+}
+.checkout_wrapper > .container .table_wrapper form input:first-of-type, .checkout_wrapper > .container .table_wrapper form input:nth-of-type(2),
+.checkout_wrapper > .container .table_wrapper form textarea:first-of-type,
+.checkout_wrapper > .container .table_wrapper form textarea:nth-of-type(2),
+.checkout_wrapper > .container .table_wrapper form button:first-of-type,
+.checkout_wrapper > .container .table_wrapper form button:nth-of-type(2) {
+  grid-column: span 2;
+}
+.checkout_wrapper > .container .table_wrapper form textarea {
+  grid-column: span 4 !important;
+  resize: none;
+}
+.checkout_wrapper > .container .table_wrapper form button {
+  grid-column: span 2 !important;
+  font-size: 1rem;
+  background-color: transparent;
+  font-weight: 500;
+  color: #435ca1;
+  cursor: pointer;
+}
+@media (max-width: 850px) {
+  .checkout_wrapper > .container .table_wrapper form button {
+    grid-column: span 4 !important;
+  }
+}
+.checkout_wrapper > .container .total {
+  max-width: 400px;
+}
+.checkout_wrapper > .container .total .bottom .products h5 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #33332c;
+  margin-bottom: 10px;
+}
+.checkout_wrapper > .container .total .bottom .products p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #0573b0;
+  padding: 10px 0;
+  border-bottom: 1px solid #d5dfe4;
+}
+.checkout_wrapper > .container .total .bottom .products > * {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.checkout_wrapper > .container .total .bottom .products > * span {
+  white-space: nowrap;
+}
+.checkout_wrapper > .container .total .bottom .products h4 {
+  margin-top: 2rem;
 }
 
 /*# sourceMappingURL=home.css.map */

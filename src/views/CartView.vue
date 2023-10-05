@@ -90,7 +90,7 @@
                 </div>
                 <div class="bottom">
                     <h4>Total <span>{{total.toLocaleString() }} EGP</span></h4>
-                    <button>Process To Checkout</button>
+                    <button @click="this.$router.push('/checkout')">Process To Checkout</button>
                 </div>
             </div>
             <h1 v-if="!cart || cart.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>

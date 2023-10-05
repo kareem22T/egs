@@ -2186,3 +2186,122 @@
         border-bottom: 1px solid $border-color;
     }
 }
+
+.checkout_wrapper {
+    >.container {
+        gap: 2rem;
+        .table_wrapper {
+            .head {
+                @extend %flex-center;
+                flex-direction: column;
+                gap: clamp(0.3rem, calc(0.1909rem + 0.4364vw), 0.6rem);
+                align-items: start;
+
+                @media (max-width: 850px) {
+                    align-items: center;
+                }
+
+                h1 {
+                    font-size: clamp(1.5rem, calc(1.3182rem + 0.7273vw), 2rem);
+                    color: #8897b7;
+                }
+
+                p {
+                    font-size: .85rem;
+                    letter-spacing: 1px;
+                    color: #435ca1;
+                }
+
+                hr {
+                    height: 1px;
+                    width: 90%;
+                    border: none;
+                    background: $border-color;
+                }
+            }
+            form {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: clamp(0.7rem, calc(0.5rem + 0.8vw), 1.25rem) clamp(1rem, calc(0.8182rem + 0.7273vw), 1.5rem);
+                margin-top: 2rem;
+
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                label {
+                    color: $text_gray;
+                }
+
+                input,
+                textarea,
+                button {
+                    grid-column: span 4;
+                    border: 1px solid $border-color;
+                    border-radius: .5rem;
+                    padding: .9rem 1.2rem;
+                    color: $secondary_color;
+                    width: 100%;
+
+                    &:first-of-type,
+                    &:nth-of-type(2) {
+                        grid-column: span 2;
+                    }
+                }
+
+                textarea {
+                    grid-column: span 4 !important;
+                    resize: none;
+                }
+
+                button {
+                    grid-column: span 2 !important;
+                    font-size: 1rem;
+                    background-color: transparent;
+                    font-weight: 500;
+                    color: #435ca1;
+                    cursor: pointer;
+
+                    @media (max-width: 850px) {
+                        grid-column: span 4 !important;
+                    }
+                }
+            }
+        }
+        .total {
+            max-width: 400px;
+            .bottom {
+                .products {
+                    h5 {
+                        font-size: 18px;
+                        font-weight: 400;
+                        color: $text_gray;
+                        margin-bottom: 10px;
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: 400;
+                        color: #0573b0;
+                        padding: 10px 0;
+                        border-bottom: 1px solid $border-color;
+                    }
+                    >* {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 2rem;
+                        span {
+                            white-space: nowrap;
+                        }
+                    }
+                    h4 {
+                        margin-top: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
