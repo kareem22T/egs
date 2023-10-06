@@ -2459,7 +2459,7 @@ input:focus, textarea:focus {
   font-size: 18px;
   font-weight: 400;
   color: #33332c;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .checkout_wrapper > .container .total .bottom .products p {
   font-size: 18px;
@@ -2477,6 +2477,42 @@ input:focus, textarea:focus {
 }
 .checkout_wrapper > .container .total .bottom .products > * span {
   white-space: nowrap;
+}
+.checkout_wrapper > .container .total .bottom .products input[type=text] {
+  border: 1px solid #d5dfe4;
+  width: 100%;
+  border-radius: .4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .9rem 1rem;
+  color: #33332c;
+  margin-top: 1rem;
+}
+.checkout_wrapper > .container .total .bottom .products input[type=text]:focus {
+  outline: 1px solid #0573b0;
+}
+.checkout_wrapper > .container .total .bottom .products form {
+  flex-direction: column;
+  justify-content: start;
+  gap: 1rem;
+}
+.checkout_wrapper > .container .total .bottom .products form .form-group {
+  width: 100%;
+}
+.checkout_wrapper > .container .total .bottom .products form label {
+  border: 1px solid #d5dfe4;
+  width: 100%;
+  border-radius: .4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .9rem 1rem;
+  color: #33332c;
+  cursor: pointer;
+}
+.checkout_wrapper > .container .total .bottom .products form label.selected {
+  border: 2px solid #0573b0;
 }
 .checkout_wrapper > .container .total .bottom .products h4 {
   margin-top: 2rem;
