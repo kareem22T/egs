@@ -315,6 +315,8 @@ export default {
                     document.getElementById('errors').append(error)
                     setTimeout(() => {
                         $('.loader').fadeOut()
+                        if (response.data.data.payment_link)
+                            window.location.href = response.data.data.payment_link
                     }, 3000);
                 } else {
                     $('.loader').fadeOut()
