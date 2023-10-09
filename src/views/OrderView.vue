@@ -14,7 +14,7 @@
                             <td>
                                 <div class="head"
                                     @click="product.product_type == 1 ? this.$router.push(`/product/${product.product_id}`) : this.$router.push(`/card/${product.card_id}`)">
-                                    <img :src="product.product_type == 1 ? product.main_image : product.img">
+                                    <img :src="product.product_type == 1 ? product.img : product.img">
                                     <p>{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}
                                     </p>
                                 </div>

@@ -95,6 +95,10 @@
             </div>
             <h1 v-if="!cart || cart.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>
         </div>
+        <div class="pop-up">
+            There are some changes happend in your cart!
+            <span>Could consider some elements are finished</span>
+        </div>
     </main>
 </template>
 
