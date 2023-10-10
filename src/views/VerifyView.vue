@@ -62,7 +62,7 @@ export default {
                     $('#errors').fadeIn('slow')
                     setTimeout(() => {
                         $('#errors').fadeOut('slow')
-                        this.$router.push('/');
+                        window.location.href = '/';
                     }, 4000);
                 } else {
                     document.getElementById('errors').innerHTML = ''
