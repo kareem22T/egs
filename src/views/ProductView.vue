@@ -41,6 +41,7 @@
                         </div>
                         <div class="main_img">
                             <img :src="product.main_image" alt="">
+                            <img src="./../assets/imgs/shipping_abroad.png" alt="shipping abroad" class="shipping_icon" v-if="product.shipping_abroad">
                         </div>
                     </div>
                     <div class="content">
