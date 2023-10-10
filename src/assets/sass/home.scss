@@ -2412,3 +2412,16 @@
         color: #fff;
     }
 }
+
+p.stock {
+    font-size: clamp(0.8rem, calc(0.5613rem + 1.0323vw), 1.4rem);
+    font-weight: 400;
+    margin-top: 10px;
+    &.in {
+        color: #80b800;
+    }
+
+    &.out {
+        color: #f34135;
+    }
+}

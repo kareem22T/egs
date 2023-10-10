@@ -53,7 +53,6 @@
                         <a href="https://w2eg.com/">World2Egypt<span></span></a>
                         <a href="/category/physical-store" class="physical-store">Physical Store<span></span></a>
                         <a href="/category/digital-store" class="digital-store">Digital Store<span></span></a>
-                        <router-link to="">Used Market<span></span></router-link>
                         <router-link to="">Deals<span></span></router-link>
 
                         <div class="mobile-more">

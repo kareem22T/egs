@@ -66,13 +66,6 @@
                             <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
                         </div>
                     </div>
-                    <div>
-                        <img src="./../assets/imgs/hero-icon-4.png" alt="">
-                        <div class="text">
-                            <h1>Used Market</h1>
-                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="bg">

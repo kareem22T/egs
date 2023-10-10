@@ -59,6 +59,7 @@
                                 <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>EGP</span></h1>
                                 <h1><span>{{ product.price.toLocaleString() }}</span> <span>EGP</span></h1>
                             </div>
+                            <p class="stock" :class=" product.stock ? 'in' : 'out' ">{{ product.stock ? 'In Stock' : 'Out Of Stock' }}</p>
 
                         <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> Saved: {{  (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
                         </div>

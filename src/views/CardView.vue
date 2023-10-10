@@ -152,6 +152,7 @@
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
                                 <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
+                            <p class="stock" :class=" product.stock ? 'in' : 'out' ">{{ product.stock ? 'In Stock' : 'Out Of Stock' }}</p>
                         </div>
                     </a>
                     <button class="add-to-cart" @click="addCardToCart(item.id, 1)">
