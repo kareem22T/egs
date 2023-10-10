@@ -95,10 +95,12 @@
             </div>
             <h1 v-if="!cart || cart.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>
         </div>
-        <!-- <div class="pop-up">
+        <div class="hide-content" v-if="showMsgPopUp"></div>
+        <div class="pop-up" v-if="showMsgPopUp">
             There are some changes happend in your cart!
             <span>Could consider some elements are finished</span>
-        </div> -->
+            <button @click="showMsgPopUp = false">OK</button>
+        </div>
     </main>
 </template>
 
@@ -118,6 +120,7 @@ export default {
             total: 0,
             products: null,
             cards: null,
+            showMsgPopUp: false,
         }
     },
     methods: {
@@ -133,6 +136,7 @@ export default {
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
+                    this.showMsgPopUp = response.data.data.is_cart_updated
                     this.total = response.data.data.total
                     this.products = response.data.data.products
                     

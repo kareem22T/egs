@@ -145,6 +145,11 @@
             <h1 v-if="!cart || cart.length == 0"
                 style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>
         </div>
+        <div class="hide-content" v-if="payment_msg_popup"></div>
+        <div class="pop-up" v-if="payment_msg_popup">
+            <p v-html="payment_msg"></p>
+            <button @click="this.$router.push('/my-orders')">OK</button>
+        </div>
     </main>
 </template>
 
@@ -176,7 +181,9 @@ export default {
             coupon_discount: 0,
             shipping_method: '',
             payment_method: '',
-            shipping_money: 0
+            shipping_money: 0,
+            payment_msg: null,
+            payment_msg_popup: false,
         }
     },
     methods: {
@@ -317,6 +324,10 @@ export default {
                         $('.loader').fadeOut()
                         if (response.data.data.payment_link)
                             window.location.href = response.data.data.payment_link
+                        if (response.data.data.message) {
+                            this.payment_msg = response.data.data.message
+                            this.payment_msg_popup = true
+                        }
                     }, 3000);
                 } else {
                     $('.loader').fadeOut()
