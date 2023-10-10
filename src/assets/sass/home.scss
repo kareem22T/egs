@@ -1946,6 +1946,8 @@
         .details {
             margin-top: clamp(2rem, calc(-3rem + 6.4vw), 3rem);
             border-top: 1px solid $border-color;
+            border-bottom: 1px solid #d5dfe4;
+            padding-bottom: 2rem;
             @media (max-width: 600px) {
                 margin: 2rem 2rem 0;
             }
@@ -2001,6 +2003,19 @@
                     }
                 }
             }
+        }
+    }
+    .products {
+        >h1 {
+            color: $secondary_color;
+            font-size: 2rem;
+            margin-top: 1.25rem
+        }
+        .body {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.1rem;
+            margin-top: 2rem;
         }
     }
 }
@@ -2375,4 +2390,25 @@
     top: 0;
     left: 0;
     z-index: 9999999;
+}
+
+.pop-up input {
+    width: 100%;
+}
+
+.pop-up button {
+    padding: .5rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #435ca1;
+    background: transparent;
+    border: 1px solid #425a8c;
+    border-radius: .3rem;
+    transition: color .3s ease-in;
+    cursor: pointer;
+    margin-top: 10px;
+    &:hover {
+        background-color: #435ca1;
+        color: #fff;
+    }
 }

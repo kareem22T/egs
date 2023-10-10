@@ -1,5 +1,5 @@
 <template>
-    <div class="product_wrapper">
+    <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
                 Home <i class="fa-solid fa-chevron-right"></i>{{ product.sub_category.name }} <i class="fa-solid fa-chevron-right"></i> {{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' :  product.name }}
@@ -126,6 +126,49 @@
                 </div>
             </div>
         </div>
+        <div class="container products" v-if="related_products && related_products.length > 0">
+            <h1>Related Products</h1>
+            <div class="body">
+                <div class="product" v-for="item in related_products" :key="item.id">
+                    <a :href="`/product/${item.id}`">
+                        <div class="img">
+                            <img :src="item.main_image" :alt="item.name">
+                            <p>{{ item.sub_category.name }}</p>
+                            <h4>
+                                {{ item.name.length >= 39 ? item.name.slice(0, 39) + '...' :  item.name }}
+                            </h4>
+                        </div>
+                        <div>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star active"></i>
+                                    <i class="fa-regular fa-star"></i></div>
+                                ( 3 Reviews ) 
+                            </div>
+                            <div class="price">
+                                <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
+                                <h1>{{ item.price.toLocaleString() }}</h1>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="add-to-cart" @click="addProductToCart(item.id, 1)">
+                        Add To Cart
+                    </button>
+                    <button :class="item.isFav ? 'active' : ''" class="add-to-wishlist" @click="likeProduct(item.id)">
+                        <i class="fa-regular fa-heart"></i> Add To Wishlist
+                    </button>
+                </div>
+            </div>
+            <div class="pagination" v-if="last_page > 1">
+                <div v-for="page_num in last_page" :key="page_num" >
+                    <label :for="`page_num_${page_num}`" :class="page_num == page ? 'active' : ''">{{ page_num }}</label>
+                    <input type="radio" name="page_num" :id="`page_num_${page_num}`" v-model="page" :value="page_num" @change="fetchProduct(productId)">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -148,6 +191,11 @@ export default {
             productId: this.$route.params.id,
             product: null,
             quantity: 1,
+            related_products: [],
+            per_page: 8,
+            page: 1,
+            total: 0,
+            last_page: 0,
         }
     },
     methods: {
@@ -159,9 +207,12 @@ export default {
         async fetchProduct(productId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/getProductDetails?product_id=${productId}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/getProductDetails?product_id=${productId}&per_page=${this.per_page}&page=${this.page}`);
                 if (response.data.status === true) {
-                    this.product= response.data.data
+                    this.product = response.data.data.product
+                    this.related_products = response.data.data.related_products.products
+                    this.total = response.data.data.related_products.total
+                    this.last_page = response.data.data.related_products.last_page
                     if (!this.products || !this.products[0])
                         this.showNotProducts = true
                     $('.loader').fadeOut()

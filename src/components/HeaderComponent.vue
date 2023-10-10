@@ -44,8 +44,8 @@
                         <img src="./../assets/imgs/logo.png" alt="logo">
                     </router-link>
                     <div class="input-search">
-                        <input type="text" name="search" id="search" placeholder="Search for items">
-                        <i class="fa fa-search"></i>
+                        <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup.enter="goToSearch">
+                        <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
                     </div>
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
@@ -104,11 +104,19 @@
                         <router-link to="/my-wishlist" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
                         <router-link to="/my-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></router-link>
                         <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></router-link>
-                        <router-link to="" class="search-icon"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
+                        <router-link to="" class="search-icon" @click.prevent="showSearchPopUp = true"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
                         <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="hide-content" v-if="showSearchPopUp"></div>
+        <div class="pop-up" v-if="showSearchPopUp">
+            <div class="input-search">
+                <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup.enter="goToSearch">
+                <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
+            </div>
+            <button @click="showSearchPopUp = false">Cancel</button>
         </div>
     </header>
 </template>
@@ -134,7 +142,9 @@ export default {
     data() {
         return {
             user: null,
-            cartItemCount: 0
+            cartItemCount: 0,
+            search: '',
+            showSearchPopUp: false
         }
     },
     methods: {
@@ -198,6 +208,9 @@ export default {
                 console.error(error);
             }
         },
+        goToSearch () {
+            window.location.href = '/search/' + this.search.replace(/\s+/g, '-')
+        }
     },
     mounted() {
         this.user = sessionStorage.getItem('user') ? sessionStorage.getItem('user') : null 

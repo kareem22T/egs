@@ -18,6 +18,7 @@ import EditProfileView from '../views/EditProfileView.vue'
 import ChangePassView from '../views/ChangePassView.vue'
 import ResetPassView from '../views/ResetPassView.vue'
 import VerifyView from '../views/VerifyView.vue'
+import SearchView from '../views/SearchView.vue'
 
 import CategoryView from '../views/CategoryView.vue'
 import PhysicalStoreView from '../views/PhysicalStoreView.vue'
@@ -192,6 +193,10 @@ const routes = [
         meta: {id: 3, type: 0, category_name: 'Digital Store', category_path: 'digital-store'}
       },
     ],
+  },
+  {
+    path: '/search/:search',
+    component: SearchView
   },
 ]
 const router = createRouter({
