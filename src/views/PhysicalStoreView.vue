@@ -270,7 +270,7 @@ export default {
                     $('#errors').fadeOut('slow')
                 }, 3500);
 
-            } else if (product_valid_qty < qty) {
+            } else if (product_valid_qty < qty && product_stock == 1) {
                 document.getElementById('errors').innerHTML = ''
                 let error = document.createElement('div')
                 error.classList = 'error'
