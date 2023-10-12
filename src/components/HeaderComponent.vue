@@ -101,7 +101,9 @@
                             <router-link to="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> log-out</router-link>
                         </ul>
                         <router-link to="/my-wishlist" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
-                        <router-link to="/my-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></router-link>
+                        <router-link to="/my-cart">
+                            <div class="cart_icon_wrapper"><i class="fa-solid fa-cart-shopping"></i><span class="point" v-if="cart && cart.length"></span></div><span>Cart</span>
+                        </router-link>
                         <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></router-link>
                         <router-link to="" class="search-icon" @click.prevent="showSearchPopUp = true"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
                         <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>
@@ -141,9 +143,13 @@ export default {
     data() {
         return {
             user: null,
-            cartItemCount: 0,
             search: '',
-            showSearchPopUp: false
+            showSearchPopUp: false,
+            cart: null,
+            quantities: {},
+            total: 0,
+            products: null,
+            cards: null,
         }
     },
     methods: {
@@ -209,7 +215,66 @@ export default {
         },
         goToSearch () {
             window.location.href = '/search/' + this.search.replace(/\s+/g, '-')
-        }
+        },
+        async getCart() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        },
+                    }
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.showMsgPopUp = response.data.data.is_cart_updated
+                    this.total = response.data.data.total
+                    this.products = response.data.data.products
+
+                    for (let i = 0; i < this.products.length; i++) {
+                        this.products[i].product_type = 1;
+                        this.quantities[`product_${this.products[i].id}`] = this.products[i].qty
+                    }
+                    this.cards = response.data.data.cards
+                    for (let i = 0; i < this.cards.length; i++) {
+                        this.cards[i].product_type = 2;
+                        this.quantities[`card_${this.cards[i].id}`] = this.cards[i].qty
+                    }
+                    this.cart = this.products.concat(this.cards)
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
     },
     mounted() {
         this.user = sessionStorage.getItem('user') ? sessionStorage.getItem('user') : null 
@@ -250,6 +315,9 @@ export default {
             e.preventDefault()
             $('nav, .hide').fadeOut()
         })
+    },
+    created() {
+        this.getCart()
     },
 }
 </script>

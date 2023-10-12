@@ -308,8 +308,11 @@ export default {
                     document.getElementById('errors').append(error)
                     setTimeout(() => {
                         $('.loader').fadeOut()
+                        if (this.cart.length == 1)
+                            window.location.reload()
+                        else
                         this.getCart()
-                    }, 0);
+                    }, 2000);
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -360,8 +363,11 @@ export default {
                     document.getElementById('errors').append(error)
                     setTimeout(() => {
                         $('.loader').fadeOut()
-                        this.getCart()
-                    }, 0);
+                        if (this.cart.length == 1)
+                            window.location.reload()
+                        else
+                            this.getCart()
+                    }, 2000);
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

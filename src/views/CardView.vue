@@ -152,8 +152,8 @@
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
                                 <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
-                            <p class="stock" :class=" product.stock ? 'in' : 'out' ">{{ product.stock ? 'In Stock' : 'Out Of Stock' }}</p>
-                        </div>
+                                <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
+                            </div>
                     </a>
                     <button class="add-to-cart" @click="addCardToCart(item.id, 1)">
                         Add To Cart
@@ -198,7 +198,9 @@ export default {
             page: 1,
             total: 0,
             last_page: 0,
-
+            cart: null,
+            products: null,
+            cards: null,
         }
     },
     methods: {
@@ -232,6 +234,61 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async getCart() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        },
+                    }
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.products = response.data.data.products
+
+                    for (let i = 0; i < this.products.length; i++) {
+                        this.products[i].product_type = 1;
+                    }
+                    this.cards = response.data.data.cards
+                    for (let i = 0; i < this.cards.length; i++) {
+                        this.cards[i].product_type = 2;
+                    }
+                    this.cart = this.products.concat(this.cards)
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -328,6 +385,9 @@ export default {
                     setTimeout(() => {
                         $('#errors').fadeOut('slow')
                         $('.loader').fadeOut()
+                        if (!this.cart || !this.cart.length) {
+                            window.location.reload()
+                        }
                     }, 1000);
                 } else {
                     $('.loader').fadeOut()
@@ -376,6 +436,7 @@ export default {
             $(`.digital-store`).siblings().removeClass('active')
         })
         this.fetchProduct(this.productId)
+        this.getCart()
     },
 }
 </script>

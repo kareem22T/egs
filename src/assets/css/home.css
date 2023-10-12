@@ -2605,13 +2605,29 @@ input:focus, textarea:focus {
 p.stock {
   font-size: clamp(0.8rem, calc(0.5613rem + 1.0323vw), 1.4rem);
   font-weight: 400;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 p.stock.in {
   color: #80b800;
 }
+p.stock.managed {
+  color: #717171;
+}
 p.stock.out {
   color: #f34135;
+}
+
+.cart_icon_wrapper {
+  position: relative;
+}
+.cart_icon_wrapper .point {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: -4px;
+  right: 0px;
+  background: #e7441d;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=home.css.map */

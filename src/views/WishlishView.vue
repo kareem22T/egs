@@ -21,8 +21,8 @@
                             <td>
                                 <div class="stock">
                                     <span>Stock Status</span>
-                                    <p :class=" product.stock ? 'in' : 'out' ">{{ product.stock ? 'In Stock' : 'Out Of Stock' }}</p>
-                                </div>
+                                    <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
+                                    </div>
                             </td>
                             <td>
                                 <div class="add_to_cart">
