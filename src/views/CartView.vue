@@ -292,6 +292,7 @@ export default {
             }
         },
         async deleteCardToCart(product_id) {
+            $('.loader').fadeIn()
             try {
                 const response = await axios.delete(`https://api.egyptgamestore.com/api/cards/${product_id}/delete-cart`,
                     {
@@ -347,6 +348,7 @@ export default {
             }
         },
         async deleteProductToCart(product_id) {
+            $('.loader').fadeIn()
             try {
                 const response = await axios.delete(`https://api.egyptgamestore.com/api/products/${product_id}/delete-cart`,
                     {
