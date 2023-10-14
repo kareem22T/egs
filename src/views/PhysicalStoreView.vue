@@ -364,36 +364,8 @@ export default {
                         this.cards_cart[i].product_type = 2;
                     }
                     this.cart = this.products_cart.concat(this.cards_cart)
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
                 }
-
             } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
                 console.error(error);
             }
         },
