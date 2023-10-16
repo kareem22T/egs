@@ -38,6 +38,16 @@
             <h1 v-if="!Order || Order.length == 0"
                 style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Order is Empty
             </h1>
+            <div class="hide-content" v-if="isOrderSuccess"></div>
+            <div class="pop-up" v-if="isOrderSuccess">
+                <p>Payment has been completed succesfuly</p>
+                <button @click="isOrderSuccess = false">OK</button>
+            </div>
+            <div class="hide-content" v-if="isOrderFaild"></div>
+            <div class="pop-up" v-if="isOrderFaild">
+                <p>an error happend in payment prosses try again!</p>
+                <button @click="isOrderFaild = false">OK</button>
+            </div>
         </div>
     </main>
 </template>
@@ -56,7 +66,9 @@ export default {
             Order: null,
             products: null,
             cards: null,
-            order_name: ''
+            order_name: '',
+            isOrderSuccess: false,
+            isOrderFaild: false
         }
     },
     methods: {
@@ -118,8 +130,10 @@ export default {
     },
     created() {
         this.getOrder()
-    },
-    mounted() {
+        if (this.$route.query.success && this.$route.query.success === 'true')
+            this.isOrderSuccess = true;
+        else if (this.$route.query.success && this.$route.query.success === 'false')
+            this.isOrderFaild = true;
     },
 }
 </script>

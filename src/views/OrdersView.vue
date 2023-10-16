@@ -54,7 +54,7 @@ export default {
         async getWishlist() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/users/orders?status=0`,
+                const response = await axios.get(`https://api.egyptgamestore.com/api/users/orders`,
                     {
                         headers: {
                             "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')

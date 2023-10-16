@@ -343,7 +343,6 @@ export default {
             }
         },
         async getCart() {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
                     {
