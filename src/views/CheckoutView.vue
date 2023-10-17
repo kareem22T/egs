@@ -59,54 +59,63 @@
                                     <input type="radio" name="payment_method" id="payment_method_0" v-model="payment_method" value="0">
                                     Credit Card
                                 </label>
+                                <span v-if="payment_method === '0'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Visa/Master Card</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_1" :class="payment_method === '1' ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_1" v-model="payment_method" value="1">
                                     Mobile Wallet
                                 </label>
+                                <span v-if="payment_method === '1'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">orange/vodafone/etisalat cash</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_2" :class="payment_method == 2 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_2" v-model="payment_method" value="2">
                                     Fawry
                                 </label>
+                                <span v-if="payment_method == 2" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_3" :class="payment_method == 3 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_3" v-model="payment_method" value="3">
                                     Aman / Masary
                                 </label>
+                                <span v-if="payment_method == 3" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_4" :class="payment_method == 4 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_4" v-model="payment_method" value="4">
                                     valU Installment
                                 </label>
+                                <span v-if="payment_method == 4" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_5" :class="payment_method == 5 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_5" v-model="payment_method" value="5">
                                     Credit Card Installment
                                 </label>
+                                <span v-if="payment_method == 5" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_6" :class="payment_method == 6 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_6" v-model="payment_method" value="6">
                                     Contact Installment
                                 </label>
+                                <span v-if="payment_method == 6" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_7" :class="payment_method == 7 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_7" v-model="payment_method" value="7">
                                     Forsa Installment
                                 </label>
+                                <span v-if="payment_method == 7" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_8" :class="payment_method == 8 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_8" v-model="payment_method" value="8">
                                     Cash on delivery
                                 </label>
+                                <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
                         </form>
                         <h5>Choose shipping method</h5>
@@ -184,6 +193,7 @@ export default {
             shipping_money: 0,
             payment_msg: null,
             payment_msg_popup: false,
+            order_id: null
         }
     },
     methods: {
@@ -321,12 +331,22 @@ export default {
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
                     setTimeout(() => {
-                        $('.loader').fadeOut()
-                        if (response.data.data.payment_link)
+                        if (response.data.data.payment_link) {
                             window.location.href = response.data.data.payment_link
+                            $('.loader').fadeOut()
+                        }
                         if (response.data.data.message) {
+                            $('.loader').fadeOut()
                             this.payment_msg = response.data.data.message
                             this.payment_msg_popup = true
+                        }
+                        if (!response.data.data.message && !response.data.data.payment_link) {
+                            $('#errors').fadeIn('slow')
+                            setTimeout(() => {
+                                $('.loader').fadeOut()
+                                $('#errors').fadeOut('slow')
+                                window.location.href = `/order/${response.data.data.order_id}`
+                            }, 3000);
                         }
                     }, 3000);
                 } else {
