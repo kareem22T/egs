@@ -101,6 +101,11 @@
             <span>Could consider some elements are finished</span>
             <button @click="showMsgPopUp = false">OK</button>
         </div>
+        <div class="hide-content" v-if="isOrderFaild"></div>
+        <div class="pop-up" v-if="isOrderFaild">
+            <p>Payment failed, please try again!</p>
+            <button @click="isOrderFaild = false">OK</button>
+        </div>
     </main>
 </template>
 
@@ -121,6 +126,7 @@ export default {
             products: null,
             cards: null,
             showMsgPopUp: false,
+            isOrderFaild: false,
         }
     },
     methods: {
@@ -406,6 +412,8 @@ export default {
     },
     created() {
         this.getCart()
+        if (this.$route.query.success && this.$route.query.success === 'false')
+            this.isOrderFaild = true;
     },
     mounted() {
     },
