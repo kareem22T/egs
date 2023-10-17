@@ -38,7 +38,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="total" v-if="total_price || payment_fees || sub_total">
+                <div class="total-main" v-if="total_price || payment_fees || sub_total">
                     <div class="head">
                         Cart Totals
                     </div>

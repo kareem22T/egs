@@ -1257,23 +1257,23 @@ input:focus, textarea:focus {
   background-color: transparent;
   color: #0470ac !important;
 }
-.wishlist_wrapper > .container .total, .card_wrapper > .container .total, .card_wrapper > .container .total {
+.wishlist_wrapper > .container .total-main, .card_wrapper > .container .total-main, .card_wrapper > .container .total-main {
   min-width: 350px;
   border: 1px solid #d5dfe4;
   border-radius: 1rem;
   height: max-content;
   margin-top: 2rem;
 }
-.wishlist_wrapper > .container .total .head, .card_wrapper > .container .total .head, .card_wrapper > .container .total .head {
+.wishlist_wrapper > .container .total-main .head, .card_wrapper > .container .total-main .head, .card_wrapper > .container .total-main .head {
   padding: 1rem;
   border-bottom: 1px solid #d5dfe4;
   color: #33332c;
   font-size: 1.25rem;
 }
-.wishlist_wrapper > .container .total .bottom, .card_wrapper > .container .total .bottom, .card_wrapper > .container .total .bottom {
+.wishlist_wrapper > .container .total-main .bottom, .card_wrapper > .container .total-main .bottom, .card_wrapper > .container .total-main .bottom {
   padding: 1rem;
 }
-.wishlist_wrapper > .container .total .bottom h4, .card_wrapper > .container .total .bottom h4, .card_wrapper > .container .total .bottom h4 {
+.wishlist_wrapper > .container .total-main .bottom h4, .card_wrapper > .container .total-main .bottom h4, .card_wrapper > .container .total-main .bottom h4 {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -1282,7 +1282,7 @@ input:focus, textarea:focus {
   color: #0b5177;
   margin-bottom: 10px;
 }
-.wishlist_wrapper > .container .total .bottom button, .card_wrapper > .container .total .bottom button, .card_wrapper > .container .total .bottom button {
+.wishlist_wrapper > .container .total-main .bottom button, .card_wrapper > .container .total-main .bottom button, .card_wrapper > .container .total-main .bottom button {
   width: 100%;
   padding: .7rem;
   font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
