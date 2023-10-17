@@ -1066,23 +1066,26 @@
             margin-top: 2rem;
 
             .head {
-                padding: 1rem;
+                padding: clamp(0.8rem, calc(0.7189rem + 0.3459vw), 1rem);
                 border-bottom: 1px solid $border-color;
                 color: $text_gray;
-                font-size: 1.25rem;
+                font-size: clamp(1rem, calc(0.8986rem + 0.4324vw), 1.25rem);
             }
 
             .bottom {
                 padding: 1rem;
 
                 h4 {
-                    font-size: 1.5rem;
+                    font-size: clamp(0.875rem, calc(0.7736rem + 0.4324vw), 1.125rem);;
                     display: flex;
                     justify-content: space-between;
                     gap: 10px;
                     font-weight: 400;
                     color: $secondary_color;
                     margin-bottom: 10px;
+                    &.text-details {
+                        color: $text_gray
+                    }
                 }
 
                 button {
@@ -1112,11 +1115,6 @@
             padding: clamp(0.4rem, calc(0.1613rem + 1.0323vw), 1rem);;
             >* {
                 color: $text_gray;
-            }
-            &:nth-child(3) {
-                @media (max-width: 600px) {
-                    display: none;
-                }
             }
             .head {
                 display: flex;

@@ -40,9 +40,19 @@
                 </table>
                 <div class="total-main" v-if="total_price || payment_fees || sub_total">
                     <div class="head">
-                        Cart Totals
+                        Order Details
                     </div>
                     <div class="bottom">
+                        <div v-if="details">
+                            <h4 class="text-details" v-if="details.full_name">Full Name <span>{{ details.full_name }}</span></h4>
+                            <h4 class="text-details" v-if="details.country">Country <span>{{ details.country }}</span></h4>
+                            <h4 class="text-details" v-if="details.street_number">Street <span>{{ details.street_number }}</span></h4>
+                            <h4 class="text-details" v-if="details.home_number">Phone <span>{{ details.home_number }}</span></h4>
+                        </div>
+                        <br>
+                        <h4 class="text-details" v-if="payment_method">Payment Method <span>{{ payment_method }}</span></h4>
+                        <h4 class="text-details" v-if="shipping_method">Shipping Method <span>{{ shipping_method == 1 ? "Online" : (shipping_method == 2 ? "2 Day" : "Store Pickup") }}</span></h4>
+                        <br>
                         <h4 v-if="payment_fees">Payment Fees <span>{{ payment_fees.toLocaleString() }} EGP</span></h4>
                         <h4 v-if="sub_total">Sub Total <span>{{ sub_total.toLocaleString() }} EGP</span></h4>
                         <h4 style="font-weight: 700" v-if="total_price">Total Price <span>{{ total_price.toLocaleString() }} EGP</span></h4>
@@ -95,6 +105,9 @@ export default {
             sub_total: 0,
             total_price: 0,
             codes: null,
+            details: null,
+            payment_method: null,
+            shipping_method: null,
         }
     },
     methods: {
@@ -116,6 +129,9 @@ export default {
                     this.payment_fees = response.data.data.payment_fees
                     this.sub_total = response.data.data.sub_total
                     this.total_price = response.data.data.total_price
+                    this.payment_method = response.data.data.payment_method
+                    this.shipping_method = response.data.data.shipping_method
+                    this.details = response.data.data.details
                     for (let i = 0; i < this.products.length; i++) {
                         this.products[i].product_type = 1;
                     }
