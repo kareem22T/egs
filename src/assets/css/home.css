@@ -1234,6 +1234,66 @@ input:focus, textarea:focus {
 .wishlist_wrapper > .container > h1, .card_wrapper > .container > h1, .card_wrapper > .container > h1 {
   font-size: clamp(1.25rem, calc(0.9516rem + 1.2903vw), 2rem) !important;
 }
+.wishlist_wrapper > .container > h1 span, .card_wrapper > .container > h1 span, .card_wrapper > .container > h1 span {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  color: gray;
+}
+.wishlist_wrapper > .container > h1 span.completed, .card_wrapper > .container > h1 span.completed, .card_wrapper > .container > h1 span.completed {
+  color: #0CAE61;
+}
+.wishlist_wrapper > .container td button, .card_wrapper > .container td button, .card_wrapper > .container td button {
+  background: #0470ac;
+  color: #fff !important;
+  padding: 9px;
+  border: none;
+  border-radius: .4rem;
+  margin-top: 10px;
+  transition: all .3s ease-in;
+  border: 2px solid #0470ac;
+}
+.wishlist_wrapper > .container td button:hover, .card_wrapper > .container td button:hover, .card_wrapper > .container td button:hover {
+  background-color: transparent;
+  color: #0470ac !important;
+}
+.wishlist_wrapper > .container .total, .card_wrapper > .container .total, .card_wrapper > .container .total {
+  min-width: 350px;
+  border: 1px solid #d5dfe4;
+  border-radius: 1rem;
+  height: max-content;
+  margin-top: 2rem;
+}
+.wishlist_wrapper > .container .total .head, .card_wrapper > .container .total .head, .card_wrapper > .container .total .head {
+  padding: 1rem;
+  border-bottom: 1px solid #d5dfe4;
+  color: #33332c;
+  font-size: 1.25rem;
+}
+.wishlist_wrapper > .container .total .bottom, .card_wrapper > .container .total .bottom, .card_wrapper > .container .total .bottom {
+  padding: 1rem;
+}
+.wishlist_wrapper > .container .total .bottom h4, .card_wrapper > .container .total .bottom h4, .card_wrapper > .container .total .bottom h4 {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 400;
+  color: #0b5177;
+  margin-bottom: 10px;
+}
+.wishlist_wrapper > .container .total .bottom button, .card_wrapper > .container .total .bottom button, .card_wrapper > .container .total .bottom button {
+  width: 100%;
+  padding: .7rem;
+  font-size: clamp(0.8rem, calc(0.6667rem + 0.5333vw), 1rem);
+  border-radius: clamp(0.7rem, calc(0.5rem + 0.8vw), 1rem);
+  border: 1px solid #e63b12;
+  background-color: #e63b12;
+  color: #fff;
+  transition: .3s all ease-in;
+  cursor: pointer;
+  margin-top: 2rem;
+}
 
 .wishlist_wrapper .table_wrapper, .card_wrapper .table_wrapper, .orders_wrapper .table_wrapper {
   width: 100%;

@@ -6,7 +6,10 @@
             </div>
         </div>
         <div class="container">
-            <h1 v-if="Order && Order.length > 0">{{ order_name }}</h1>
+            <h1 v-if="Order && Order.length > 0">Your Order {{ order_name }} <span v-if="status">{{ status }}</span></h1>
+            <div class="order_address">
+
+            </div>
             <div class="table_wrapper" v-if="Order && Order.length > 0">
                 <table>
                     <tbody>
@@ -30,10 +33,21 @@
                                     <span>Quantity</span>
                                     <p>{{ product.qty }} {{ product.qty > 1 ? 'item' : 'items' }}</p>
                                 </div>
+                                <button v-if="product.product_type == 2 && product.codes" @click="codes = product.codes; viewCodePopUp = true;">View Codes</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="total" v-if="total_price || payment_fees || sub_total">
+                    <div class="head">
+                        Cart Totals
+                    </div>
+                    <div class="bottom">
+                        <h4 v-if="payment_fees">Payment Fees <span>{{ payment_fees.toLocaleString() }} EGP</span></h4>
+                        <h4 v-if="sub_total">Sub Total <span>{{ sub_total.toLocaleString() }} EGP</span></h4>
+                        <h4 style="font-weight: 700" v-if="total_price">Total Price <span>{{ total_price.toLocaleString() }} EGP</span></h4>
+                    </div>
+                </div>
             </div>
             <h1 v-if="!Order || Order.length == 0"
                 style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Order is Empty
@@ -47,6 +61,12 @@
             <div class="pop-up" v-if="isOrderFaild">
                 <p>an error happend in payment prosses try again!</p>
                 <button @click="isOrderFaild = false">OK</button>
+            </div>
+            <div class="hide-content" v-if="viewCodePopUp"></div>
+            <div class="pop-up" v-if="viewCodePopUp">
+                <h4>Your Codes:</h4>
+                <p v-html="codes"></p>
+                <button @click="viewCodePopUp = false">OK</button>
             </div>
         </div>
     </main>
@@ -68,7 +88,13 @@ export default {
             cards: null,
             order_name: '',
             isOrderSuccess: false,
-            isOrderFaild: false
+            isOrderFaild: false,
+            viewCodePopUp: false,
+            status: null,
+            payment_fees: 0,
+            sub_total: 0,
+            total_price: 0,
+            codes: null,
         }
     },
     methods: {
@@ -86,6 +112,10 @@ export default {
                     $('.loader').fadeOut()
                     this.products = response.data.data.products
                     this.order_name = response.data.data.name
+                    this.status = response.data.data.status
+                    this.payment_fees = response.data.data.payment_fees
+                    this.sub_total = response.data.data.sub_total
+                    this.total_price = response.data.data.total_price
                     for (let i = 0; i < this.products.length; i++) {
                         this.products[i].product_type = 1;
                     }
