@@ -148,7 +148,7 @@
                         <h5 v-if="coupon_discount">Discount <span>- {{ coupon_discount.toLocaleString() }} EGP</span></h5>
                         <h4>Total <span>{{ (total + shipping_money - coupon_discount).toLocaleString() }} EGP</span></h4>
                     </div>
-                    <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">Place Oreder</button>
+                    <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">Place Order</button>
                 </div>
             </div>
             <h1 v-if="!cart || cart.length == 0"
