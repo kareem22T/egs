@@ -343,7 +343,6 @@ export default {
                         if (!response.data.data.message && !response.data.data.payment_link) {
                             $('#errors').fadeIn('slow')
                             setTimeout(() => {
-                                $('.loader').fadeOut()
                                 $('#errors').fadeOut('slow')
                                 window.location.href = `/order/${response.data.data.order_id}`
                             }, 3000);
