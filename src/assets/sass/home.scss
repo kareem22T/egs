@@ -1044,16 +1044,16 @@
         }
         td {
             button {
-                background: #0470ac;
+                background: #0470ac !important;
                 color: #fff !important;
                 padding: 9px;
                 border: none;
                 border-radius: .4rem;
                 margin-top: 10px;
                 transition: all .3s ease-in;
-                border: 2px solid #0470ac;
+                border: 2px solid #0470ac !important;
                 &:hover {
-                    background-color: transparent;
+                    background-color: transparent !important;
                     color: #0470ac !important;
                 }
             }
@@ -1187,10 +1187,13 @@
                     justify-content: center;
                     align-items: center;
                     border-radius: 50%;
-                    border: none;
-                    background: #f24235;
+                    border: 2px solid #f24235 !important;
+                    background: #f24235 !important;
                     color: #fff;
                     cursor: pointer;
+                    &:hover {
+                        color: #fff !important;
+                    }
                 }
             }
             .add_to_cart {

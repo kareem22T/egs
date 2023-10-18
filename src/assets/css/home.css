@@ -1244,17 +1244,17 @@ input:focus, textarea:focus {
   color: #0CAE61;
 }
 .wishlist_wrapper > .container td button, .card_wrapper > .container td button, .card_wrapper > .container td button {
-  background: #0470ac;
+  background: #0470ac !important;
   color: #fff !important;
   padding: 9px;
   border: none;
   border-radius: .4rem;
   margin-top: 10px;
   transition: all .3s ease-in;
-  border: 2px solid #0470ac;
+  border: 2px solid #0470ac !important;
 }
 .wishlist_wrapper > .container td button:hover, .card_wrapper > .container td button:hover, .card_wrapper > .container td button:hover {
-  background-color: transparent;
+  background-color: transparent !important;
   color: #0470ac !important;
 }
 .wishlist_wrapper > .container .total-main, .card_wrapper > .container .total-main, .card_wrapper > .container .total-main {
@@ -1381,10 +1381,13 @@ input:focus, textarea:focus {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: none;
-  background: #f24235;
+  border: 2px solid #f24235 !important;
+  background: #f24235 !important;
   color: #fff;
   cursor: pointer;
+}
+.wishlist_wrapper .table_wrapper table td .remove button:hover, .card_wrapper .table_wrapper table td .remove button:hover, .orders_wrapper .table_wrapper table td .remove button:hover {
+  color: #fff !important;
 }
 .wishlist_wrapper .table_wrapper table td .add_to_cart i, .card_wrapper .table_wrapper table td .add_to_cart i, .orders_wrapper .table_wrapper table td .add_to_cart i {
   display: none;
