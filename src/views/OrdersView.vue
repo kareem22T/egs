@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="order in orders" :key="order.id" >
-                            <td>#{{order.RefNumber }}</td>
+                            <td>{{order.name }}</td>
                             <td><span class="canceled">{{order.status }}</span></td>
                             <td>{{order.payment_method }}</td>
                             <td>{{order.total_price.toLocaleString()}} EGP</td>
