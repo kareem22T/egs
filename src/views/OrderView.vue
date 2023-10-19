@@ -50,8 +50,9 @@
                             <h4 class="text-details" v-if="details.home_number">Phone <span>{{ details.home_number }}</span></h4>
                         </div>
                         <br>
-                        <h4 class="text-details" v-if="payment_method">Payment Method <span>{{ payment_method }}</span></h4>
                         <h4 class="text-details" v-if="shipping_method">Shipping Method <span>{{ shipping_method == 1 ? "Online" : (shipping_method == 2 ? "2 Day" : "Store Pickup") }}</span></h4>
+                        <h4 class="text-details" v-if="payment_method">Payment Method <span>{{ payment_method }}</span></h4>
+                        <h4 class="text-details" v-if="RefNumber"><span>Reference Number <i @click="showHelpRefPopUp = true" class="fa-regular fa-circle-question" style="cursor: pointer;"></i></span><span>{{ RefNumber }} </span></h4>
                         <br>
                         <h4 v-if="payment_fees">Payment Fees <span>{{ payment_fees.toLocaleString() }} EGP</span></h4>
                         <h4 v-if="sub_total">Sub Total <span>{{ sub_total.toLocaleString() }} EGP</span></h4>
@@ -78,6 +79,11 @@
                 <p v-html="codes"></p>
                 <button @click="viewCodePopUp = false">OK</button>
             </div>
+            <div class="hide-content" v-if="showHelpRefPopUp"></div>
+            <div class="pop-up" v-if="showHelpRefPopUp">
+                <p>This is the number you can use to pay on</p>
+                <button @click="showHelpRefPopUp = false">OK</button>
+            </div>
         </div>
     </main>
 </template>
@@ -100,6 +106,7 @@ export default {
             isOrderSuccess: false,
             isOrderFaild: false,
             viewCodePopUp: false,
+            showHelpRefPopUp: false,
             status: null,
             payment_fees: 0,
             sub_total: 0,
@@ -108,6 +115,7 @@ export default {
             details: null,
             payment_method: null,
             shipping_method: null,
+            RefNumber: null,
         }
     },
     methods: {
@@ -132,6 +140,7 @@ export default {
                     this.payment_method = response.data.data.payment_method
                     this.shipping_method = response.data.data.shipping_method
                     this.details = response.data.data.details
+                    this.RefNumber = response.data.data.RefNumber
                     for (let i = 0; i < this.products.length; i++) {
                         this.products[i].product_type = 1;
                     }
