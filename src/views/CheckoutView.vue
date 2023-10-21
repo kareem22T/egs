@@ -82,28 +82,28 @@
                                 </label>
                                 <span v-if="payment_method == 3" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_4" :class="payment_method == 4 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_4" v-model="payment_method" value="4">
                                     valU Installment
                                 </label>
                                 <span v-if="payment_method == 4" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_5" :class="payment_method == 5 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_5" v-model="payment_method" value="5">
                                     Credit Card Installment
                                 </label>
                                 <span v-if="payment_method == 5" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_6" :class="payment_method == 6 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_6" v-model="payment_method" value="6">
                                     Contact Installment
                                 </label>
                                 <span v-if="payment_method == 6" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">pay via code</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_7" :class="payment_method == 7 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_7" v-model="payment_method" value="7">
                                     Forsa Installment
@@ -193,7 +193,8 @@ export default {
             shipping_money: 0,
             payment_msg: null,
             payment_msg_popup: false,
-            order_id: null
+            order_id: null,
+            installment_option: false,
         }
     },
     methods: {
@@ -268,6 +269,7 @@ export default {
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
                     this.shipping_money = response.data.data.shipping_fees
+                    this.installment_option = response.data.data.installment_option
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
