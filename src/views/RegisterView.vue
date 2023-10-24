@@ -23,7 +23,7 @@
                 </div>
                 <div class="input">
                     <input type="text" name="dob" id="dob" placeholder="Date Of Birth"
-                    onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" v-model="dob">
+                    onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" v-model="dob" @blur="validateDate()">
                     <img src="./../assets/imgs/calendar-days-regular.svg" alt="calendar icon">
                 </div>
                 <div class="input">
@@ -66,9 +66,48 @@ export default {
             dob: null,
             password: null,
             password_confirmation: null,
+            errorMsg: "",
         }
     },
     methods: {
+        validateDate() {
+            const currentDate = new Date();
+            const selectedDate = new Date(this.dob);
+            // Check if the year is a 4-digit number
+            const year = selectedDate.getFullYear();
+            const age = Math.floor((currentDate - selectedDate) / (365.25 * 24 * 60 * 60 * 1000));
+            if (this.dob) {
+                if (!year || year < 1000 || year > 9999) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'error'
+                    error.innerHTML = "Please enter a valid 4-digit year."
+                    this.dob = ''
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    $('.loader').fadeOut()
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 3500);
+                } else if (age <= 16 || age >= 100) {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'error'
+                    error.innerHTML = "You must be between 16 and 100 years old."
+                    this.dob = ''
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    $('.loader').fadeOut()
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 3500);
+                }
+            }
+        },
         async registerMethod(email, phone, dob, password, password_confirmation) {
             $('.loader').fadeIn().css('display', 'flex')
             if (password == password_confirmation)
