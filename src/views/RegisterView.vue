@@ -133,7 +133,6 @@ export default {
                 error.innerHTML = 'password and its confirmation do not match'
                 document.getElementById('errors').append(error)
                 $('#errors').fadeIn('slow')
-                $('input').css('outline', '2px solid #e41749')
                 $('.loader').fadeOut()
                 setTimeout(() => {
                     $('input').css('outline', 'none')
