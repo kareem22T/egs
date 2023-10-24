@@ -161,7 +161,11 @@ export default {
         async fetchProducts(categoryId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/category?category_id=${categoryId}&per_page=${this.per_page}&page=${this.page}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/category?category_id=${categoryId}&per_page=${this.per_page}&page=${this.page}`, {
+                    headers: {
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                    }
+                });
                 if (response.data.status === true) {
                     this.products = response.data.data.products
                     this.total = response.data.data.total
@@ -221,8 +225,8 @@ export default {
                     error.classList = 'success'
                     error.innerHTML = response.data.message
                     document.getElementById('errors').append(error)
-                    $('.add-to-wishlist').toggleClass('active')
                     $('.loader').fadeOut()
+                    this.fetchProducts(this.categoryId)
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

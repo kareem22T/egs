@@ -240,7 +240,11 @@ export default {
         async fetchProduct(productId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/getProductDetails?product_id=${productId}&per_page=${this.per_page}&page=${this.page}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/getProductDetails?product_id=${productId}&per_page=${this.per_page}&page=${this.page}`, {
+                    headers: {
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                    }
+                });
                 if (response.data.status === true) {
                     this.product = response.data.data.product
                     this.related_products = response.data.data.related_products.products
