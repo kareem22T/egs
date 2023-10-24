@@ -366,7 +366,8 @@ export default {
                 $('.loader').fadeIn().css('display', 'flex')
                 try {
                     const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/add-cart`, {
-                        qty: qty
+                        qty: qty,
+                        type: 'add',
                     },
                         {
                             headers: {

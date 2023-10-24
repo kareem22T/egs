@@ -192,7 +192,8 @@ export default {
         async addCardToCart(product_id, qty) {
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${product_id}/add-cart`, {
-                    qty: qty
+                    qty: qty,
+                    type: 'update',
                 },
                     {
                         headers: {
@@ -246,7 +247,8 @@ export default {
         async addProductToCart(product_id, qty) {
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/add-cart`, {
-                    qty: qty
+                    qty: qty,
+                    type: 'update',
                 },
                     {
                         headers: {
