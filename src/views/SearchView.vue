@@ -92,7 +92,9 @@ export default {
             total: 0,
             products: null,
             cards: null,
-
+            cart: null,
+            products_cart: null,
+            cards_cart: null,
         }
     },
     methods: {
@@ -251,60 +253,90 @@ export default {
                 console.error(error);
             }
         },
-        async addProductToCart(product_id, qty) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/add-cart`, {
-                    qty: qty
-                },
-                    {
-                        headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
-                        }
-                    },
-                );
-                if (response.data.status === true) {
-                    document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    setTimeout(() => {
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 1000);
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
+        async addProductToCart(product_id, qty, product_valid_qty, product_stock) {
+            if (product_stock == 2) {
                 document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
+                let error = document.createElement('div')
+                error.classList = 'error'
+                error.innerHTML = 'This product is not available now'
+                document.getElementById('errors').append(error)
                 $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
 
                 setTimeout(() => {
+                    $('input').css('outline', 'none')
                     $('#errors').fadeOut('slow')
                 }, 3500);
 
-                console.error(error);
+            } else if (product_valid_qty < qty && product_stock == 1) {
+                document.getElementById('errors').innerHTML = ''
+                let error = document.createElement('div')
+                error.classList = 'error'
+                error.innerHTML = 'This quantity is not available'
+                document.getElementById('errors').append(error)
+                $('#errors').fadeIn('slow')
+
+                setTimeout(() => {
+                    $('input').css('outline', 'none')
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+            } else {
+                $('.loader').fadeIn().css('display', 'flex')
+                try {
+                    const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/add-cart`, {
+                        qty: qty
+                    },
+                        {
+                            headers: {
+                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            }
+                        },
+                    );
+                    if (response.data.status === true) {
+                        document.getElementById('errors').innerHTML = ''
+                        let error = document.createElement('div')
+                        error.classList = 'success'
+                        error.innerHTML = response.data.message
+                        document.getElementById('errors').append(error)
+                        $('#errors').fadeIn('slow')
+                        setTimeout(() => {
+                            $('#errors').fadeOut('slow')
+                            $('.loader').fadeOut()
+                            if (!this.cart || !this.cart.length) {
+                                window.location.reload()
+                            }
+                        }, 1000);
+                    } else {
+                        $('.loader').fadeOut()
+                        document.getElementById('errors').innerHTML = ''
+                        $.each(response.data.errors, function (key, value) {
+                            let error = document.createElement('div')
+                            error.classList = 'error'
+                            error.innerHTML = value
+                            document.getElementById('errors').append(error)
+                        });
+                        $('#errors').fadeIn('slow')
+
+                        setTimeout(() => {
+                            $('input').css('outline', 'none')
+                            $('#errors').fadeOut('slow')
+                        }, 3500);
+                    }
+
+                } catch (error) {
+                    document.getElementById('errors').innerHTML = ''
+                    let err = document.createElement('div')
+                    err.classList = 'error'
+                    err.innerHTML = 'server error try again later'
+                    document.getElementById('errors').append(err)
+                    $('#errors').fadeIn('slow')
+                    $('.loader').fadeOut()
+
+                    setTimeout(() => {
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+
+                    console.error(error);
+                }
             }
         },
         async addCardToCart(product_id, qty) {
@@ -327,9 +359,12 @@ export default {
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     setTimeout(() => {
-                        $('.loader').fadeOut()
                         $('#errors').fadeOut('slow')
-                    }, 500);
+                        $('.loader').fadeOut()
+                        if (!this.cart || !this.cart.length) {
+                            window.location.reload()
+                        }
+                    }, 1000);
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -340,7 +375,7 @@ export default {
                         document.getElementById('errors').append(error)
                     });
                     $('#errors').fadeIn('slow')
-                    
+
                     setTimeout(() => {
                         $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
@@ -360,6 +395,32 @@ export default {
                     $('#errors').fadeOut('slow')
                 }, 3500);
 
+                console.error(error);
+            }
+        },
+        async getCart() {
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        },
+                    }
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.products_cart = response.data.data.products
+
+                    for (let i = 0; i < this.products_cart.length; i++) {
+                        this.products_cart[i].product_type = 1;
+                    }
+                    this.cards_cart = response.data.data.cards
+                    for (let i = 0; i < this.cards_cart.length; i++) {
+                        this.cards_cart[i].product_type = 2;
+                    }
+                    this.cart = this.products_cart.concat(this.cards_cart)
+                }
+            } catch (error) {
                 console.error(error);
             }
         },
