@@ -32,7 +32,7 @@
                                         {{ hero_slider[2].desc }}
                                     </p>
                                 </div>
-                                <router-link to="">Shop Now</router-link>
+                                <a :herf="hero_slider[2].link">Shop Now</a>
                             </div>
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
