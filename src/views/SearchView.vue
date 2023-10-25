@@ -101,7 +101,13 @@ export default {
         async fetchProducts() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products-cards/search?search=${this.search}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products-cards/search?search=${this.search}`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
                 if (response.data.status === true) {
                     this.products = response.data.data.products
                     for (let i = 0; i < this.products.length; i++) {
@@ -152,7 +158,6 @@ export default {
             }
         },
         async likeProduct(product_id) {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
                 },
@@ -164,11 +169,8 @@ export default {
                 );
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
                     $('.loader').fadeOut()
+                    this.fetchProducts()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -203,7 +205,6 @@ export default {
             }
         },
         async likeCard(card_id) {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${card_id}/liked`, {
                 },
@@ -215,11 +216,8 @@ export default {
                 );
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
                     $('.loader').fadeOut()
+                    this.fetchProducts()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''

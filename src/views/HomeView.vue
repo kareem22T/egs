@@ -20,7 +20,7 @@
                         <img :src="item.img">
                         <h1>{{ item.title }}</h1>
                         <p>{{ item.desc }}</p>
-                        <router-link to="">Shop Now</router-link>
+                        <a :href="item.link" target="_blanck">Shop Now</a>
                     </swiper-slide>
                 </swiper>
                     <div class="cards" v-if="hero_slider">
@@ -401,6 +401,11 @@ export default {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/latest?limit=7`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -502,7 +507,6 @@ export default {
             }
         },
         async likeProduct(product_id) {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
                 },
@@ -514,11 +518,8 @@ export default {
                 );
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
                     $('.loader').fadeOut()
+                    this.getLatest()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -553,7 +554,6 @@ export default {
             }
         },
         async likeCard(card_id) {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${card_id}/liked`, {
                 },
@@ -565,11 +565,8 @@ export default {
                 );
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
                     $('.loader').fadeOut()
+                    this.getLatest()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
