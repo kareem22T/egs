@@ -289,7 +289,6 @@ export default {
             }
         },
         async likeProduct(product_id) {
-            $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
                 },
@@ -301,11 +300,7 @@ export default {
                 );
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'success'
-                    error.innerHTML = response.data.message
-                    document.getElementById('errors').append(error)
-                    $('.add-to-wish').toggleClass('active')
+                    this.fetchProduct(this.productId)
                     $('.loader').fadeOut()
                 } else {
                     $('.loader').fadeOut()
