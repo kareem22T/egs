@@ -54,6 +54,8 @@
                         <h4 class="text-details" v-if="payment_method">Payment Method <span>{{ payment_method }}</span></h4>
                         <h4 class="text-details" v-if="RefNumber"><span>Reference Number <i @click="showHelpRefPopUp = true" class="fa-regular fa-circle-question" style="cursor: pointer;"></i></span><span>{{ RefNumber }} </span></h4>
                         <br>
+                        <h4 v-if="coupon_code">Coupon Code <span>{{ coupon_code }}</span></h4>
+                        <h4 v-if="coupon_value">Coupon Discount <span>- {{ coupon_value.toLocaleString() }} EGP</span></h4>
                         <h4 v-if="payment_fees">Payment Fees <span>{{ payment_fees.toLocaleString() }} EGP</span></h4>
                         <h4 v-if="sub_total">Sub Total <span>{{ sub_total.toLocaleString() }} EGP</span></h4>
                         <h4 style="font-weight: 700" v-if="total_price">Total Price <span>{{ total_price.toLocaleString() }} EGP</span></h4>
@@ -116,6 +118,8 @@ export default {
             payment_method: null,
             shipping_method: null,
             RefNumber: null,
+            coupon_code: null,
+            coupon_value: null
         }
     },
     methods: {
@@ -141,6 +145,8 @@ export default {
                     this.shipping_method = response.data.data.shipping_method
                     this.details = response.data.data.details
                     this.RefNumber = response.data.data.RefNumber
+                    this.coupon_code = response.data.data.coupon_code
+                    this.coupon_value = response.data.data.coupon_value
                     for (let i = 0; i < this.products.length; i++) {
                         this.products[i].product_type = 1;
                     }
