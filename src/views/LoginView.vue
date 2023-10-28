@@ -23,7 +23,7 @@
                 </div>
                 <button type="submit" class="button" @click="login(this.phone, this.password)">Login</button>
                 <p>Forgot Your Password? <router-link to="/forgot-password">Click Here</router-link></p>
-                <div class="or">
+                <!-- <div class="or">
                     <span></span>
                     or
                     <span></span>
@@ -31,7 +31,7 @@
                 <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With
                     Facebook</router-link>
                 <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With
-                    Google</router-link>
+                    Google</router-link> -->
             </form>
         </div>
     </main>

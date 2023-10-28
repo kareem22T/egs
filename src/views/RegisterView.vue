@@ -36,13 +36,13 @@
                 </div>
                 <button type="submit" class="button" @click="registerMethod(this.email, this.phone, this.dob, this.password, this.password_confirmation)">Register Account</button>
                 <p>By clicking here and continuing, <br> I agree to the <router-link to="/terms">Terms</router-link> of Service and <router-link to="/privacy-policy">Privacy Policy</router-link></p>
-                <div class="or">
+                <!-- <div class="or">
                     <span></span>
                     or
                     <span></span>
                 </div>
                 <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With Facebook</router-link>
-                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With Google</router-link>
+                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With Google</router-link> -->
             </form>
         </div>
     </main>
