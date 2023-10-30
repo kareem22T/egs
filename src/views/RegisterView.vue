@@ -95,7 +95,7 @@ export default {
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'error'
-                    error.innerHTML = "You must be between 16 and 100 years old."
+                    error.innerHTML = "You must be more than 16 years old."
                     this.dob = ''
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
