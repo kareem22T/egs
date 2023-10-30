@@ -2,7 +2,7 @@
     <main class="contact_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> About Us
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> About Us
             </div>
         </div>
         <div class="container">

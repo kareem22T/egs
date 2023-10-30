@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Search
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Search
             </div>
         </div>
 
@@ -14,7 +14,7 @@
             <div class="body">
                 <div class="product" v-for="item in results" :key="item.id">
                     <img src="./../assets/imgs/shipping_abroad.png" alt="shipping abroad" class="shipping_icon" v-if="item.shipping_abroad">
-                    <a :href="`/product/${item.id}`">
+                    <a :href="item.product_type == 1 ? `/product/${item.id}` :  `/card/${item.id}`">
                         <div class="img">
                             <img :src="item.product_type == 1 ? item.main_image : item.img">
                             <!-- <p>{{ item.sub_category.name }}</p> -->

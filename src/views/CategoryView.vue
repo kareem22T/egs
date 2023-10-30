@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> {{ this.$route.meta.category_name }}
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> {{ this.$route.meta.category_name }}
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories" >

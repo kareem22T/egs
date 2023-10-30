@@ -44,8 +44,11 @@
                         <img src="./../assets/imgs/logo.png" alt="logo">
                     </router-link>
                     <div class="input-search">
-                        <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup.enter="goToSearch">
+                        <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
                         <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
+                        <div class="suggestions" v-if="results && results.length">
+                            <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
+                        </div>
                     </div>
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
@@ -112,10 +115,13 @@
             </div>
         </div>
         <div class="hide-content" v-if="showSearchPopUp"></div>
-        <div class="pop-up" v-if="showSearchPopUp">
+        <div class="pop-up search-pop-up" v-if="showSearchPopUp">
             <div class="input-search">
-                <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup.enter="goToSearch">
+                <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
                 <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
+                <div class="suggestions suggestions2" v-if="results && results.length">
+                    <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
+                </div>
             </div>
             <button @click="showSearchPopUp = false">Cancel</button>
         </div>
@@ -142,12 +148,16 @@ export default {
     },
     data() {
         return {
+            showSuggesstion: false,
             user: null,
             search: '',
             showSearchPopUp: false,
             cart: null,
             quantities: {},
             total: 0,
+            products_cart: null,
+            cards_cart: null,
+            results: null,
             products: null,
             cards: null,
         }
@@ -216,6 +226,48 @@ export default {
         goToSearch () {
             window.location.href = '/search/' + this.search.replace(/\s+/g, '-')
         },
+        async getSugesstions() {
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products-cards/search?search=${this.search}`,
+                    {
+                        headers: {
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        }
+                    },
+                );
+                if (response.data.status === true) {
+                    this.products = response.data.data.products
+                    for (let i = 0; i < this.products.length; i++) {
+                        this.products[i].product_type = 1;
+                        this.quantities[`product_${this.products[i].id}`] = this.products[i].qty
+                    }
+                    this.cards = response.data.data.cards
+                    for (let i = 0; i < this.cards.length; i++) {
+                        this.cards[i].product_type = 2;
+                        this.quantities[`card_${this.cards[i].id}`] = this.cards[i].qty
+                    }
+                    this.results = this.products.concat(this.cards)
+
+                } else {
+                    this.results = null
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
         async getCart() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
@@ -230,18 +282,18 @@ export default {
                     $('.loader').fadeOut()
                     this.showMsgPopUp = response.data.data.is_cart_updated
                     this.total = response.data.data.total
-                    this.products = response.data.data.products
+                    this.products_cart = response.data.data.products
 
-                    for (let i = 0; i < this.products.length; i++) {
-                        this.products[i].product_type = 1;
-                        this.quantities[`product_${this.products[i].id}`] = this.products[i].qty
+                    for (let i = 0; i < this.products_cart.length; i++) {
+                        this.products_cart[i].product_type = 1;
+                        this.quantities[`product_${this.products_cart[i].id}`] = this.products_cart[i].qty
                     }
-                    this.cards = response.data.data.cards
-                    for (let i = 0; i < this.cards.length; i++) {
-                        this.cards[i].product_type = 2;
-                        this.quantities[`card_${this.cards[i].id}`] = this.cards[i].qty
+                    this.cards_cart = response.data.data.cards
+                    for (let i = 0; i < this.cards_cart.length; i++) {
+                        this.cards_cart[i].product_type = 2;
+                        this.quantities[`card_${this.cards_cart[i].id}`] = this.cards_cart[i].qty
                     }
-                    this.cart = this.products.concat(this.cards)
+                    this.cart = this.products_cart.concat(this.cards_cart)
                 } else {
                     $('.loader').fadeOut()
                 }

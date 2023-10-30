@@ -2,7 +2,7 @@
     <main class="card_wrapper checkout_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Checkout
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Checkout
             </div>
         </div>
         <div class="container">
@@ -145,7 +145,7 @@
                         </div>
                         <h5>Subtotal <span>{{ total.toLocaleString() }} EGP</span></h5>
                         <h5 v-if="shipping_money">Shipping <span>{{ shipping_money.toLocaleString() }} EGP</span></h5>
-                        <h5 v-if="coupon_discount">Discount <span>- {{ coupon_discount.toLocaleString() }} EGP</span></h5>
+                        <h5 v-if="coupon_discount && coupon">Discount <span>- {{ coupon_discount.toLocaleString() }} EGP</span></h5>
                         <h4>Total <span>{{ (total + shipping_money - coupon_discount).toLocaleString() }} EGP</span></h4>
                     </div>
                     <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">Place Order</button>
@@ -400,19 +400,7 @@ export default {
                     this.coupon_discount = response.data.data.discount_money
                 } else {
                     $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
+                    this.coupon_discount = 0
                 }
 
             } catch (error) {

@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> {{ this.$route.meta.category_name }} <i
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> <a href="/category/digital-store">{{ this.$route.meta.category_name }}</a> <i
                     class="fa-solid fa-chevron-right"></i> {{ categoryName.replace(/-/g, " ").charAt(0).toUpperCase() + categoryName.replace(/-/g, " ").replace(/,/g, '/').slice(1) }}
             </div>
         </div>

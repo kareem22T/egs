@@ -2,7 +2,7 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                Home <i class="fa-solid fa-chevron-right"></i>{{ product.sub_category.name }} <i class="fa-solid fa-chevron-right"></i> {{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' :  product.name }}
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i><a :href="`/physical-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i class="fa-solid fa-chevron-right"></i> {{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' :  product.name }}
             </div>
         </div>
         <div class="container" v-if="product">
@@ -20,11 +20,11 @@
                         <a :href="`https://www.facebook.com/sharer/sharer.php?u=${this.url}`" target="_blank">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
-                        <a href="/" @click.prevent="shareInstagram(caption, url)">
+                        <a href="/" @click.prevent="shareOnInstagram()">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
                         <a :href="`https://twitter.com/intent/tweet?url=${this.url}&text=${this.caption}`" target="_blank">
-                            <i class="fa-brands fa-twitter"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#8897b7" height=".85em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
                         </a>
 
                     </div>
@@ -204,10 +204,10 @@ export default {
         }
     },
     methods: {
-        shareInstagram(caption, url_link) {
-            let text = encodeURIComponent(caption);
-            let url = encodeURIComponent(url_link);
-            window.location.href = 'https://www.instagram.com/create/?caption=' + text + '&url=' + url;
+        shareOnInstagram() {
+            var pageUrl = window.location.href;
+            var instagramUrl = "https://www.instagram.com/share?url=" + encodeURIComponent(pageUrl);
+            window.open(instagramUrl, "_blank");
         },
         async getCart() {
             $('.loader').fadeIn().css('display', 'flex')

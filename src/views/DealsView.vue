@@ -2,7 +2,7 @@
     <main class="home_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Deals
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Deals
             </div>
         </div>
 

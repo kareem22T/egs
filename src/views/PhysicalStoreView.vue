@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> {{ this.$route.meta.category_name }} <i class="fa-solid fa-chevron-right"></i> {{ this.$route.params.name.replace(/-/g, " ").charAt(0).toUpperCase() + this.$route.params.name.replace(/-/g, " ").slice(1) }}
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> <a href="/category/physical-store">{{ this.$route.meta.category_name }}</a> <i class="fa-solid fa-chevron-right"></i> {{ this.$route.params.name.replace(/-/g, " ").charAt(0).toUpperCase() + this.$route.params.name.replace(/-/g, " ").slice(1) }}
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories && subCategories.length > 0">

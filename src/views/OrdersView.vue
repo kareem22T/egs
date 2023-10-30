@@ -2,7 +2,7 @@
     <main class="orders_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Account <i class="fa-solid fa-chevron-right"></i> Orders
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Account <i class="fa-solid fa-chevron-right"></i> Orders
             </div>
         </div>
         <div class="container">

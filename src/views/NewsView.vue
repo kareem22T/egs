@@ -2,7 +2,7 @@
     <main class="news_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> News
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> News
             </div>
         </div>
         <div class="container">

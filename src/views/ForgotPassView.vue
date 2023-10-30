@@ -2,7 +2,7 @@
     <main class="register_wrapper">
         <div class="page-head">
             <div class="container">
-                Home <i class="fa-solid fa-chevron-right"></i> Account
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Account
             </div>
         </div>
         <div class="container">
