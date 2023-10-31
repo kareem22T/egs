@@ -59,7 +59,7 @@
                                     <input type="radio" name="payment_method" id="payment_method_0" v-model="payment_method" value="0">
                                     Credit/Debit Cards
                                 </label>
-                                <span v-if="payment_method == 0" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                <span v-if="payment_method == '0'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
                                     Credit - Debit - Meeza - Prepaid</span>
                             </div>
                             <div class="form-group">
@@ -67,7 +67,7 @@
                                     <input type="radio" name="payment_method" id="payment_method_1" v-model="payment_method" value="1">
                                     Mobile Wallet
                                 </label>
-                                    <span v-if="payment_method == 1" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                    <span v-if="payment_method == '1'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
                                         Vodafone Cash - Orange Cash - Etisalat Cash - WE Pay- All banks’ mobile wallets</span>
                             </div>
                             <div class="form-group">
