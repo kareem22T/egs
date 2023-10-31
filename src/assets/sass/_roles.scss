@@ -176,6 +176,10 @@ input, textarea {
     justify-content: start;
     gap: .5rem;
     margin-top: 1.5rem;
+    @media (max-width: 600px) {
+        justify-content: center !important;
+        padding: 0 20px;
+    }
     >div {
         label {
             border: 1px solid $border-color;
@@ -215,12 +219,12 @@ input, textarea {
     max-width: 900px;
     left: 0;
     &.suggestions2 {
-        width: 100vw !important;
-        min-width: 100% !important;
-        max-width: 700px !important;
-        top: calc(100% + 80px);
-        left: 50%;
-        transform: translateX(-50%);
+        width: 95vw !important;
+        max-width: calc(95vw - 32px) !important;
+        top: calc(100% + 20px);
+        left: 0 !important;
+        transform: none !important;
+        border-radius: 10px;
     }
     a {
         color: $secondary_color;
@@ -228,6 +232,7 @@ input, textarea {
         padding: 10px 0;
         transition: all .3s ease-in;
         border-bottom: 1px solid $border-color;
+        text-align: left !important;
         &:hover {
             color: $main_color;
         }
@@ -236,6 +241,19 @@ input, textarea {
 
 .pop-up {
     &.search-pop-up {
-        top: 25% !important;
+        top: clamp(3.125rem, calc(1.7314rem + 5.9459vw), 6.5625rem) !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        max-width: 95vw !important;
+        margin: auto !important;
+        button {
+            margin: 0 !important;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .input-search {
+            position: relative;
+            width: 100%;
+        }
     }
 }

@@ -37,7 +37,7 @@
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
                         <div>
-                            <router-link to="">{{ hero_slider[3].title }} >> Shop Now</router-link>
+                            <a :href="hero_slider[3].link" targe="_blanck">{{ hero_slider[3].title }} >> Shop Now</a>
                             <img :src="hero_slider[3].img" alt="">
                         </div>
                     </div>
@@ -303,6 +303,9 @@ export default {
             deal_products: null,
             deal_cards: null,
             deals: null,
+            bottomAd: null,
+            topAd: null,
+            lang: 'en'
         }
     },
     components: {
@@ -318,7 +321,7 @@ export default {
         async getHomeSLider() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`,
+                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -506,6 +509,88 @@ export default {
                 console.error(error);
             }
         },
+        async getTopAd() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=top`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.topAd = response.data.data
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
+        async getBottomAd() {
+            $('.loader').fadeIn().css('display', 'flex')
+            try {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=bottom`,
+                );
+                if (response.data.status === true) {
+                    $('.loader').fadeOut()
+                    this.bottomAd = response.data.data
+                } else {
+                    $('.loader').fadeOut()
+                    document.getElementById('errors').innerHTML = ''
+                    $.each(response.data.errors, function (key, value) {
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = value
+                        document.getElementById('errors').append(error)
+                    });
+                    $('#errors').fadeIn('slow')
+                    
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                    }, 3500);
+                }
+
+            } catch (error) {
+                document.getElementById('errors').innerHTML = ''
+                let err = document.createElement('div')
+                err.classList = 'error'
+                err.innerHTML = 'server error try again later'
+                document.getElementById('errors').append(err)
+                $('#errors').fadeIn('slow')
+                $('.loader').fadeOut()
+
+                setTimeout(() => {
+                    $('#errors').fadeOut('slow')
+                }, 3500);
+
+                console.error(error);
+            }
+        },
         async likeProduct(product_id) {
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
@@ -606,6 +691,8 @@ export default {
         this.getHomeNews()
         this.getLatest()
         this.getDeals()
+        this.getTopAd()
+        this.getBottomAd()
     },
     mounted() {
         $(`.home_link`).addClass('active')

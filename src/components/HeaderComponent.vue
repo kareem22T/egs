@@ -43,13 +43,6 @@
                     <router-link to="/">
                         <img src="./../assets/imgs/logo.png" alt="logo">
                     </router-link>
-                    <div class="input-search">
-                        <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
-                        <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
-                        <div class="suggestions" v-if="results && results.length">
-                            <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
-                        </div>
-                    </div>
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
                         <router-link to="/" class="active home_link">Home<span></span></router-link>
@@ -123,7 +116,7 @@
                     <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
                 </div>
             </div>
-            <button @click="showSearchPopUp = false">Cancel</button>
+            <button @click="showSearchPopUp = false; this.search = ''">Cancel</button>
         </div>
     </header>
 </template>

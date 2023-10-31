@@ -158,6 +158,12 @@ input:focus, textarea:focus {
   gap: .5rem;
   margin-top: 1.5rem;
 }
+@media (max-width: 600px) {
+  .pagination {
+    justify-content: center !important;
+    padding: 0 20px;
+  }
+}
 .pagination > div label {
   border: 1px solid #d5dfe4;
   border-radius: .2rem;
@@ -194,12 +200,12 @@ input:focus, textarea:focus {
   left: 0;
 }
 .suggestions.suggestions2 {
-  width: 100vw !important;
-  min-width: 100% !important;
-  max-width: 700px !important;
-  top: calc(100% + 80px);
-  left: 50%;
-  transform: translateX(-50%);
+  width: 95vw !important;
+  max-width: calc(95vw - 32px) !important;
+  top: calc(100% + 20px);
+  left: 0 !important;
+  transform: none !important;
+  border-radius: 10px;
 }
 .suggestions a {
   color: #0b5177;
@@ -207,13 +213,27 @@ input:focus, textarea:focus {
   padding: 10px 0;
   transition: all .3s ease-in;
   border-bottom: 1px solid #d5dfe4;
+  text-align: left !important;
 }
 .suggestions a:hover {
   color: #e63b12;
 }
 
 .pop-up.search-pop-up {
-  top: 25% !important;
+  top: clamp(3.125rem, calc(1.7314rem + 5.9459vw), 6.5625rem) !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  max-width: 95vw !important;
+  margin: auto !important;
+}
+.pop-up.search-pop-up button {
+  margin: 0 !important;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.pop-up.search-pop-up .input-search {
+  position: relative;
+  width: 100%;
 }
 
 .register_wrapper {
