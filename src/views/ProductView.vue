@@ -2,7 +2,9 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i><a :href="`/physical-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i class="fa-solid fa-chevron-right"></i> {{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' :  product.name }}
+                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i><a :href="`/physical-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i class="fa-solid fa-chevron-right"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
+                    <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
+                </span>
             </div>
         </div>
         <div class="container" v-if="product">
@@ -427,6 +429,12 @@ export default {
         $('.add-to-wish').on('click', function () {
             $(this).addClass('active')
         })
+        $(document).mousemove(function (e) {
+            $('.hint-pop-up').css({
+                top: e.clientY,
+                left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
+            });
+        });
     },
     created() {
         $(function () {
@@ -444,3 +452,26 @@ export default {
     },
 }
 </script>
+
+
+<style>
+.hint-pop-up {
+    position: fixed;
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    z-index: 99999;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.prod-name:hover .hint-pop-up {
+    display: block;
+}
+
+.prod-name {
+    position: relative;
+    cursor: pointer;
+}
+</style>

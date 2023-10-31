@@ -77,12 +77,13 @@ export default {
             const year = selectedDate.getFullYear();
             const age = Math.floor((currentDate - selectedDate) / (365.25 * 24 * 60 * 60 * 1000));
             if (this.dob) {
+                this.errorMsg = ''
                 if (!year || year < 1000 || year > 9999) {
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'error'
                     error.innerHTML = "Please enter a valid 4-digit year."
-                    this.dob = ''
+                    this.errorMsg = "Please enter a valid 4-digit year."
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     $('.loader').fadeOut()
@@ -96,7 +97,7 @@ export default {
                     let error = document.createElement('div')
                     error.classList = 'error'
                     error.innerHTML = "You must be more than 16 years old."
-                    this.dob = ''
+                    this.errorMsg = "You must be more than 16 years old."
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     $('.loader').fadeOut()
@@ -110,66 +111,81 @@ export default {
         },
         async registerMethod(email, phone, dob, password, password_confirmation) {
             $('.loader').fadeIn().css('display', 'flex')
-            if (password == password_confirmation)
-                try {
-                    const response = await axios.post( `${window.main_url}/register`, {
-                        email: email,
-                        phone: phone,
-                        dob: dob,
-                        password: password,
-                        password_confirmation: password_confirmation,
-                    },
-                    );
-                    $('.loader').fadeOut()
-                    if (response.data.status === true) {
-                        sessionStorage.setItem('user_token', response.data.data.token)
-                        setCookie('user_token', response.data.data.token, 30)
-                        document.getElementById('errors').innerHTML = ''
-                        let error = document.createElement('div')
-                        error.classList = 'success'
-                        error.innerHTML = response.data.message
-                        document.getElementById('errors').append(error)
-                        $('#errors').fadeIn('slow')
-                        setTimeout(() => {
-                            $('#errors').fadeOut('slow')
-                            window.location.href = '/verify';
-                        }, 4000);
-                    } else {
-                        document.getElementById('errors').innerHTML = ''
-                        $.each(response.data.errors, function (key, value) {
+            if (!this.errorMsg) {
+                if (password == password_confirmation)
+                    try {
+                        const response = await axios.post( `${window.main_url}/register`, {
+                            email: email,
+                            phone: phone,
+                            dob: dob,
+                            password: password,
+                            password_confirmation: password_confirmation,
+                        },
+                        );
+                        $('.loader').fadeOut()
+                        if (response.data.status === true) {
+                            sessionStorage.setItem('user_token', response.data.data.token)
+                            setCookie('user_token', response.data.data.token, 30)
+                            document.getElementById('errors').innerHTML = ''
                             let error = document.createElement('div')
-                            error.classList = 'error'
-                            error.innerHTML = value
+                            error.classList = 'success'
+                            error.innerHTML = response.data.message
                             document.getElementById('errors').append(error)
-                        });
+                            $('#errors').fadeIn('slow')
+                            setTimeout(() => {
+                                $('#errors').fadeOut('slow')
+                                window.location.href = '/verify';
+                            }, 4000);
+                        } else {
+                            document.getElementById('errors').innerHTML = ''
+                            $.each(response.data.errors, function (key, value) {
+                                let error = document.createElement('div')
+                                error.classList = 'error'
+                                error.innerHTML = value
+                                document.getElementById('errors').append(error)
+                            });
+                            $('#errors').fadeIn('slow')
+                            
+                            setTimeout(() => {
+                                $('input').css('outline', 'none')
+                                $('#errors').fadeOut('slow')
+                            }, 3500);
+                        }
+
+                    } catch (error) {
+                        document.getElementById('errors').innerHTML = ''
+                        let err = document.createElement('div')
+                        err.classList = 'error'
+                        err.innerHTML = 'server error try again later'
+                        document.getElementById('errors').append(err)
                         $('#errors').fadeIn('slow')
-                        
+                        $('.loader').fadeOut()
+
                         setTimeout(() => {
-                            $('input').css('outline', 'none')
                             $('#errors').fadeOut('slow')
                         }, 3500);
-                    }
 
-                } catch (error) {
+                        console.error(error);
+                    }
+                else {
                     document.getElementById('errors').innerHTML = ''
-                    let err = document.createElement('div')
-                    err.classList = 'error'
-                    err.innerHTML = 'server error try again later'
-                    document.getElementById('errors').append(err)
+                    let error = document.createElement('div')
+                    error.classList = 'error'
+                    error.innerHTML = 'password and its confirmation do not match'
+                    document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     $('.loader').fadeOut()
-
                     setTimeout(() => {
+                        $('input').css('outline', 'none')
                         $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
                     }, 3500);
-
-                    console.error(error);
                 }
-            else {
+            } else {
                 document.getElementById('errors').innerHTML = ''
                 let error = document.createElement('div')
                 error.classList = 'error'
-                error.innerHTML = 'password and its confirmation do not match'
+                error.innerHTML = this.errorMsg
                 document.getElementById('errors').append(error)
                 $('#errors').fadeIn('slow')
                 $('.loader').fadeOut()
@@ -179,6 +195,7 @@ export default {
                     $('.loader').fadeOut()
                 }, 3500);
             }
+
         }
     },
 }

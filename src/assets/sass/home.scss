@@ -2499,15 +2499,15 @@ p.stock {
     font-weight: 400;
     margin: 10px 0;
     &.in {
-        color: #80b800;
+        color: #80b800 !important;
     }
 
     &.managed {
-        color: $text_light_gray;
+        color: $text_light_gray !important;
     }
 
     &.out {
-        color: #f34135;
+        color: #f34135 !important;
     }
 }
 
@@ -2522,4 +2522,8 @@ p.stock {
         background: #e7441d;
         border-radius: 50%;
     }
+}
+
+.product p.stock {
+    margin: 0 !important;
 }

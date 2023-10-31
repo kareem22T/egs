@@ -2712,13 +2712,13 @@ p.stock {
   margin: 10px 0;
 }
 p.stock.in {
-  color: #80b800;
+  color: #80b800 !important;
 }
 p.stock.managed {
-  color: #717171;
+  color: #717171 !important;
 }
 p.stock.out {
-  color: #f34135;
+  color: #f34135 !important;
 }
 
 .cart_icon_wrapper {
@@ -2732,6 +2732,10 @@ p.stock.out {
   right: 0px;
   background: #e7441d;
   border-radius: 50%;
+}
+
+.product p.stock {
+  margin: 0 !important;
 }
 
 /*# sourceMappingURL=home.css.map */

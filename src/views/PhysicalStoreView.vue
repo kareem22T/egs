@@ -47,8 +47,9 @@
                         <div class="img">
                             <img :src="item.main_image" :alt="item.name">
                             <p>{{ item.sub_category.name }}</p>
-                            <h4>
-                                {{ item.name.length >= 39 ? item.name.slice(0, 39) + '...' :  item.name }}
+                            <h4 class="prod-name">
+                                {{ item.name.length > 39 ? item.name.slice(0, 39) + '...' :  item.name }}
+                                <div class="hint-pop-up" v-if="item.name.length > 39">{{ item.name }}</div>
                             </h4>
                         </div>
                         <div>
@@ -61,9 +62,12 @@
                                     <i class="fa-regular fa-star"></i></div>
                                 ( 3 Reviews ) 
                             </div>
-                            <div class="price">
-                                <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
-                                <h1>{{ item.price.toLocaleString() }}</h1>
+                            <div>
+                                <div class="price">
+                                    <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
+                                    <h1>{{ item.price.toLocaleString() }}</h1>
+                                </div>
+                                <p class="stock" :class="item.type == 0 ? 'in' : (item.type == 1 ? 'managed' : 'out')">{{ item.type == 0 ? 'In Stock' : (item.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
                             </div>
                         </div>
                     </a>
@@ -379,6 +383,40 @@ export default {
     mounted() {
         $(`.${this.$route.meta.category_path}`).addClass('active')
         $(`.${this.$route.meta.category_path}`).siblings().removeClass('active')
+
+        $(document).mousemove(function (e) {
+            $('.hint-pop-up').css({
+                top: e.clientY,
+                left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
+            });
+        });
+
+        $('.prod-name').hover(function () {
+            $('.hint-pop-up').show();
+        }, function () {
+            $('.hint-pop-up').hide();
+        });
     },
 }
 </script>
+
+<style>
+
+.hint-pop-up {
+  position: fixed;
+  display: none;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  z-index: 99999;
+  font-size: 12px;
+  border-radius: 10px;
+}
+.prod-name:hover .hint-pop-up {
+  display: block;
+}
+
+.prod-name {
+    position: relative;
+}
+</style>
