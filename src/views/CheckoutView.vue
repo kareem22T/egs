@@ -59,63 +59,72 @@
                                     <input type="radio" name="payment_method" id="payment_method_0" v-model="payment_method" value="0">
                                     Credit/Debit Cards
                                 </label>
-                                <span v-if="payment_method === '0'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Credit - Debit - Meeza - Prepaid</span>
+                                <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                    Credit - Debit - Meeza - Prepaid</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_1" :class="payment_method === '1' ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_1" v-model="payment_method" value="1">
                                     Mobile Wallet
                                 </label>
-                                <span v-if="payment_method === '1'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Vodafone Cash - Orange Cash - Etisalat Cash - WE Pay- All banks’ mobile wallets</span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Vodafone Cash - Orange Cash - Etisalat Cash - WE Pay- All banks’ mobile wallets</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_2" :class="payment_method == 2 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_2" v-model="payment_method" value="2">
                                     Fawry
                                 </label>
-                                <span v-if="payment_method == 2" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay by cash at any kiosk or shop with Fawry logo through Fawry Pay</span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Pay by cash at any kiosk or shop with Fawry logo through Fawry Pay</span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_3" :class="payment_method == 3 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_3" v-model="payment_method" value="3">
                                     Aman / Masary
                                 </label>
-                                <span v-if="payment_method == 3" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay by cash at any kiosk or shop with Aman/Masary logo</span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Pay by cash at any kiosk or shop with Aman/Masary logo</span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_4" :class="payment_method == 4 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_4" v-model="payment_method" value="4">
                                     valU Installment
                                 </label>
-                                <span v-if="payment_method == 4" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay in installments until 60 Months with valid ValU account - minimum order 500 EGP </span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Pay in installments until 60 Months with valid ValU account - minimum order 500 EGP </span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_5" :class="payment_method == 5 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_5" v-model="payment_method" value="5">
                                     Credit Card Installment
                                 </label>
-                                <span v-if="payment_method == 5" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Participating banks (NBE - Bank Misr - NBD - CIB -NBK - Mashreq ) - Installment periods are shown after you enter your card information and before payment confirmation.</span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Participating banks (NBE - Bank Misr - NBD - CIB -NBK - Mashreq ) - Installment periods are shown after you enter your card information and before payment confirmation.</span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_6" :class="payment_method == 6 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_6" v-model="payment_method" value="6">
                                     Contact Installment
                                 </label>
-                                <span v-if="payment_method == 6" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay in installments (6-12-24 Months) with a valid Contact account - minimum order 500 EGP</span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Pay in installments (6-12-24 Months) with a valid Contact account - minimum order 500 EGP</span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_7" :class="payment_method == 7 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_7" v-model="payment_method" value="7">
                                     Forsa Installment
                                 </label>
-                                <span v-if="payment_method == 7" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay in installments with valid Forsa account - minimum order 500 EGP </span>
+                                    <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                        Pay in installments with valid Forsa account - minimum order 500 EGP </span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_8" :class="payment_method == 8 ? 'selected' : ''">
                                     <input type="radio" name="payment_method" id="payment_method_8" v-model="payment_method" value="8">
                                     Cash on delivery
                                 </label>
-                                <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;">Pay in Cash to delivery agent or at our store locations or delivery points all over Egypt</span>
+                                <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
+                                    Pay in Cash to delivery agent or at our store locations or delivery points all over Egypt</span>
                             </div>
                         </form>
                         <h5>Choose shipping method</h5>
