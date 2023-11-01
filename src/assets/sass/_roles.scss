@@ -266,4 +266,7 @@ input, textarea {
         right: 0 !important;
         left: auto !important;
     }
+    .page-head .container {
+        padding: 1rem clamp(0rem, calc(-2.3636rem + 9.4545vw), 6.5rem) 1rem 0rem !important;
+    }
 }

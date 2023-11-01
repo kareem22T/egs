@@ -247,6 +247,9 @@ input:focus, textarea:focus {
   right: 0 !important;
   left: auto !important;
 }
+.ar .page-head .container {
+  padding: 1rem clamp(0rem, calc(-2.3636rem + 9.4545vw), 6.5rem) 1rem 0rem !important;
+}
 
 .home_wrapper {
   padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
@@ -2776,6 +2779,9 @@ p.stock.out {
 .ar .home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination {
   left: 2.5rem;
   right: auto;
+}
+.ar .contact_wrapper > .container .body > div {
+  text-align: right;
 }
 
 /*# sourceMappingURL=home.css.map */
