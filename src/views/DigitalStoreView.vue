@@ -45,12 +45,12 @@
                     </div>
                     <div>
                         Sort By: 
-                        <select name="per_pag" id="per_page">
-                            <option value="" selected>.................</option>
-                            <option value="1">Price Low To High</option>
-                            <option value="2">Price Hight To Low</option>
-                        </select>
-                    </div>
+                            <select name="per_pag" id="per_page" v-model="sort_by_price" @change="fetchProducts(this.categoryId, this.countryId)">
+                                <option value="" selected>.................</option>
+                                <option value="asc_price">Price Low To High</option>
+                                <option value="desc_price">Price Hight To Low</option>
+                            </select>
+                        </div>
                 </div>
             </div>
             <hr>
@@ -126,6 +126,7 @@ export default {
             cart: null,
             products_cart: null,
             cards_cart: null,
+            sort_by_price: null,
         }
     },
     methods: {
@@ -216,7 +217,8 @@ export default {
         async fetchProducts(categoryId, countryId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/cards/category?category_id=${categoryId}&country_id=${countryId}&per_page=${this.per_page}&page=${this.page}`, {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/cards/category?category_id=${categoryId}&country_id=${countryId}&per_page=${this.per_page}&page=${this.page}` + (this.sort_by_price ? `&sort_type=${this.sort_by_price}` : ``) 
+                , {
                     headers: {
                         "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
                     }

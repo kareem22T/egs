@@ -118,8 +118,9 @@
                         </div>
                     </div>
                     <div class="details" style="height: 100%; display: flex; flex-dirction: column; justify-content: space-between; align-items: center">
-                        <h3>
-                            {{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}
+                        <h3 class="prod-name">
+                            {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
+                            <!-- <div class="hint-pop-up" v-if="product.name.length > 39">{{ product.name }}</div> -->
                         </h3>
                             <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + ' more...' : product.desc">
                             </p>
@@ -179,7 +180,10 @@
                             <img :src="product.product_type == 1 ? product.main_image : product.img">
                         </div>
                         <div class="details">
-                            <h1 class="title">{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}</h1>
+                            <h1 class="title prod-name">
+                                {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
+                                <div class="hint-pop-up" v-if="product.name.length > 39">{{ product.name }}</div>
+                            </h1>
                             <p v-html="product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc">
                             </p>
                             <div class="price">
@@ -770,10 +774,42 @@ export default {
     mounted() {
         $(`.home_link`).addClass('active')
         $(`.home_link`).siblings().removeClass('active')
+
+        $(document).mousemove(function (e) {
+            $('.hint-pop-up').css({
+                top: e.clientY,
+                left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
+            });
+        });
+
+        $('.prod-name').hover(function () {
+            $('.hint-pop-up').show();
+        }, function () {
+            $('.hint-pop-up').hide();
+        });
     },
 }
 </script>
 
 <style scoped>
 @import './../assets/css/home.css';
+
+.hint-pop-up {
+    position: fixed;
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    z-index: 9999999999999;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.prod-name:hover .hint-pop-up {
+    display: block;
+}
+
+.prod-name {
+    position: relative;
+}
 </style>
