@@ -12,7 +12,7 @@
                 <div class="call">
                     <img src="./../assets/imgs/customer_icon.png">
                     <p>
-                        {{ footer_data.Got_questions}}? {{footer_data.Call}}!
+                        {{ footer_data.Got_questions}} {{footer_data.Call}}!
                         <router-link to="tel:01145636999">01145636999</router-link>
                     </p>
                 </div>

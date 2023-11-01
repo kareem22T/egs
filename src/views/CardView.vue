@@ -2,7 +2,7 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                    <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i><a :href="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i class="fa-solid fa-chevron-right"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
+                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><a :href="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
                         <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
                     </span>
                 </div>
@@ -15,10 +15,10 @@
                 </div>
                 <div class="right">
                     <div>
-                        <a href="" :class="product.isFav ? 'active' : ''" class="add-to-wish" @click.prevent="likeCard(product.id)"><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
+                        <a href="" :class="product.isFav ? 'active' : ''" class="add-to-wish" @click.prevent="likeCard(product.id)"><i class="fa-regular fa-heart"></i> <p>{{ card_data.add_to_wishlist }}</p></a>
                     </div>
                     <div>
-                        <p>Share</p>
+                        <p>{{card_data.share}}</p>
                         <a :href="`https://www.facebook.com/sharer/sharer.php?u=${this.url}`" target="_blank">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
@@ -55,55 +55,55 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{ card_data.reviews }} ) 
                             </div>
                             <div class="price">
-                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>EGP</span></h1>
-                                <h1><span>{{ product.price.toLocaleString() }}</span> <span>EGP</span></h1>
+                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>{{ card_data.egp }}</span></h1>
+                                <h1><span>{{ product.price.toLocaleString() }}</span> <span>{{ card_data.egp }}</span></h1>
                             </div>
 
-                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> Saved: {{ (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
+                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> {{card_data.saved}}: {{ (product.price - product.price_after_discount).toLocaleString() }} {{ card_data.egp }}</div>
                         </div>
 
                         <div class="bottom">
                             <div class="quantity">
-                                Quantity
+                                {{card_data.quantity}}
                                 <span>
                                     <span @click="this.quantity > 1 ? this.quantity -= 1 : ''">-</span>
                                     <span>{{ quantity }}</span>
                                     <span @click="this.quantity += 1">+</span>
                                 </span>
                             </div>
-                            <button @click="addCardToCart(product.id, quantity)"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
+                            <button @click="addCardToCart(product.id, quantity)"><i class="fa-solid fa-cart-shopping"></i> {{ card_data.add_cart }}</button>
                         </div>
                     </div>
                 </div>
                 <div class="side">
                     <div class="ad">
                         <img src="./../assets/imgs/hero-card-1.jpg" alt="">
-                        <a href="">Shop Now</a>
-                        <h1>Build Your PC !</h1>
+                        <a href="">{{ card_data.shop_now }}</a>
+                        <h1>{{ card_data.build_pc }}</h1>
                     </div>
                     <div class="features">
                         <div>
                             <i class="fa-solid fa-rotate-left"></i>
                             <div>
-                                <h4>FREE RETUNS</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{ card_data.free_returns }}</h4>
+                                <p>{{ card_data.free_returns_text }}</p>
                             </div>
                         </div>
                         <div>
                             <i class="fa-solid fa-truck-fast"></i>
                             <div>
-                                <h4>TRUSTED SHIPPING</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{card_data.trusted_shipping}}</h4>
+                                <p>{{ card_data.free_returns_text }}</p>
                             </div>
                         </div>
                         <div>
                             <i class="fa-solid fa-shield-halved"></i>
                             <div>
-                                <h4>SECURE SHOPPING</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{ card_data.secure_shoping }}</h4>
+                                <p>{{ card_data.free_returns_text }}</p>
                             </div>
                         </div>
                     </div>
@@ -112,14 +112,14 @@
 
             <div class="details">
                 <div class="header">
-                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">Specification</a>
-                    <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">Description</a>
-                    <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">Reviews</a>
+                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">{{ card_data.specification }}</a>
+                    <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">{{ card_data.descreption }}</a>
+                    <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">{{ card_data.reviews }}</a>
                 </div>
                 <div class="body">
                     <div class="table" v-if="show_speci">
                         <div class="row">
-                            <div class="title">Brand</div>
+                            <div class="title">{{ card_data.brand }}</div>
                             <div class="value">{{ product.sub_sub_category.name }}</div>
                         </div>
                     </div>
@@ -129,15 +129,16 @@
             </div>
         </div>
         <div class="container products" v-if="related_cards && related_cards.length > 0">
-            <h1>Related Cards</h1>
+            <h1>{{ card_data.related }}</h1>
             <div class="body">
                 <div class="product" v-for="item in related_cards" :key="item.id">
                     <a :href="`/card/${item.id}`">
                         <div class="img">
                             <img :src="item.img" :alt="item.name">
                             <p>{{ item.sub_category.name }}</p>
-                            <h4>
-                                {{ item.name.length >= 39 ? item.name.slice(0, 39) + '...' : item.name }}
+                            <h4 class="prod-name">
+                                {{ item.name.length > 39 ? item.name.slice(0, 39) + '...' : item.name }}
+                                <div class="hint-pop-up" v-if="item && item.name.length > 39">{{ item.name }}</div>
                             </h4>
                         </div>
                         <div>
@@ -148,7 +149,7 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{card_data.reviews}} ) 
                             </div>
                             <div class="price">
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
@@ -158,10 +159,10 @@
                             </div>
                     </a>
                     <button class="add-to-cart" @click="addCardToCart(item.id, 1)">
-                        Add To Cart
+                        {{ card_data.add_cart }}
                     </button>
                     <button :class="item.isFav ? 'active' : ''"  class="add-to-wishlist" @click="likeCard(item.id)">
-                        <i class="fa-regular fa-heart"></i> Add To Wishlist
+                        <i class="fa-regular fa-heart"></i> {{ card_data.add_to_wishlist }}
                     </button>
                 </div>
             </div>
@@ -203,20 +204,62 @@ export default {
             cart: null,
             products: null,
             cards: null,
+            card_data: null,
+            lang: 'en'
         }
     },
     methods: {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
         shareInstagram(caption, url_link) {
             let text = encodeURIComponent(caption);
             let url = encodeURIComponent(url_link);
             window.location.href = 'https://www.instagram.com/create/?caption=' + text + '&url=' + url;
         },
-        async fetchProduct(productId) {
+        async fetchProduct(productId, lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/cards/getCardDetails?card_id=${productId}&per_page=${this.per_page}&page=${this.page}`, {
                     headers: {
-                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                        "lang": lang
                     }
                 });
                 if (response.data.status === true) {
@@ -397,6 +440,12 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            this.fetchProduct(this.productId, this.lang)
+            let data = require('../assets/api/product.json');
+            this.card_data = this.lang == 'ar' ? data.ar : data.en
+        },
     },
     mounted() {
         $(document).mousemove(function (e) {
@@ -407,6 +456,7 @@ export default {
         });
     },
     created() {
+        this.getHomeData()
         $(function () {
             $(document).on('click', '.side .img', function () {
                 let src = $(this).find('img').attr('src')
@@ -416,7 +466,6 @@ export default {
             $(`.digital-store`).addClass('active')
             $(`.digital-store`).siblings().removeClass('active')
         })
-        this.fetchProduct(this.productId)
         this.getCart()
     },
 }

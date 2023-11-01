@@ -1,0 +1,40 @@
+{
+    "en": {
+        "add_to_wishlist": "Add To Wishlist",
+        "share": "Share",
+        "reviews": "Reviews",
+        "egp": "EGP",
+        "saved": "Saved",
+        "quantity": "Quantity",
+        "add_cart": "Add To Cart",
+        "shop_now": "Shop Now",
+        "build_pc": "Build Your PC !",
+        "free_returns": "FREE RETUNS",
+        "free_returns_text": "Get free retuns on eligible items",
+        "trusted_shipping": "TRUSTED SHIPPING",
+        "secure_shoping": "SECURE SHOPPING",
+        "brand": "Brand",
+        "related": "Related Products",
+        "specification": "Specification",
+        "descreption": "Description"
+    },
+    "ar": {
+        "add_to_wishlist": "اضافة الي المفضلة",
+        "share": "مشاركة",
+        "reviews": "مراجعات",
+        "egp": "جنيه مصري",
+        "saved": "وفر",
+        "quantity": "العدد",
+        "add_cart": "اضافة الي العربة",
+        "shop_now": "تسوق الان",
+        "build_pc": "جمع حاسوبك الان!",
+        "free_returns": "استعادة اموالك",
+        "free_returns_text": "استرجع اموالك مع عمليات الشراء",
+        "trusted_shipping": "شحن موثوق",
+        "secure_shoping": "تسوق امن",
+        "brand": "العلامة التجارية",
+        "related": "منتجات ذات صلة",
+        "specification": "التفاصيل",
+        "descreption": "الوصف"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "en": {
+        "price": "Price",
+        "qty": "Qty",
+        "total": "Total",
+        "egp": "EGP",
+        "cart_total": "Cart Total",
+        "checkout": "Process To Checkout"
+    }, 
+    "ar": {
+        "price": "السعر",
+        "qty": "العدد",
+        "total": "المجموع",
+        "egp": "جنيه",
+        "cart_total": "إجمالي العربة",
+        "checkout": "اتمام الشراء"
+
+    }
+}

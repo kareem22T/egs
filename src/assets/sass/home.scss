@@ -1741,7 +1741,7 @@
             >div {
                 width: 100%;
                 &:first-child {
-                    justify-content: center;
+                    justify-content: start;
                     display: flex;
                     gap: 1.5rem;
                     >div {
@@ -2540,5 +2540,15 @@ p.stock {
     }
     .contact_wrapper>.container .body>div {
         text-align: right;
+    }
+    .product_wrapper .container .details .table .row .title {
+        border-left: none;
+        border-right: 1px solid #d5dfe4;
+    }
+    .wishlist_wrapper .table_wrapper table td:not(:last-child),
+    .card_wrapper .table_wrapper table td:not(:last-child),
+    .orders_wrapper .table_wrapper table td:not(:last-child) {
+        border-right: none;
+        border-left: 1px solid #d5dfe4;
     }
 }

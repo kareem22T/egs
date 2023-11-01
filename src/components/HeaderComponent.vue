@@ -165,13 +165,10 @@ export default {
     },
     methods: {
         changeLang() {
-            let langCheck = document.cookie.indexOf('lang')
-
             document.body.classList.add(this.lang)
             document.body.classList.remove(this.lang == 'ar' ? 'en' : 'ar')
 
-            if (langCheck !== -1)
-                document.cookie = "lang=" + this.lang + "; max-age=" + 60 * 60 * 24 * 30;
+            document.cookie = "lang=" + this.lang + "; max-age=" + 60 * 60 * 24 * 30 + "; path=/";
 
             sessionStorage.setItem("lang", this.lang);
             var searchParams = new URLSearchParams(window.location.search);
