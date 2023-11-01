@@ -2,6 +2,13 @@
 @import './roles';
 
 header {
+    select {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 17px;
+        width: 70px;
+    }
     &.main {
         width: 100vw;
         border-bottom: 1px solid $border-color;
@@ -174,14 +181,16 @@ header {
                         @extend %flex-center;
                         position: relative;
                         gap: clamp(0.5rem, calc(-2.4483rem + 5.5172vw), 1rem);
+                        padding: 0 15px;
                         a {
                             font-size: clamp(0.8rem, calc(-0.775rem + 1.2vw), 1.1rem);
                             font-weight: 400;
                             color: $text_gray;
                             text-decoration: none;
                             @extend %flex-center;
-                            gap: 0;
                             width: min-content;
+                            gap: 6px;
+                            line-height: 17px;
                             @media (max-width: 1540px) {
                                 flex-wrap: wrap;
                             }
@@ -325,5 +334,43 @@ footer {
         font-size: clamp(0.7rem, calc(0.5rem + 0.8vw), 1.25rem);
         color: #fff;
         padding: clamp(1rem, calc(0.6364rem + 1.4545vw), 2rem);
+    }
+}
+
+.ar {
+    direction: rtl;
+    *:not(i) {
+        font-family: 'Cairo', sans-serif;
+    }
+    header.main .head .container > div ul a:not(:last-child) {
+        border-right: none;
+        border-left: 1px solid;
+    }
+    header.main .body .container .right .controls ul {
+        right: 0;
+        left: auto;
+        max-width: 170px;
+    }
+    header.main .body .container .right .controls ul a {
+        padding: .5rem 1rem;
+    }
+    .input-search i {
+        left: 10px;
+        right: auto;
+    }
+    @media (max-width: 855px) {
+        header.main .body .container .left nav {
+            width: 100vw;
+        }
+    }
+    header.main .body .container .right .controls a.more {
+        display: none;
+        margin-left: 0;
+        margin-right: 1.5rem;
+    }
+    header.main .body .container .right .controls {
+        @media (max-width: 600px) {
+            padding: 0 0;
+        }
     }
 }

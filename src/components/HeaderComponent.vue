@@ -3,19 +3,19 @@
         <div class="head">
             <div class="container">
                 <div class="left">
-                    <p>Welcome To <span>EGYPT GAME STORE!</span></p>
+                    <p>{{ page_data.welcome_header  }} <span dir="ltr">{{ page_data.egs }}</span></p>
                     <ul>
                         <router-link to="/about-us">
-                            <li>About Us</li>
+                            <li>{{ page_data.about_us }}</li>
                         </router-link>
                         <router-link to="/careers">
-                            <li>Careers</li>
+                            <li>{{page_data.careers}}</li>
                         </router-link>
                         <router-link to="/contact-us">
-                            <li>Contact US</li>
+                            <li>{{page_data.contact}}</li>
                         </router-link>
                         <a href="/faq">
-                            <li>FAQ</li>
+                            <li>{{ page_data.faq }}</li>
                         </a>
                     </ul>
                 </div>
@@ -23,7 +23,7 @@
                     <ul>
                         <router-link to="tel:01145636999">
                             <img src="./../assets/imgs/phone-solid-white.svg" alt="phone icon">
-                            <li>Need Help? Call Us: 01145636999</li>
+                            <li>{{ page_data.need_help }}: 01145636999</li>
                         </router-link>
                         <router-link to="mailto:support@egyptgamestore.com">
                             <img src="./../assets/imgs/envelope-regular-white.svg" alt="email icon">
@@ -31,7 +31,12 @@
                         </router-link>
                         <router-link to="">
                             <img src="./../assets/imgs/globe-solid-white.svg" alt="email icon">
-                            <li>EN</li>
+                            <li>
+                                <select v-model="lang" @change="changeLang()">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                </select>
+                            </li>
                         </router-link>
                     </ul>
                 </div>
@@ -45,11 +50,11 @@
                     </router-link>
                     <nav>
                         <a href="" class="close"><i class="fa fa-close"></i></a>
-                        <router-link to="/" class="active home_link">Home<span></span></router-link>
+                        <router-link to="/" class="active home_link">{{ page_data.home }}<span></span></router-link>
                         <a href="https://w2eg.com/">World2Egypt<span></span></a>
-                        <a href="/category/physical-store" class="physical-store">Physical Store<span></span></a>
-                        <a href="/category/digital-store" class="digital-store">Digital Store<span></span></a>
-                        <router-link class="deals_link" to="/deals">Deals<span></span></router-link>
+                        <a href="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></a>
+                        <a href="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></a>
+                        <router-link class="deals_link" to="/deals">{{ page_data.deals }}<span></span></router-link>
 
                         <div class="mobile-more">
                             <ul>
@@ -64,19 +69,19 @@
                                 </a>
                             </ul>
                             <ul>
-                                <router-link to="/about-us">
-                                    <li>About Us</li>
-                                </router-link>
-                                <router-link to="/careers">
-                                    <li>Careers</li>
-                                </router-link>
-                                <router-link to="/contact-us">
-                                    <li>Contact US</li>
-                                </router-link>
-                                <a href="/faq">
-                                    <li>FAQ</li>
-                                </a>
-                            </ul>
+                                    <router-link to="/about-us">
+                                        <li>{{ page_data.about_us }}</li>
+                                    </router-link>
+                                    <router-link to="/careers">
+                                        <li>{{ page_data.careers }}</li>
+                                    </router-link>
+                                    <router-link to="/contact-us">
+                                        <li>{{ page_data.contact }}</li>
+                                    </router-link>
+                                    <a href="/faq">
+                                        <li>{{ page_data.faq }}</li>
+                                    </a>
+                                </ul>
                         </div>
                     </nav>
                     <div class="hide"></div>
@@ -84,24 +89,24 @@
                 <div class="right">
                     <div class="controls">
                         <router-link to="" class="account_btn">
-                            <i class="fa-regular fa-user"></i><span>Account</span>
+                            <i class="fa-regular fa-user"></i><span>{{ page_data.account}}</span>
                         </router-link>
                         <ul v-if="user == null">
-                            <router-link to="/login"><i class="fa-solid fa-chevron-right"></i> Login</router-link>
-                            <router-link to="/register"><i class="fa-solid fa-chevron-right"></i> Register</router-link>
+                            <router-link to="/login"><i class="fa-solid fa-chevron-right"></i> {{ page_data.login}}</router-link>
+                            <router-link to="/register"><i class="fa-solid fa-chevron-right"></i> {{page_data.register}}</router-link>
                         </ul>
                         <ul v-if="user != null">
-                            <router-link to="/edit-profile"><i class="fa-solid fa-chevron-right"></i> My Profile</router-link>
-                            <router-link to="/my-orders"><i class="fa-solid fa-chevron-right"></i> My Orders</router-link>
-                            <router-link to="/change-password"><i class="fa-solid fa-chevron-right"></i> Change password</router-link>
-                            <router-link to="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> log-out</router-link>
+                            <router-link to="/edit-profile"><i class="fa-solid fa-chevron-right"></i> {{ page_data.my_profile }}</router-link>
+                            <router-link to="/my-orders"><i class="fa-solid fa-chevron-right"></i> {{ page_data.my_orders }}</router-link>
+                            <router-link to="/change-password"><i class="fa-solid fa-chevron-right"></i> {{ page_data.change_pass }}</router-link>
+                            <router-link to="/log-out" @click.prevent="logout()"><i class="fa-solid fa-chevron-right"></i> {{ page_data.logout }}</router-link>
                         </ul>
-                        <router-link to="/my-wishlist" v-if="user != null"><i class="fa-regular fa-heart"></i><span>Wishlist</span></router-link>
+                        <router-link to="/my-wishlist" v-if="user != null"><i class="fa-regular fa-heart"></i><span>{{page_data.wishlist}}</span></router-link>
                         <router-link to="/my-cart">
-                            <div class="cart_icon_wrapper"><i class="fa-solid fa-cart-shopping"></i><span class="point" v-if="cart && cart.length"></span></div><span>Cart</span>
+                            <div class="cart_icon_wrapper"><i class="fa-solid fa-cart-shopping"></i><span class="point" v-if="cart && cart.length"></span></div><span>{{page_data.cart}}</span>
                         </router-link>
-                        <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Compare</span></router-link>
-                        <router-link to="" class="search-icon" @click.prevent="showSearchPopUp = true"><i class="fa-solid fa-search"></i><span>Search</span></router-link>
+                        <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>{{page_data.compare}}</span></router-link>
+                        <router-link to="" class="search-icon" @click.prevent="showSearchPopUp = true"><i class="fa-solid fa-search"></i><span>{{page_data.search}}</span></router-link>
                         <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>
                     </div>
                 </div>
@@ -110,13 +115,14 @@
         <div class="hide-content" v-if="showSearchPopUp"></div>
         <div class="pop-up search-pop-up" v-if="showSearchPopUp">
             <div class="input-search">
-                <input type="text" name="search" id="search" placeholder="Search for items" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
+                <input type="text" name="search" id="search" :placeholder="page_data.search_text" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
                 <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
                 <div class="suggestions suggestions2" v-if="results && results.length">
                     <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
+                    <a href="" style="text-align: center !important; font-weight: 600 !important" @click.prevent="goToSearch" v-if="results && results.length > 5">{{ page_data.view_all }}</a>
                 </div>
             </div>
-            <button @click="showSearchPopUp = false; this.search = ''">Cancel</button>
+            <button @click="showSearchPopUp = false; this.search = ''">{{page_data.cancel}}</button>
         </div>
     </header>
 </template>
@@ -153,9 +159,67 @@ export default {
             results: null,
             products: null,
             cards: null,
+            lang: "en",
+            page_data: null,
         }
     },
     methods: {
+        changeLang() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            document.body.classList.add(this.lang)
+            document.body.classList.remove(this.lang == 'ar' ? 'en' : 'ar')
+
+            if (langCheck !== -1)
+                document.cookie = "lang=" + this.lang + "; max-age=" + 60 * 60 * 24 * 30;
+
+            sessionStorage.setItem("lang", this.lang);
+            var searchParams = new URLSearchParams(window.location.search);
+            if (searchParams.has('lang')) {
+                window.location.href = "/";
+            }
+
+            window.location.reload()
+        },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
         async logout() {
 
             $('.loader').fadeIn().css('display', 'flex')
@@ -296,6 +360,11 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            let data = require('../assets/api/header.json');
+            this.page_data = this.lang == 'ar' ? data.ar : data.en
+        },
     },
     mounted() {
         this.user = sessionStorage.getItem('user') ? sessionStorage.getItem('user') : null 
@@ -339,6 +408,7 @@ export default {
     },
     created() {
         this.getCart()
+        this.getHomeData()
     },
 }
 </script>

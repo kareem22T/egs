@@ -240,6 +240,14 @@ input:focus, textarea:focus {
   width: 100%;
 }
 
+.ar .pop-up.search-pop-up {
+  top: clamp(3.125rem, calc(1.7314rem + 5.9459vw), 7.5rem) !important;
+}
+.ar .suggestions.suggestions2 {
+  right: 0 !important;
+  left: auto !important;
+}
+
 .home_wrapper {
   padding-bottom: clamp(3rem, calc(2.2727rem + 2.9091vw), 5rem);
 }
@@ -2763,6 +2771,11 @@ p.stock.out {
 
 .product p.stock {
   margin: 0 !important;
+}
+
+.ar .home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination {
+  left: 2.5rem;
+  right: auto;
 }
 
 /*# sourceMappingURL=home.css.map */

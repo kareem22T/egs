@@ -2532,3 +2532,10 @@ p.stock {
 .product p.stock {
     margin: 0 !important;
 }
+
+.ar {
+    .home_wrapper .hero .container .row-1 .hero-slider .swiper-pagination {
+        left: 2.5rem;
+        right: auto;
+    }
+}

@@ -49,21 +49,21 @@
                         <img src="./../assets/imgs/hero-icon-1.png" alt="">
                         <div class="text">
                             <h1 @click="testEmit()">World2Egypt</h1>
-                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                            <p>{{ home_data.hero_p }}</p>
                         </div>
                     </div>
                     <div>
                         <img src="./../assets/imgs/hero-icon-2.png" alt="">
                         <div class="text">
-                            <h1>Physical Store</h1>
-                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                            <h1>{{ home_data.phy_store }}</h1>
+                            <p>{{ home_data.hero_p }}</p>
                         </div>
                     </div>
                     <div>
                         <img src="./../assets/imgs/hero-icon-3.png" alt="">
                         <div class="text">
-                            <h1>Digital Store</h1>
-                            <p>in few clicks, shop all you need from any online store in the world and we get it to your doorstep in few days. easy, cheap and fast</p>
+                            <h1>{{ home_data.cards_store }}</h1>
+                            <p>{{ home_data.hero_p }}</p>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
         </section>
         <section class="deals_of_week">
             <div class="container">
-            <h1 class="section_head_r"><span>Deals</span> of the week!</h1>
+            <h1 class="section_head_r"><span>{{ home_data.deals_head_span }}</span> {{ home_data.deals_head_complement }}</h1>
             <swiper
                 :spaceBetween="20"
                 :slidesPerView="1"
@@ -146,7 +146,7 @@
                 <div class="circle"></div>
                 <div class="square"></div>
             </div>
-            <h1 class="section_head_b"><span>Latest</span> Products</h1>
+            <h1 class="section_head_b"><span>{{ home_data.latest_head_span }}</span> {{ home_data.latest_head_complement }}</h1>
             <swiper
                 :spaceBetween="25"
                 :slidesPerView="1"
@@ -209,8 +209,8 @@
                             <i class="fa-solid fa-plane"></i>
                         </div>
                         <div class="text">
-                            <h1>Free Delivery</h1>
-                            <p>From all orders over $10</p>
+                            <h1>{{home_data.news_card_1_head }}</h1>
+                            <p>{{home_data.news_card_1_text }}</p>
                         </div>
                     </div>
                     <div>
@@ -218,8 +218,8 @@
                             <i class="fa-solid fa-headset"></i>
                         </div>
                         <div class="text">
-                            <h1>Support 24/7</h1>
-                            <p>Shop with an expert</p>
+                            <h1>{{home_data.news_card_2_head }}</h1>
+                            <p>{{home_data.news_card_2_text }}</p>
                         </div>
                     </div>
                     <div>
@@ -227,8 +227,8 @@
                             <i class="fa-solid fa-gift"></i>
                         </div>
                         <div class="text">
-                            <h1>Gift Voucher</h1>
-                            <p>Refer a friend</p>
+                            <h1>{{home_data.news_card_3_head }}</h1>
+                            <p>{{home_data.news_card_3_text }}</p>
                         </div>
                     </div>
                     <div>
@@ -236,8 +236,8 @@
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
                         <div class="text">
-                            <h1>Return & Refund</h1>
-                            <p>Free return over $200</p>
+                            <h1>{{home_data.news_card_4_head }}</h1>
+                            <p>{{home_data.news_card_4text }}</p>
                         </div>
                     </div>
                     <div>
@@ -245,14 +245,14 @@
                             <i class="fa-regular fa-credit-card"></i>
                         </div>
                         <div class="text">
-                            <h1>Secure Payment</h1>
-                            <p>100% protected</p>
-                        </div>
+                                <h1>{{ home_data.news_card_5_head }}</h1>
+                                <p>{{ home_data.news_card_5_text }}</p>
+                            </div>
                     </div>
                 </div>
             </div>
             <div class="container">
-                <h1 class="section_head_bl"><span>Latest</span> News</h1>
+                <h1 class="section_head_bl"><span>{{home_data.news_head_span }}</span> {{ home_data.news_head_complement }}</h1>
                 <div class="news" v-if="news">
                     <div class="news-card" v-for="article in news" :key="article.id">
                         <div class="thumbanail">
@@ -263,11 +263,11 @@
                             <p class="bref" v-html="article.desc.length >= 750 ? article.desc.slice(0, 750) + '...' : article.desc">
                             </p>
                             <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
-                            <router-link :to="`/news/${article.id}`" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
+                            <router-link :to="`/news/${article.id}`" class="read-more">{{  home_data.read_more  }} <i :class="this.lang == 'en' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'"></i></router-link>
                         </div>
                     </div>
                 </div>
-                <router-link to="/news">View All</router-link>
+                <router-link to="/news">{{ home_data.view_all }}</router-link>
             </div>
         </section>
     </main>
@@ -305,7 +305,8 @@ export default {
             deals: null,
             bottomAd: null,
             topAd: null,
-            lang: 'en'
+            lang: 'en',
+            home_data: null,
         }
     },
     components: {
@@ -318,10 +319,54 @@ export default {
         };
     },
     methods: {
-        async getHomeSLider() {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck  >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            }else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        async getHomeSLider(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`
+                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`,
+                {
+                    headers: {
+                        "lang": lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -359,10 +404,15 @@ export default {
                 console.error(error);
             }
         },
-        async getHomeNews() {
+        async getHomeNews(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/news?per_page=2&page=1`,
+                    {
+                        headers: {
+                            "lang": lang
+                        }
+                    }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -400,13 +450,14 @@ export default {
                 console.error(error);
             }
         },
-        async getLatest() {
+        async getLatest(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/latest?limit=7`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": lang
                         }
                     },
                 );
@@ -457,10 +508,15 @@ export default {
                 console.error(error);
             }
         },
-        async getDeals() {
+        async getDeals(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/deals`,
+                {
+                    headers: {
+                        "lang": lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -509,10 +565,15 @@ export default {
                 console.error(error);
             }
         },
-        async getTopAd() {
+        async getTopAd(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=top`,
+                {
+                    headers: {
+                        "lang": lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -550,10 +611,15 @@ export default {
                 console.error(error);
             }
         },
-        async getBottomAd() {
+        async getBottomAd(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=bottom`,
+                {
+                    headers: {
+                        "lang": lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -685,14 +751,21 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            let data = require('../assets/api/home.json');
+            this.home_data = this.lang == 'ar' ? data.ar : data.en
+            this.getHomeSLider(this.lang)
+            this.getHomeNews(this.lang)
+            this.getLatest(this.lang)
+            this.getDeals(this.lang)
+            this.getTopAd(this.lang)
+            this.getBottomAd(this.lang)
+        }, 
+
     },
     created() {
-        this.getHomeSLider()
-        this.getHomeNews()
-        this.getLatest()
-        this.getDeals()
-        this.getTopAd()
-        this.getBottomAd()
+        this.getHomeData()
     },
     mounted() {
         $(`.home_link`).addClass('active')

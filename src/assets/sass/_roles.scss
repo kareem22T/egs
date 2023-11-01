@@ -257,3 +257,13 @@ input, textarea {
         }
     }
 }
+
+.ar {
+    .pop-up.search-pop-up {
+        top: clamp(3.125rem, calc(1.7314rem + 5.9459vw), 7.5rem) !important;
+    }
+    .suggestions.suggestions2 {
+        right: 0 !important;
+        left: auto !important;
+    }
+}
