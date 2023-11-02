@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> <a href="/category/physical-store">{{ this.$route.meta.category_name }}</a> <i class="fa-solid fa-chevron-right"></i> {{ this.$route.params.name.replace(/-/g, " ").charAt(0).toUpperCase() + this.$route.params.name.replace(/-/g, " ").slice(1) }}
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <a href="/category/physical-store">{{ lang == 'en' ? this.$route.meta.category_name : 'المنتجات' }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ this.$route.params.name.replace(/-/g, " ").charAt(0).toUpperCase() + this.$route.params.name.replace(/-/g, " ").slice(1) }}
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories && subCategories.length > 0">
@@ -17,24 +17,24 @@
         </div>
         <div class="container products" v-if="products && products.length > 0">
             <div class="head">
-                <h2>All Products</h2>
+                <h2>{{ lang == 'en' ? 'All Products' : 'كل المنتجات' }}</h2>
                 <div class="sort">
                     <div>
-                        Showing <span>{{ page }} - {{ per_page }}</span> of {{ total }} Results
-                    </div>
+                            {{ lang == 'en' ? 'Showing' : 'عرض' }} <span>{{ page }} - {{ per_page }}</span> {{ lang == 'en' ? 'of' : 'من' }} {{ total }} {{ lang == 'en' ? 'Results' : 'نتائج' }}
+                        </div>
                     <div>
                         <select name="per_pag" id="per_page" v-model="per_page" @change="this.page = 1; fetchProducts(categoryId)">
-                            <option value="20" selected>Show 20 items</option>
-                            <option value="40">Show 40 items</option>
-                            <option value="60">Show 60 items</option>
+                            <option value="20" selected>{{ lang == 'en' ? 'Show 20 items' : 'عرض 20 عنصر' }}</option>
+                            <option value="40">{{ lang == 'en' ? 'Show 40 items' : 'عرض 40 عنصر' }}</option>
+                            <option value="60">{{ lang == 'en' ? 'Show 60 items' : 'عرض 60 عنصر' }}</option>
                         </select>
                     </div>
                     <div>
-                        Sort By: 
+                        {{ lang == 'en' ? 'Sort By:' : 'ترتيب حسب:' }} 
                         <select name="per_pag" id="per_page" v-model="sort_by_price" @change="fetchProducts(this.categoryId)">
                             <option value="" selected>.................</option>
-                            <option value="asc_price">Price Low To High</option>
-                            <option value="desc_price">Price Hight To Low</option>
+                            <option value="asc_price">{{ lang == 'en' ? 'Price Low To High' : 'السعر من الارخص للاعلى' }}</option>
+                            <option value="desc_price">{{ lang == 'en' ? 'Price Hight To Low' : 'السعر من الاعلى للارخص' }}</option>
                         </select>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{ lang == 'en' ? "Reviews" : "مراجعات" }} ) 
                             </div>
                             <div>
                                 <div class="price">
@@ -72,10 +72,10 @@
                         </div>
                     </a>
                     <button class="add-to-cart" @click="addProductToCart(item.id, 1, item.stock, item.type)">
-                        Add To Cart
+                        {{ lang == 'en' ? "Add To Cart" : "اضافة الي العربة" }}
                     </button>
                     <button :class="item.isFav ? 'active' : ''" class="add-to-wishlist" @click="likeProduct(item.id)">
-                        <i class="fa-regular fa-heart"></i> Add To Wishlist
+                        <i class="fa-regular fa-heart"></i> {{ lang == 'en' ? "Add To Wishlist" : "اضافة الي المفضلة" }}
                     </button>
                 </div>
             </div>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="container not_products" v-if="(!products || !products[0]) && (!subCategories || !subCategories[0])">
-            <h1 style="margin: 5rem 0; text-align:center;color: #717171;" v-if="showNotProducts">This Category does not contain any product yet!</h1>
+            <h1 style="margin: 5rem 0; text-align:center;color: #717171;" v-if="showNotProducts">{{ lang == 'en' ? "This Category does not contain any product yet!" : "هذه الفئة لا تحتوي على أي منتج حتى الآن!" }}</h1>
         </div>
     </div>
 </template>
@@ -118,13 +118,57 @@ export default {
             products_cart: null,
             cards_cart: null,
             sort_by_price: null,
+            lang: 'en'
         }
     },
     methods: {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
         async fetchSubCategories(categoryId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/categories/children/children?category_id=${categoryId}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/categories/children/children?category_id=${categoryId}`,{
+                    headers: {
+                        "lang": this.lang
+                    }
+                });
                 if (response.data.status === true) {
                     this.subCategories = response.data.data
                     $('.loader').fadeOut()
@@ -168,7 +212,8 @@ export default {
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/category?category_id=${categoryId}&per_page=${this.per_page}&page=${this.page}` + (this.sort_by_price ? `&sort_type=${ this.sort_by_price }` : ''), {
                     headers: {
-                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                        "lang": this.lang
                     }
                 });
                 if (response.data.status === true) {
@@ -219,7 +264,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -295,7 +341,8 @@ export default {
                     },
                         {
                             headers: {
-                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                                "lang": this.lang
                             }
                         },
                     );
@@ -352,7 +399,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -373,13 +421,17 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            this.fetchSubCategories(this.categoryId).then(() => {
+                if (!this.subCategories || !this.subCategories.length)
+                    this.fetchProducts(this.categoryId)
+                this.getCart()
+            })
+        },
     },
     created() {
-        this.fetchSubCategories(this.categoryId).then(() => {
-            if (!this.subCategories || !this.subCategories.length)
-                this.fetchProducts(this.categoryId)
-                this.getCart()
-        })
+        this.getHomeData()
     },
     mounted() {
         $(`.${this.$route.meta.category_path}`).addClass('active')

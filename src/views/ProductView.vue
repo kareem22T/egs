@@ -2,8 +2,8 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i><a :href="`/physical-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i class="fa-solid fa-chevron-right"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
-                    <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
+                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><a :href="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
+                        <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
                 </span>
             </div>
         </div>
@@ -15,10 +15,10 @@
                 </div>
                 <div class="right">
                     <div>
-                        <a href="" :class="product.isFav ? 'active' : ''" class="add-to-wish" @click.prevent="likeProduct(product.id, 1)"><i class="fa-regular fa-heart"></i> <p>Add To Wishlist</p></a>
+                        <a href="" :class="product.isFav ? 'active' : ''" class="add-to-wish" @click.prevent="likeProduct(product.id, 1)"><i class="fa-regular fa-heart"></i> <p>{{ product_data.add_to_wishlist }}</p></a>
                     </div>
                     <div>
-                        <p>Share</p>
+                        <p>{{ product_data.share }}</p>
                         <a :href="`https://www.facebook.com/sharer/sharer.php?u=${this.url}`" target="_blank">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
@@ -56,56 +56,56 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{ product_data.reviews }} ) 
                             </div>
                             <div class="price">
-                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>EGP</span></h1>
-                                <h1><span>{{ product.price.toLocaleString() }}</span> <span>EGP</span></h1>
+                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>{{ product_data.egp }}</span></h1>
+                                <h1><span>{{ product.price.toLocaleString() }}</span> <span>{{ product_data.egp }}</span></h1>
                             </div>
                             <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
 
-                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> Saved: {{  (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
+                        <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> {{ product_data.saved }}: {{  (product.price - product.price_after_discount).toLocaleString() }} {{ product_data.egp }}</div>
                         </div>
 
                         <div class="bottom">
                             <div class="quantity">
-                                Quantity
+                                {{ product_data.quantity }}
                                 <span>
                                     <span @click="this.quantity > 1 ? this.quantity -= 1 : ''">-</span>
                                     <span>{{ quantity }}</span>
                                     <span @click="this.quantity += 1">+</span>
                                 </span>
                             </div>
-                            <button @click="addProductToCart(product.id, quantity, product.stock, product.type)"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
+                            <button @click="addProductToCart(product.id, quantity, product.stock, product.type)"><i class="fa-solid fa-cart-shopping"></i> {{ product_data.add_cart }}</button>
                         </div>
                     </div>
                 </div>
                 <div class="side">
                     <div class="ad">
                         <img src="./../assets/imgs/hero-card-1.jpg" alt="">
-                        <a href="">Shop Now</a>
-                        <h1>Build Your PC !</h1>
+                        <a href="">{{ product_data.shop_now }}</a>
+                        <h1>{{ product_data.build_pc }}</h1>
                     </div>
                     <div class="features">
                         <div>
                             <i class="fa-solid fa-rotate-left"></i>
                             <div>
-                                <h4>FREE RETUNS</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{ product_data.free_returns }}</h4>
+                                <p>{{ product_data.free_returns_text }}</p>
                             </div>
                         </div>
                         <div>
                             <i class="fa-solid fa-truck-fast"></i>
                             <div>
-                                <h4>TRUSTED SHIPPING</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{ product_data.trusted_shipping }}</h4>
+                                <p>{{ product_data.free_returns_text }}</p>
                             </div>
                         </div>
                         <div>
                             <i class="fa-solid fa-shield-halved"></i>
                             <div>
-                                <h4>SECURE SHOPPING</h4>
-                                <p>Get free retuns on eligible items</p>
+                                <h4>{{ product_data.secure_shoping }}</h4>
+                                <p>{{ product_data.free_returns_text }}</p>
                             </div>
                         </div>
                     </div>
@@ -114,14 +114,14 @@
 
             <div class="details">
                 <div class="header">
-                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">Specification</a>
-                    <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">Description</a>
-                    <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">Reviews</a>
+                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">{{ product_data.specification }}</a>
+                    <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">{{ product_data.descreption }}</a>
+                    <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">{{ product_data.reviews }}</a>
                 </div>
                 <div class="body">
                     <div class="table" v-if="show_speci">
                         <div class="row">
-                            <div class="title">Brand</div>
+                            <div class="title">{{ product_data.brand }}</div>
                             <div class="value">{{ product.sub_sub_category.name }}</div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="container products" v-if="related_products && related_products.length > 0">
-            <h1>Related Products</h1>
+            <h1>{{ product_data.related }}</h1>
             <div class="body">
                 <div class="product" v-for="item in related_products" :key="item.id">
                     <a :href="`/product/${item.id}`">
@@ -150,7 +150,7 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{ product_data.reviews }} ) 
                             </div>
                             <div class="price">
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
@@ -159,10 +159,10 @@
                         </div>
                     </a>
                     <button class="add-to-cart" @click="addProductToCart(item.id, 1)">
-                        Add To Cart
+                        {{ product_data.add_cart }}
                     </button>
                     <button :class="item.isFav ? 'active' : ''" class="add-to-wishlist" @click="likeProduct(item.id)">
-                        <i class="fa-regular fa-heart"></i> Add To Wishlist
+                        <i class="fa-regular fa-heart"></i> {{ product_data.add_to_wishlist }}
                     </button>
                 </div>
             </div>
@@ -203,9 +203,50 @@ export default {
             cart: null,
             products: null,
             cards: null,
+            lang: 'en',
+            product_data: null,
         }
     },
     methods: {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
         shareOnInstagram() {
             var pageUrl = window.location.href;
             var instagramUrl = "https://www.instagram.com/share?url=" + encodeURIComponent(pageUrl);
@@ -217,7 +258,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -244,7 +286,8 @@ export default {
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/getProductDetails?product_id=${productId}&per_page=${this.per_page}&page=${this.page}`, {
                     headers: {
-                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                        "lang": this.lang
                     }
                 });
                 if (response.data.status === true) {
@@ -296,7 +339,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -372,7 +416,8 @@ export default {
                     },
                         {
                             headers: {
-                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                                "lang": this.lang
                             }
                         },
                     );
@@ -424,6 +469,13 @@ export default {
                 }
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            let data = require('../assets/api/product.json');
+            this.product_data = this.lang == 'ar' ? data.ar : data.en
+            this.fetchProduct(this.productId)
+            this.getCart()
+        },
     },
     mounted() {
         $('.add-to-wish').on('click', function () {
@@ -447,8 +499,7 @@ export default {
             $(`.physical-store`).addClass('active')
             $(`.physical-store`).siblings().removeClass('active')
         })
-        this.fetchProduct(this.productId)
-        this.getCart()
+        this.getHomeData()
     },
 }
 </script>

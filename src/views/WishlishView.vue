@@ -2,11 +2,11 @@
     <main class="wishlist_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Wishlist
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Wishlist' : 'المفضلة' }}
             </div>
         </div>
         <div class="container">
-            <h1  v-if="wishlist && wishlist.length > 0">My Wishlist</h1>
+            <h1  v-if="wishlist && wishlist.length > 0">{{ lang == 'en' ? 'My Wishlist' : 'المفضلة لدي' }}</h1>
             <div class="table_wrapper" v-if="wishlist && wishlist.length > 0">
                 <table>
                     <tbody>
@@ -14,8 +14,8 @@
                             <td><div class="head" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)"><img :src="product.product_type == 1 ? product.main_image : product.img"> <p>{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}</p></div></td>
                             <td>
                                 <div class="price">
-                                    <span>Price</span>
-                                    <p>{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }} EGP</p>
+                                    <span>{{ lang == 'en' ? 'Price' : 'السعر' }}</span>
+                                    <p>{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</p>
                             </div>
                             </td>
                             <td>
@@ -32,7 +32,7 @@
                                             :
                                             addCardToCart(product.id, 1
                                             ))
-                                        "><i class="fa-solid fa-cart-shopping"></i> <span>Add To Cart</span></button>
+                                        "><i class="fa-solid fa-cart-shopping"></i> <span>{{ lang == 'en' ? 'Add To Cart' : 'اضافة الى العربة' }}</span></button>
                                 </div>
                             </td>
                             <td>
@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            <h1 v-if="!wishlist || wishlist.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Wishlist is Empty</h1>
+            <h1 v-if="!wishlist || wishlist.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">{{ lang == 'en' ? 'Your Wishlist is Empty' : 'المفضلة فارغة' }}</h1>
         </div>
     </main>
 </template>
@@ -61,6 +61,7 @@ export default {
     data() {
         return {
             wishlist: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -70,7 +71,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/liked`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -127,7 +129,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -210,7 +213,8 @@ export default {
                     },
                         {
                             headers: {
-                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                                "lang": this.lang
                             }
                         },
                     );
@@ -269,7 +273,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -323,7 +328,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -369,10 +375,53 @@ export default {
 
                 console.error(error);
             }
-        }
+        },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.getWishlist()
+        },
     },
     created() {
-        this.getWishlist()
+        this.getHomeData()
     },
     mounted() {
     },

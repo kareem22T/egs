@@ -2,23 +2,23 @@
     <main class="register_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Account
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }}
             </div>
         </div>
         <div class="container">
             <form @submit.prevent>
                 <div class="head">
                     <h1>
-                        Activation
+                        {{ lang == 'en' ? 'Activation' : 'التفعيل' }}
                     </h1>
-                    <p>Please Enter OTP Sent To Your Phone And Email</p>
+                    <p>{{ lang == 'en' ? 'Please Enter OTP Sent To Your Phone And Email' : 'الرجاء إدخال رمز  OTP المرسلة إلى هاتفك والبريد الإلكتروني' }}</p>
                 </div>
                 <div class="input">
-                    <input type="text" name="verification_code" id="verification_code" placeholder="Type Your Code" v-model="code">
+                    <input type="text" name="verification_code" id="verification_code" :placeholder="lang == 'en' ? 'Type Your Code' : 'ادخل الرمز'" v-model="code">
                     <img src="./../assets/imgs/file-pen-solid.svg" alt="lock icon">
                 </div>
-                <button type="submit" class="button" @click="verify(this.code)">Submit & Complete</button>
-                <p>Didn't Recive Code ? <router-link to="" @click.prevent="resend()">Send Again</router-link></p>
+                <button type="submit" class="button" @click="verify(this.code)">{{ lang == 'en' ? 'Submit & Complete' : 'تاكيد وإكمال' }}</button>
+                <p> <router-link to="" @click.prevent="resend()">{{ lang == 'en' ? 'Send Again ' : 'أعد الإرسال' }}</router-link></p>
             </form>
         </div>
     </main>
@@ -37,6 +37,7 @@ export default {
     data() {
         return {
             code: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -48,7 +49,8 @@ export default {
                 },
                 {
                     headers: {
-                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                        "lang": this.lang
                     }
                 },
                 );
@@ -97,14 +99,14 @@ export default {
             }
         },
         async resend() {
-
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`${window.main_url}/resendCode`, {
                 },
                 {
                     headers: {
-                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                        "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                        "lang": this.lang
                     }
                 },
                 );
@@ -151,7 +153,51 @@ export default {
                 console.error(error);
             }
         },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
 
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+        },
+    },
+    created() {
+        this.getHomeData()
     },
 }
 </script>

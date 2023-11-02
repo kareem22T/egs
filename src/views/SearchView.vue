@@ -2,13 +2,13 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Search
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Search' : 'بحث' }}
             </div>
         </div>
 
         <div class="container products" v-if="results && results.length > 0">
             <div class="head">
-                <h2>Results for: {{ search }}</h2>
+                <h2>{{ lang == 'en' ? 'Results for' : 'نتائج' }}: {{ search }}</h2>
             </div>
             <hr>
             <div class="body">
@@ -30,7 +30,7 @@
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star active"></i>
                                     <i class="fa-regular fa-star"></i></div>
-                                ( 3 Reviews ) 
+                                ( 3 {{ lang == 'en' ? "Reviews" : "مراجعات" }} ) 
                             </div>
                             <div class="price">
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
@@ -46,7 +46,7 @@
                         addCardToCart(item.id, 1
                         ))
                         ">
-                        Add To Cart
+                        {{ lang == 'en' ? "Add To Cart" : "اضافة الي العربة" }}
                     </button>
                     <button :class="item.isFav ? 'active' : ''" class="add-to-wishlist" @click="
                     (item.product_type == 1 ?
@@ -56,7 +56,7 @@
                         likeCard(item.id
                         ))
                         ">
-                        <i class="fa-regular fa-heart"></i> Add To Wishlist
+                        <i class="fa-regular fa-heart"></i> {{ lang == 'en' ? "Add To Wishlist" : "اضافة الي المفضلة" }}
                     </button>
                 </div>
             </div>
@@ -70,7 +70,7 @@
 
 
         <div class="container not_products" v-if="(!results || !results[0])">
-            <h1 style="margin: 5rem 0; text-align:center;color: #717171;">No reluts found</h1>
+            <h1 style="margin: 5rem 0; text-align:center;color: #717171;">{{ lang == 'en' ? "No reluts found" : "لا توجد نتائج" }}</h1>
         </div>
     </div>
 </template>
@@ -95,6 +95,7 @@ export default {
             cart: null,
             products_cart: null,
             cards_cart: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -104,7 +105,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products-cards/search?search=${this.search}`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -163,7 +165,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -210,7 +213,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -286,7 +290,8 @@ export default {
                     },
                         {
                             headers: {
-                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                                "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                                "lang": this.lang
                             }
                         },
                     );
@@ -347,7 +352,8 @@ export default {
                 },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         }
                     },
                 );
@@ -403,7 +409,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -424,9 +431,52 @@ export default {
                 console.error(error);
             }
         },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.fetchProducts()
+        },
     },
     created() {
-        this.fetchProducts()
+        this.getHomeData()
     },
     mounted() {
         $(`.${this.$route.meta.category_path}`).addClass('active')
