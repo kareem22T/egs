@@ -11,7 +11,13 @@
                 <table>
                     <tbody>
                         <tr v-for="product in wishlist" :key="product.id" >
-                            <td><div class="head" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)"><img :src="product.product_type == 1 ? product.main_image : product.img"> <p>{{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}</p></div></td>
+                            <td><div class="head" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)"><img :src="product.product_type == 1 ? product.main_image : product.img"> 
+                                <p class="prod-name">
+                                    {{ product.name.length >= 39 ? product.name.slice(0, 39) + '...' : product.name }}
+                                    <span class="hint-pop-up" v-if="product && product.name.length > 39">{{ product.name }}</span>
+                                </p>
+                            </div>
+                            </td>
                             <td>
                                 <div class="price">
                                     <span>{{ lang == 'en' ? 'Price' : 'السعر' }}</span>
@@ -20,7 +26,7 @@
                             </td>
                             <td>
                                 <div class="stock">
-                                    <span>Stock Status</span>
+                                    <span>{{ lang == 'en' ? 'Stock Status' : 'الكمية المتوفرة' }}</span>
                                     <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
                                     </div>
                             </td>
@@ -424,8 +430,35 @@ export default {
         this.getHomeData()
     },
     mounted() {
+        $(document).mousemove(function (e) {
+            $('.hint-pop-up').css({
+                top: e.clientY,
+                left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
+            });
+        });
     },
 }
 </script>
 
 <style scoped>@import './../assets/css/home.css';</style>
+<style>
+.hint-pop-up {
+    position: fixed;
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    z-index: 99999;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.prod-name:hover .hint-pop-up {
+    display: block;
+}
+
+.prod-name {
+    position: relative;
+    cursor: pointer;
+}
+</style>

@@ -18,8 +18,9 @@
                         <div class="img">
                             <img :src="item.product_type == 1 ? item.main_image : item.img">
                             <!-- <p>{{ item.sub_category.name }}</p> -->
-                            <h4>
-                                {{ item.name.length >= 39 ? item.name.slice(0, 39) + '...' :  item.name }}
+                            <h4 class="prod-name">
+                                {{ item.name.length > 39 ? item.name.slice(0, 39) + '...' :  item.name }}
+                                <div class="hint-pop-up" v-if="item && item.name.length > 39">{{ item.name }}</div>
                             </h4>
                         </div>
                         <div>
@@ -481,6 +482,34 @@ export default {
     mounted() {
         $(`.${this.$route.meta.category_path}`).addClass('active')
         $(`.${this.$route.meta.category_path}`).siblings().removeClass('active')
+        $(document).mousemove(function (e) {
+            $('.hint-pop-up').css({
+                top: e.clientY,
+                left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
+            });
+        });
     },
 }
 </script>
+
+<style>
+.hint-pop-up {
+    position: fixed;
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    z-index: 99999;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.prod-name:hover .hint-pop-up {
+    display: block;
+}
+
+.prod-name {
+    position: relative;
+    cursor: pointer;
+}
+</style>

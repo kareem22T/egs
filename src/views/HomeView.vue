@@ -120,9 +120,9 @@
                         </div>
                     </div>
                     <div class="details" style="height: 100%; display: flex; flex-dirction: column; justify-content: space-between; align-items: center">
-                        <h3 class="prod-name">
+                        <h3 class="name">
                             {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
-                            <!-- <div class="hint-pop-up" v-if="product.name.length > 39">{{ product.name }}</div> -->
+                            <div class="hint-pop-up-x" v-if="product.name.length > 39">{{ product.name }}</div>
                         </h3>
                             <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + ' more...' : product.desc">
                             </p>
@@ -179,9 +179,9 @@
                             <img :src="product.product_type == 1 ? product.main_image : product.img">
                         </div>
                         <div class="details">
-                            <h1 class="title prod-name">
+                            <h1 class="title name">
                                 {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
-                                <div class="hint-pop-up" v-if="product.name.length > 39">{{ product.name }}</div>
+                                <div class="hint-pop-up-x" v-if="product.name.length > 39">{{ product.name }}</div>
                             </h1>
                             <p v-html="product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc">
                             </p>
@@ -808,7 +808,25 @@ export default {
     display: block;
 }
 
-.prod-name {
+.prod-name, .name {
     position: relative;
+}
+.name:hover .hint-pop-up-x {
+    display: block
+}
+.hint-pop-up-x {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1f2;
+    border: 1px solid #ccc;
+    z-index: 99999;
+    font-size: 12px;
+    border-radius: 10px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    backdrop-filter: blur(2px);
 }
 </style>
