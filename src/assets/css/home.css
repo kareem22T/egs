@@ -296,9 +296,6 @@ input:focus, textarea:focus {
   border-radius: .7rem;
   overflow: hidden;
 }
-.home_wrapper .hero .container .row-1 .hero-slider .swiper-slide.slide_3, .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide.slide_4 {
-  display: none;
-}
 @media (max-width: 600px) {
   .home_wrapper .hero .container .row-1 .hero-slider .swiper-slide {
     align-items: center;

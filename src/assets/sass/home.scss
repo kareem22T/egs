@@ -37,9 +37,6 @@
                         position: relative;
                         border-radius: .7rem;
                         overflow: hidden;
-                        &.slide_3, &.slide_4 {
-                            display: none;
-                        }
                         @media (max-width: 600px) {
                             align-items: center;
                             text-align: center;
