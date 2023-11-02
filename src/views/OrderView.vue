@@ -2,11 +2,11 @@
     <main class="wishlist_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Order Details
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Order Details' : 'تفاصل الطلب' }}
             </div>
         </div>
         <div class="container">
-            <h1 v-if="Order && Order.length > 0">Your Order {{ order_name }} <span v-if="status">{{ status }}</span></h1>
+            <h1 v-if="Order && Order.length > 0">{{ lang == 'en' ? 'Order' : 'الطلب' }} {{ order_name }} <span v-if="status">{{ status }}</span></h1>
             <div class="order_address">
 
             </div>
@@ -24,67 +24,69 @@
                             </td>
                             <td>
                                 <div class="price">
-                                    <span>Price</span>
-                                    <p>{{ product.total_price.toLocaleString() }} EGP</p>
+                                    <span>{{ lang == 'en' ? 'Price' : 'السعر' }}</span>
+                                    <p>{{ product.total_price.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</p>
                                 </div>
                             </td>
                             <td>
                                 <div class="price">
-                                    <span>Quantity</span>
-                                    <p>{{ product.qty }} {{ product.qty > 1 ? 'item' : 'items' }}</p>
+                                    <span>{{ lang == 'en' ? 'Quantity' : 'العدد' }}</span>
+                                    <p>{{ product.qty }} {{ lang == 'en' ? product.qty > 1 ? 'item' : 'items' : product.qty > 1 ? 'عنصر' : 'عناصر' }}</p>
                                 </div>
-                                <button v-if="product.product_type == 2 && product.codes" @click="codes = product.codes; viewCodePopUp = true;">View Codes</button>
+                                <button v-if="product.product_type == 2 && product.codes" @click="codes = product.codes; viewCodePopUp = true;">{{ lang == 'en' ? 'View Codes' : 'عرض الرموز' }}</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="total-main" v-if="total_price || payment_fees || sub_total">
                     <div class="head">
-                        Order Details
+                        {{ lang == 'en' ? 'Order Details' : 'تفاصيل الطلب' }}
                     </div>
                     <div class="bottom">
                         <div v-if="details">
-                            <h4 class="text-details" v-if="details.full_name">Full Name <span>{{ details.full_name }}</span></h4>
-                            <h4 class="text-details" v-if="details.country">Country <span>{{ details.country }}</span></h4>
-                            <h4 class="text-details" v-if="details.street_number">Street <span>{{ details.street_number }}</span></h4>
-                            <h4 class="text-details" v-if="details.home_number">Phone <span>{{ details.home_number }}</span></h4>
+                            <h4 class="text-details" v-if="details.full_name">{{ lang == 'en' ? 'Full Name' : 'الاسم كامل' }} <span>{{ details.full_name }}</span></h4>
+                            <h4 class="text-details" v-if="details.country">{{ lang == 'en' ? 'Country' : 'البلد' }} <span>{{ details.country }}</span></h4>
+                            <h4 class="text-details" v-if="details.street_number">{{ lang == 'en' ? 'Street' : 'الشارع' }} <span>{{ details.street_number }}</span></h4>
+                            <h4 class="text-details" v-if="details.home_number">{{ lang == 'en' ? 'Phone' : 'الهاتف' }} <span>{{ details.home_number }}</span></h4>
                         </div>
                         <br>
-                        <h4 class="text-details" v-if="shipping_method">Shipping Method <span>{{ shipping_method == 1 ? "Online" : (shipping_method == 2 ? "2 Day" : "Store Pickup") }}</span></h4>
-                        <h4 class="text-details" v-if="payment_method">Payment Method <span>{{ payment_method }}</span></h4>
-                        <h4 class="text-details" v-if="RefNumber"><span>Reference Number <i @click="showHelpRefPopUp = true" class="fa-regular fa-circle-question" style="cursor: pointer;"></i></span><span>{{ RefNumber }} </span></h4>
+                        <h4 class="text-details" v-if="shipping_method">{{ lang == 'en' ? 'Shipping Method' : 'طريقة الشحن' }} <span>{{ shipping_method == 1 ? "Online" : (shipping_method == 2 ? "2 Day" : "Store Pickup") }}</span></h4>
+                        <h4 class="text-details" v-if="payment_method">{{ lang == 'en' ? 'Payment Method' : 'وسيلة الدفع' }} <span>{{ payment_method }}</span></h4>
+                        <h4 class="text-details" v-if="RefNumber"><span>{{ lang == 'en' ? 'Reference Number' : 'الرقم المرجعي' }} <i @click="showHelpRefPopUp = true" class="fa-regular fa-circle-question" style="cursor: pointer;"></i></span><span>{{ RefNumber }} </span></h4>
                         <br>
-                        <h4 v-if="coupon_code">Coupon Code <span>{{ coupon_code }}</span></h4>
-                        <h4 v-if="coupon_value">Coupon Discount <span>- {{ coupon_value.toLocaleString() }} EGP</span></h4>
-                        <h4 v-if="payment_fees">Payment Fees <span>{{ payment_fees.toLocaleString() }} EGP</span></h4>
-                        <h4 v-if="sub_total">Sub Total <span>{{ sub_total.toLocaleString() }} EGP</span></h4>
-                        <h4 style="font-weight: 700" v-if="total_price">Total Price <span>{{ total_price.toLocaleString() }} EGP</span></h4>
+                        <h4 v-if="coupon_code">{{ lang == 'en' ? 'Coupon Code' : 'كود القسيمة' }} <span>{{ coupon_code }}</span></h4>
+                        <h4 v-if="coupon_value">{{ lang == 'en' ? 'Coupon Discount' : 'نسبة الخصم' }} 
+                            <span><span  dir="ltr">- {{ coupon_value.toLocaleString() }}</span> {{ lang == 'en' ? 'EGP' : 'جنيه' }}</span>
+                        </h4>
+                        <h4 v-if="payment_fees">{{ lang == 'en' ? 'Payment Fees' : 'تكلفة الدفع' }} <span>{{ payment_fees.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</span></h4>
+                        <h4 v-if="sub_total">{{ lang == 'en' ? 'Sub Total' : 'المجموع الفرعي' }} <span>{{ sub_total.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</span></h4>
+                        <h4 style="font-weight: 700" v-if="total_price">{{ lang == 'en' ? 'Total Price' : 'السعر الكلي' }} <span>{{ total_price.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</span></h4>
                     </div>
                 </div>
             </div>
             <h1 v-if="!Order || Order.length == 0"
-                style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Order is Empty
+                style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">{{ lang == 'en' ? 'Your Order is Empty' : 'طلبك فارغ' }}
             </h1>
             <div class="hide-content" v-if="isOrderSuccess"></div>
             <div class="pop-up" v-if="isOrderSuccess">
-                <p>Payment has been completed succesfuly</p>
-                <button @click="isOrderSuccess = false">OK</button>
+                <p>{{ lang == 'en' ? 'Payment has been completed succesfuly' : 'تم اتمام عملية الدفع بنجاح' }}</p>
+                <button @click="isOrderSuccess = false">{{ lang == 'en' ? 'OK' : 'حسنا' }}</button>
             </div>
             <div class="hide-content" v-if="isOrderFaild"></div>
             <div class="pop-up" v-if="isOrderFaild">
-                <p>an error happend in payment prosses try again!</p>
-                <button @click="isOrderFaild = false">OK</button>
+                <p>{{ lang == 'en' ? 'an error happend in payment prosses try again!' : 'حدث خطا اثناء الدفع,  حاول مرة اخرى' }}</p>
+                <button @click="isOrderFaild = false">{{ lang == 'en' ? 'OK' : 'حسنا' }}</button>
             </div>
             <div class="hide-content" v-if="viewCodePopUp"></div>
             <div class="pop-up" v-if="viewCodePopUp">
-                <h4>Your Codes:</h4>
+                <h4>{{ lang == 'en' ? 'Your Codes' : 'الرموز خاصتك' }}:</h4>
                 <p v-html="codes"></p>
-                <button @click="viewCodePopUp = false">OK</button>
+                <button @click="viewCodePopUp = false">{{ lang == 'en' ? 'OK' : 'حسنا' }}</button>
             </div>
             <div class="hide-content" v-if="showHelpRefPopUp"></div>
             <div class="pop-up" v-if="showHelpRefPopUp">
-                <p>This is the number you can use to pay on</p>
-                <button @click="showHelpRefPopUp = false">OK</button>
+                <p>{{ lang == 'en' ? 'This is the number you can use to pay on' : 'الرقم الي يمكنك الدفع من خلاله' }}</p>
+                <button @click="showHelpRefPopUp = false">{{ lang == 'en' ? 'OK' : 'حسنا' }}</button>
             </div>
         </div>
     </main>
@@ -119,7 +121,8 @@ export default {
             shipping_method: null,
             RefNumber: null,
             coupon_code: null,
-            coupon_value: null
+            coupon_value: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -129,7 +132,8 @@ export default {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/orders/${this.$route.params.id}`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -188,9 +192,52 @@ export default {
                 console.error(error);
             }
         },
+                setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.getOrder()
+        },
     },
     created() {
-        this.getOrder()
+        this.getHomeData()
         if (this.$route.query.success && this.$route.query.success === 'true')
             this.isOrderSuccess = true;
         else if (this.$route.query.success && this.$route.query.success === 'false')

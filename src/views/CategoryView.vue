@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> {{ this.$route.meta.category_name }}
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ?  this.$route.meta.category_name : $route.meta.category_name == "Digital Store" ? "المتجر الرقمي" : "المنتجات" }}
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories" >
@@ -33,13 +33,57 @@ export default {
             categoryType: this.$route.meta.type,
             categoryId: this.$route.meta.id,
             subCategories: null,
+            lang: "en"
         }
     },
     methods: {
-        async fetchSubCategories(categoryId) {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        async fetchSubCategories(categoryId, lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/categories/children?category_id=${categoryId}`);
+                const response = await axios.get(`https://api.egyptgamestore.com/api/categories/children?category_id=${categoryId}`, {
+                    headers: {
+                        "lang": lang
+                    }
+                });
                 if (response.data.status === true) {
                     this.subCategories = response.data.data
                     $('.loader').fadeOut()
@@ -78,9 +122,13 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            this.fetchSubCategories(this.categoryId, this.lang)
+        },
     },
     created() {
-        this.fetchSubCategories(this.categoryId)
+        this.getHomeData()
     },
     mounted() {
         $(`.${this.$route.meta.category_path}`).addClass('active')

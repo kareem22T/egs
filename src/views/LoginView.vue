@@ -2,27 +2,27 @@
     <main class="register_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Account
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }}
             </div>
         </div>
         <div class="container">
             <form @submit.prevent>
                 <div class="head">
                     <h1>
-                        Account Login
+                        {{ lang == 'en' ? 'Account Login' : 'تسجل الدخول' }}
                     </h1>
-                    <p>Do have an account? <router-link to="/register">SignUp</router-link></p>
+                    <p>{{ lang == 'en' ? 'Do not have an account?' : 'ليس لديك حساب؟' }} <router-link to="/register"> {{ lang == 'en' ? 'SignUp' : 'انشاء حساب' }}</router-link></p>
                 </div>
                 <div class="input">
-                    <input type="text" name="phone" id="phone" placeholder="Email or Phone Number" v-model="phone">
+                    <input type="text" name="phone" id="phone" :placeholder="lang == 'en' ? 'Email or Phone Number' : 'البريد الالكتروني او رقم الهاتف'" v-model="phone">
                     <img src="./../assets/imgs/user-solid.svg" alt="phone icon">
                 </div>
                 <div class="input">
-                    <input type="password" name="password" id="password" placeholder="Password" v-model="password">
+                    <input type="password" name="password" id="password" :placeholder="lang == 'en' ? 'Password' : 'كلمة المرور'" v-model="password">
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
-                <button type="submit" class="button" @click="login(this.phone, this.password)">Login</button>
-                <p>Forgot Your Password? <router-link to="/forgot-password">Click Here</router-link></p>
+                <button type="submit" class="button" @click="login(this.phone, this.password)">{{ lang == 'en' ? 'Login' : 'تسجل الدخول' }}</button>
+                <p>{{ lang == 'en' ? 'Forgot Your Password?' : 'نسيت كلمة السر؟' }} <router-link to="/forgot-password">{{ lang == 'en' ? 'Click Here' : 'انقر هنا' }}</router-link></p>
                 <!-- <div class="or">
                     <span></span>
                     or
@@ -52,6 +52,7 @@ export default {
         return {
             phone: null,
             password: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -62,6 +63,11 @@ export default {
                     email: phone,
                     password: password,
                 },
+                {
+                    headers: {
+                        "lang": this.lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     sessionStorage.setItem('user_token', response.data.data.token)
@@ -125,7 +131,52 @@ export default {
 
                 console.error(error);
             }
-        }
+        },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+        },
+    },
+    created() {
+        this.getHomeData()
     },
 }
 </script>

@@ -2,11 +2,11 @@
     <main class="faq_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> FAQ
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'FAQ' : 'الاسئلة الشائعة' }}
             </div>
         </div>
         <div class="container">
-            <h1>FAQ</h1>
+            <h1>{{ lang == 'en' ? 'FAQ' : 'الاسئلة الشائعة' }}</h1>
             <div class="questions">
                 <div v-for="item in questions" :key="item.id" class="question">
                     <div class="question-value"><span>{{ item.question }}</span><span><i class="fa-solid fa-chevron-down"></i></span></div>
@@ -29,6 +29,7 @@ export default {
     data() {
         return {
             questions: null,
+            lang: 'en'
         }
     },
     methods: {
@@ -39,6 +40,7 @@ export default {
                 {
                     headers: {
                         'Referrer-Policy': 'strict-origin-when-cross-origin',
+                        "lang": this.lang
                     },
                 }
                 );
@@ -77,10 +79,53 @@ export default {
 
                 console.error(error);
             }
-        }
+        },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.getFaq()
+        },
     },
     created() {
-        this.getFaq()
+        this.getHomeData()
     },
     mounted() {
         $(document).on('click', '.question', function () {

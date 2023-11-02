@@ -26,6 +26,7 @@ export default {
         return {
             articleId: this.$route.params.id,
             article: null,
+            lang: "en"
         }
     },
     methods: {

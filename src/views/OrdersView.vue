@@ -2,21 +2,21 @@
     <main class="orders_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Account <i class="fa-solid fa-chevron-right"></i> Orders
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }} <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i>  {{ lang == 'en' ? 'Orders' : 'عمليات الشراء' }}
             </div>
         </div>
         <div class="container">
-            <h1 v-if="orders && orders.length > 0">My Orders</h1>
+            <h1 v-if="orders && orders.length > 0">{{ lang == 'en' ? 'My Orders' : 'طلباتي' }}</h1>
             <div class="table_wrapper" v-if="orders && orders.length > 0">
                 <table>
                     <thead>
                         <tr>
-                            <td>Order #</td>
-                            <td>Status</td>
-                            <td>Payment Methode</td>
-                            <td>Total</td>
-                            <td>Date</td>
-                            <td>Details</td>
+                            <td>{{ lang == 'en' ? 'order' : 'الطلب' }} #</td>
+                            <td>{{ lang == 'en' ? 'Status' : 'الحالة' }}</td>
+                            <td>{{ lang == 'en' ? 'Payment Methode' : 'وسيلة الدفع' }}</td>
+                            <td>{{ lang == 'en' ? 'Total' : 'المجموع' }}</td>
+                            <td>{{ lang == 'en' ? 'Date' : 'التاريخ' }}</td>
+                            <td>{{ lang == 'en' ? 'Details' : 'تفاصيل' }}</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,14 +24,14 @@
                             <td>{{order.name }}</td>
                             <td><span class="canceled">{{order.status }}</span></td>
                             <td>{{order.payment_method }}</td>
-                            <td>{{order.total_price.toLocaleString()}} EGP</td>
+                            <td>{{order.total_price.toLocaleString()}} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</td>
                             <td>{{order.created_at }}</td>
-                            <td><button @click="this.$router.push(`/order/${order.id}`)">View Order</button></td>
+                            <td><button @click="this.$router.push(`/order/${order.id}`)">{{ lang == 'en' ? 'View Order' : 'عرض الطلب' }}</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <h1 v-if="!orders || orders.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">No orders yet</h1>
+            <h1 v-if="!orders || orders.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">{{ lang == 'en' ? 'No orders yet' : 'لا توجد عمليات شراء' }}</h1>
         </div>
     </main>
 </template>
@@ -48,16 +48,18 @@ export default {
     data() {
         return {
             orders: null,
+            lang: 'en'
         }
     },
     methods: {
-        async getWishlist() {
+        async getOrders() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/orders`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -97,9 +99,52 @@ export default {
                 console.error(error);
             }
         },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.getOrders()
+        },
     },
     created() {
-        this.getWishlist()
+        this.getHomeData()
     },
     mounted() {
     },

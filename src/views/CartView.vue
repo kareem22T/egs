@@ -95,18 +95,18 @@
                     <button @click="this.$router.push('/checkout')">{{ cart_data.checkout }}</button>
                 </div>
             </div>
-            <h1 v-if="!cart || cart.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>
+            <h1 v-if="!cart || cart.length == 0"  style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">{{ cart_data.empty }}</h1>
         </div>
         <div class="hide-content" v-if="showMsgPopUp"></div>
         <div class="pop-up" v-if="showMsgPopUp">
-            There are some changes happend in your cart!
-            <span>Could consider some elements are finished</span>
-            <button @click="showMsgPopUp = false">OK</button>
+            {{ cart_data.changes_msg }}
+            <span>{{ cart_data.changes_span }}</span>
+            <button @click="showMsgPopUp = false">{{ cart_data.ok }}</button>
         </div>
         <div class="hide-content" v-if="isOrderFaild"></div>
         <div class="pop-up" v-if="isOrderFaild">
-            <p>Payment failed, please try again!</p>
-            <button @click="isOrderFaild = false">OK</button>
+            <p>{{ cart_data.payment_field }}</p>
+            <button @click="isOrderFaild = false">{{ cart_data.ok }}</button>
         </div>
     </main>
 </template>
@@ -129,11 +129,12 @@ export default {
             cards: null,
             showMsgPopUp: false,
             isOrderFaild: false,
-            cart_data: null
+            cart_data: null,
+            lang: "en"
         }
     },
     methods: {
-                setLangCookies() {
+        setLangCookies() {
             let langCheck = document.cookie.indexOf('lang')
 
             this.is_cookies = langCheck >= 0 ? true : false

@@ -2793,5 +2793,16 @@ p.stock.out {
   border-right: none;
   border-left: 1px solid #d5dfe4;
 }
+.ar .input img {
+  right: 1rem;
+  left: auto;
+}
+.ar .contact_wrapper .contact-info .container > div h1 {
+  text-align: right;
+}
+.ar .category_wrapper .products .head .sort > div:not(:last-child) {
+  border-left: 1px solid #d5dfe4;
+  border-right: none;
+}
 
 /*# sourceMappingURL=home.css.map */

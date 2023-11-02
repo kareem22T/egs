@@ -2,7 +2,7 @@
     <main class="home_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Deals
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Deals' : 'العروض' }}
             </div>
         </div>
 
@@ -34,8 +34,8 @@
                         <div style="width: 100%;display: flex;flex-direction: column;gap: 1rem;">
                             <div class="head">
                                 <div class="cat">{{ product.sub_category.name }}</div>
-                                <div class="discount" v-if="product.price_after_discount">Save: {{ (product.price -
-                                    product.price_after_discount).toLocaleString() }} EGP</div>
+                                <div class="discount" v-if="product.price_after_discount">{{ lang == "en" ? "Save" : "وفر" }}: {{ (product.price -
+                                    product.price_after_discount).toLocaleString() }} >{{ lang == "en" ? "EGP" : "جنيه" }}</div>
                             </div>
                             <div class="thumbanail">
                                 <img :src="product.product_type == 1 ? product.main_image : product.img">
@@ -91,6 +91,7 @@ export default {
             deal_products: null,
             deal_cards: null,
             deals: null,
+            lang: 'en'
         }
     },
     components: {
@@ -103,10 +104,54 @@ export default {
         };
     },
     methods: {
+                setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
         async getDeals() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/products/deals`,
+                {
+                    headers: {
+                        "lang": this.lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -155,9 +200,13 @@ export default {
                 console.error(error);
             }
         },
+        getHomeData() {
+            this.setLangCookies()
+            this.getDeals()
+        },
     },
     created() {
-        this.getDeals()
+        this.getHomeData()
     },
     mounted() {
         $(`.deals_link`).addClass('active')

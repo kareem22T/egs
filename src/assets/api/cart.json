@@ -5,7 +5,12 @@
         "total": "Total",
         "egp": "EGP",
         "cart_total": "Cart Total",
-        "checkout": "Process To Checkout"
+        "checkout": "Process To Checkout",
+        "empty": "Your Cart is Empty",
+        "changes_msg": "There are some changes happend in your cart!",
+        "changes_span": "Could consider some elements are finished",
+        "ok": "OK",
+        "payment_field": "Payment failed, please try again!"
     }, 
     "ar": {
         "price": "السعر",
@@ -13,7 +18,11 @@
         "total": "المجموع",
         "egp": "جنيه",
         "cart_total": "إجمالي العربة",
-        "checkout": "اتمام الشراء"
-
+        "checkout": "اتمام الشراء",
+        "empty": "عربة التسوق فارغة",
+        "changes_msg": "حدث بعض التغيرات في عربة التسوق الخاصة بك",
+        "changes_span": "قد تكون تغيرات في الاسعار او نفاذ الكميات",
+        "ok": "حسنآ",
+        "payment_field": "فشل عملية الدفع, حاول مرة اخرى"
     }
 }

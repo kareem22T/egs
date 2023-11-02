@@ -2,7 +2,7 @@
     <main class="news_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> News
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'News' : 'الاخبار' }}
             </div>
         </div>
         <div class="container">
@@ -18,7 +18,7 @@
                             </p>
                             <div>
                                 <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
-                                <router-link  :to="`/news/${article.id}`" class="read-more">Read More <i class="fa-solid fa-angle-right"></i></router-link>
+                                <router-link  :to="`/news/${article.id}`" class="read-more">{{ lang == 'en' ? 'Read More' : 'عرض المزيد' }} <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i></router-link>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,8 @@ export default {
             news: null,
             total: 0,
             last_page: 1,
-            page: 1
+            page: 1,
+            lang: 'en'
         }
     },
     methods: {
@@ -65,6 +66,11 @@ export default {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/news?per_page=20&page=${page}`,
+                {
+                    headers: {
+                        "lang": this.lang
+                    }
+                }
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
@@ -110,9 +116,52 @@ export default {
                 behavior: "smooth",
             });
         },
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        getHomeData() {
+            this.setLangCookies()
+            this.getNews(this.page)
+        },
     },
     created() {
-        this.getNews(this.page)
+        this.getHomeData()
     },
     mounted() {
         // $(document).on('click', '.question', function () {

@@ -2,49 +2,49 @@
     <main class="card_wrapper checkout_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">Home</router-link> <i class="fa-solid fa-chevron-right"></i> Checkout
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Checkout' : 'اتمام الشراء' }}
             </div>
         </div>
         <div class="container">
             <div class="table_wrapper" v-if="cart && cart.length > 0">
                 <div class="head">
-                    <h1>Billing Details</h1>
+                    <h1>{{ page_data.head }}</h1>
                     <hr>
                 </div>
                 <form action="">
                     <div class="form-group">
-                        <label for="name">Full Name</label>
+                        <label for="name">{{ lang == 'en' ? 'Full Name' : 'الاسم كامل' }}</label>
                         <input type="text" name="name" id="name" v-model="name">
                     </div>
                     <div class="form-group">
-                        <label for="country">Country</label>
+                        <label for="country">{{ lang == 'en' ? 'Country' : 'البلد' }}</label>
                         <input type="text" name="country" id="country" v-model="country">
                     </div>
                     <div class="form-group">
-                        <label for="city">City</label>
+                        <label for="city">{{ lang == 'en' ? 'City' : 'المدينة' }}</label>
                         <input type="text" name="city" id="city" v-model="city">
                     </div>
                     <div class="form-group">
-                        <label for="street">Street</label>
+                        <label for="street">{{ lang == 'en' ? 'Street' : 'الشارع' }}</label>
                         <input type="text" name="street" id="street" v-model="street">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
+                        <label for="phone">{{ lang == 'en' ? 'Phone Number' : 'رقم الهاتف' }}</label>
                         <input type="text" name="phone" id="phone" v-model="phone">
                     </div>
                     <div class="form-group">
-                        <label for="home">Home Number</label>
+                        <label for="home">{{ lang == 'en' ? 'Home Number' : 'رقم المنزل' }}</label>
                         <input type="text" name="home" id="home" v-model="home">
                     </div>
                 </form>
             </div>
             <div class="total" v-if="cart && cart.length > 0">
                 <div class="head">
-                    Your Order
+                    {{ lang == 'en' ? 'Your Order' : 'طلبك' }}
                 </div>
                 <div class="bottom">
                     <div class="products">
-                        <h5>Products <span>Total</span></h5>
+                        <h5>{{ lang == 'en' ? 'Products' : 'المنتجات' }} <span>{{ lang == 'en' ? 'Total' : 'المجموع' }}</span></h5>
                         <p v-for="product in cart" :key="product.id">
                             {{ product.name.length >= 40 ? product.name.slice(0, 40) + '...' : product.name }}
                             <span>
@@ -52,7 +52,7 @@
                                 {{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }}
                             </span>
                         </p>
-                        <h5>Choose payment method</h5>
+                        <h5>{{ lang == 'en' ? 'Choose payment method' : 'اختر طريقة الدفع' }}</h5>
                         <form action="">
                             <div class="form-group">
                                 <label for="payment_method_0"  :class="payment_method === '0' ? 'selected' : ''">
@@ -60,7 +60,8 @@
                                     Credit/Debit Cards
                                 </label>
                                 <span v-if="payment_method == '0'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                    Credit - Debit - Meeza - Prepaid</span>
+                                    {{ lang == 'en' ? 'Credit - Debit - Meeza - Prepaid' : 'اختر ائتمان - خصم مباشر - مدفوعة مقدما - ميزة' }}
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_1" :class="payment_method === '1' ? 'selected' : ''">
@@ -68,7 +69,8 @@
                                     Mobile Wallet
                                 </label>
                                     <span v-if="payment_method == '1'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Vodafone Cash - Orange Cash - Etisalat Cash - WE Pay- All banks’ mobile wallets</span>
+                                        {{ lang == 'en' ? 'Vodafone Cash - Orange Cash - Etisalat Cash - WE Pay- All banks’ mobile wallets' : 'فودافون كاش - اورانج كاش - اتصالات كاش - خدمة وي للمدفوعات - المحافظ الالكترونية البنكية' }}
+                                    </span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_2" :class="payment_method == 2 ? 'selected' : ''">
@@ -76,7 +78,9 @@
                                     Fawry
                                 </label>
                                     <span v-if="payment_method == 2" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Pay by cash at any kiosk or shop with Fawry logo through Fawry Pay</span>
+                                    {{ lang == 'en' ? 'Pay by cash at any kiosk or shop with Fawry logo through Fawry Pay' : 'الدفع كاش من خلال الأكشاك والمحلات التي تحمل علامة فورى من خلال خدمة فورى باى' }}
+                                    
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_3" :class="payment_method == 3 ? 'selected' : ''">
@@ -84,7 +88,8 @@
                                     Aman / Masary
                                 </label>
                                     <span v-if="payment_method == 3" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Pay by cash at any kiosk or shop with Aman/Masary logo</span>
+                                    {{ lang == 'en' ? 'Pay by cash at any kiosk or shop with Aman/Masary logo' : 'الدفع كاش من خلال الأكشاك والمحلات التي تحمل علامة أمان/ مصارى' }}
+                                    </span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_4" :class="payment_method == 4 ? 'selected' : ''">
@@ -92,7 +97,8 @@
                                     valU Installment
                                 </label>
                                     <span v-if="payment_method == 4" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Pay in installments until 60 Months with valid ValU account - minimum order 500 EGP </span>
+                                        {{ lang == 'en' ? 'Pay in installments until 60 Months with valid ValU account - minimum order 500 EGP' : 'التقسيط من خلال خدمة فاليو بحد أدنى 500 جنيه للطلب حتى 60 شهر بشرط استخدام حساب مفعل ' }} 
+                                    </span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_5" :class="payment_method == 5 ? 'selected' : ''">
@@ -100,7 +106,8 @@
                                     Credit Card Installment
                                 </label>
                                     <span v-if="payment_method == 5" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Participating banks (NBE - Bank Misr - NBD - CIB -NBK - Mashreq ) - Installment periods are shown after you enter your card information and before payment confirmation.</span>
+                                        {{ lang == 'en' ? 'Participating banks (NBE - Bank Misr - NBD - CIB -NBK - Mashreq ) - Installment periods are shown after you enter your card information and before payment confirmation.' : 'التقسيط من خلال الكروت الائتمانية فيزا وماستر كارد للبنوك التالية ( الاهلي المصري - مصر - التجاري الدولي - الكويت الوطنى- المشرق - دبى الوطني) يتم عرض المدد بعد ادخال بيانات البطاقة و قبل تأكيد الدفع' }} 
+                                    </span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_6" :class="payment_method == 6 ? 'selected' : ''">
@@ -108,7 +115,8 @@
                                     Contact Installment
                                 </label>
                                     <span v-if="payment_method == 6" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Pay in installments (6-12-24 Months) with a valid Contact account - minimum order 500 EGP</span>
+                                        {{ lang == 'en' ? 'Pay in installments (6-12-24 Months) with a valid Contact account - minimum order 500 EGP' : 'التقسيط من خلال خدمة كونتكت وبحد أدنى 500 جنيه للطلب حتي 24 شهر  بشرط استخدام حساب مفعل' }} 
+                                    </span>
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_7" :class="payment_method == 7 ? 'selected' : ''">
@@ -116,7 +124,8 @@
                                     Forsa Installment
                                 </label>
                                     <span v-if="payment_method == 7" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                        Pay in installments with valid Forsa account - minimum order 500 EGP </span>
+                                    {{ lang == 'en' ? 'Pay in installments with valid Forsa account - minimum order 500 EGP' : 'التقسيط من خلال خدمة فرصة بحد أدنى 500 جنيه للطلب حتي 24 شهر  بشرط استخدام حساب مفعل' }}  
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_8" :class="payment_method == 8 ? 'selected' : ''">
@@ -124,10 +133,13 @@
                                     Cash on delivery
                                 </label>
                                 <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
-                                    Pay in Cash to delivery agent or at our store locations or delivery points all over Egypt</span>
+                                    {{ lang == 'en' ? 'Pay in Cash to delivery agent or at our store locations or delivery points all over Egypt' : 'الدفع عند الاستلام من خلال مندوب التوصيل او في فروعنا او من خلال نقاط التوصيل المنتشرة بالمحافظات' }}  
+                                </span>
                             </div>
                         </form>
-                        <h5>Choose shipping method</h5>
+                        <h5>
+                            {{ lang == 'en' ? 'Choose shipping method' : 'اختر طريقة الشحن' }}  
+                        </h5>
                         <form action="">
                             <div class="form-group" v-if="!products.length">
                                 <label for="shipping_method_1"  :class="shipping_method === '1' ? 'selected' : ''">
@@ -149,24 +161,24 @@
                             </div>
                         </form>
                         <div class="form-group" style="flex-direction: column; margin-top: 10px; gap: 0px; align-items: start;">
-                            <label for="coupon">Coupon</label>
-                            <input type="text" name="coupon" id="coupon" v-model="coupon" @input="checkCoupon(coupon, shipping_method)" placeholder="Coupon">
+                            <label for="coupon">{{ lang == 'en' ? 'Coupon' : 'قسيمة الخصم' }}</label>
+                            <input type="text" name="coupon" id="coupon" v-model="coupon" @input="checkCoupon(coupon, shipping_method)" :placeholder="lang == 'en' ? 'Coupon' : 'الكود'">
                         </div>
-                        <h5>Subtotal <span>{{ total.toLocaleString() }} EGP</span></h5>
-                        <h5 v-if="shipping_money">Shipping <span>{{ shipping_money.toLocaleString() }} EGP</span></h5>
-                        <h5 v-if="coupon_discount && coupon">Discount <span>- {{ coupon_discount.toLocaleString() }} EGP</span></h5>
-                        <h4>Total <span>{{ (total + shipping_money - coupon_discount).toLocaleString() }} EGP</span></h4>
+                        <h5>{{ lang == 'en' ? 'Subtotal' : 'المجموع الفرعي' }} <span>{{ total.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
+                        <h5 v-if="shipping_money">{{ lang == 'en' ? 'Shipping' : 'الشحن' }} <span>{{ shipping_money.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
+                        <h5 v-if="coupon_discount && coupon">{{ lang == 'en' ? 'Discount' : 'خصم' }} <span>- {{ coupon_discount.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
+                        <h4>{{ lang == 'en' ? 'Total' : "المجموع" }} <span>{{ (total + shipping_money - coupon_discount).toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h4>
                     </div>
-                    <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">Place Order</button>
+                    <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">{{ lang == 'en' ? 'Place Order' : 'اكمل الطلب' }}</button>
                 </div>
             </div>
             <h1 v-if="!cart || cart.length == 0"
-                style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">Your Cart is Empty</h1>
+                style="width:100%;margin: 5rem 0px; text-align: center; color: rgb(113, 113, 113);">{{ lang == "en" ? "Your Cart is Empty" : "عربة التسوق فارغة" }}</h1>
         </div>
         <div class="hide-content" v-if="payment_msg_popup"></div>
         <div class="pop-up" v-if="payment_msg_popup">
             <p v-html="payment_msg"></p>
-            <button @click="this.$router.push('/my-orders')">OK</button>
+            <button @click="this.$router.push('/my-orders')">{{ lang == "en" ? "Ok" : "حسنا" }}</button>
         </div>
     </main>
 </template>
@@ -204,16 +216,58 @@ export default {
             payment_msg_popup: false,
             order_id: null,
             installment_option: false,
+            lang: 'en',
+            page_data: null
         }
     },
     methods: {
-        async getCart() {
+        setLangCookies() {
+            let langCheck = document.cookie.indexOf('lang')
+
+            this.is_cookies = langCheck >= 0 ? true : false
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            } // to get an cookie by name ##############################
+
+            if (langCheck !== -1) {
+                this.lang = getCookie('lang') // check lang cookie exist ##############################
+            }
+
+            if (sessionStorage.getItem("lang"))
+                this.lang = sessionStorage.getItem("lang") // check lang session exist ##############################
+
+            sessionStorage.setItem("lang", this.lang); // set lang session ##############################
+
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has('lang')) {
+                this.lang = searchParams.get('lang')
+                document.body.classList.add(searchParams.get('lang')) // add lang class ##############################
+            } else {
+                document.body.classList.add(this.lang) // add lang class ##############################
+            }
+
+        },
+        async getCart(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.get(`https://api.egyptgamestore.com/api/users/cart`,
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": lang
                         },
                     }
                 );
@@ -330,7 +384,8 @@ export default {
                     },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -401,7 +456,8 @@ export default {
                     },
                     {
                         headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
+                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
+                            "lang": this.lang
                         },
                     }
                 );
@@ -436,11 +492,18 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        }    },
+        } ,
+        getHomeData() {
+            this.setLangCookies()
+            let data = require('../assets/api/checkout.json');
+            this.page_data = this.lang == 'ar' ? data.ar : data.en
+            this.getCart(this.lang)
+            this.getIPAddress();
+            this.getCartPrice(this.lang)
+        },  
+    },
     created() {
-        this.getCart()
-        this.getIPAddress();
-        this.getCartPrice()
+        this.getHomeData()
     },
     mounted() {
     },
