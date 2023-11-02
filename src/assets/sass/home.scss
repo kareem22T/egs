@@ -397,6 +397,7 @@
             >div {
                 width: 100%;
                 padding: clamp(1rem, calc(0.9273rem + 0.2909vw), 1.2rem) clamp(1.25rem, calc(1.1227rem + 0.5091vw), 1.6rem);
+                height: 140px;
                 border-radius: 1.25rem;
                 overflow: hidden;
                 position: relative;
@@ -411,7 +412,7 @@
                     height: 100%;
                     left: clamp(-6.875rem, calc(-9.375rem + 10vw), 0rem);
                     top: 0;
-                    object-fit: cover;
+                    object-fit: contain;
                     z-index: 1;
                 }
                 h1 {

@@ -36,9 +36,9 @@
                             </div>
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
-                        <div>
-                            <a :href="hero_slider[3].link" targe="_blanck">{{ hero_slider[3].title }} >> Shop Now</a>
-                            <img :src="hero_slider[3].img" alt="">
+                        <div v-if="topAd">
+                            <a :href="topAd.link" v-if="topAd.link" targe="_blanck">Shop Now</a>
+                            <img :src="topAd.img" alt="">
                         </div>
                     </div>
                 </div>
@@ -133,12 +133,9 @@
         </section>
         <section class="ad-1">
             <div class="container">
-                <div>
-                    <div class="text">
-                        <h1><span>New</span> Accessories In The World Of Games</h1>
-                        <router-link to="">Shop Now</router-link>
-                    </div>
-                    <img src="./../assets/imgs/ad-1.png">
+                <div v-if="bottomAd">
+                    <a :href="bottomAd.link" v-if="bottomAd.link" targe="_blanck">Shop Now</a>
+                    <img :src="bottomAd.img" alt="">
                 </div>
             </div>
         </section>
