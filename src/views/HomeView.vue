@@ -27,12 +27,14 @@
                         <div>
                             <div class="content">
                                 <div>
-                                    <h1>{{ hero_slider[2].title }}</h1>
+                                    <h1>{{ lang == 'en' ? "Build your PC!" : "جمع حاسوبك الان!" }}</h1>
                                     <p>
-                                        {{ hero_slider[2].desc }}
+                                        {{ lang == 'en' ? "We help you make your dream PC come true with free installation." : "نحن نساعدك على تجميع جهاز الكمبيوتر الذي تحلم به بدون رسوم للخدمة" }}
+                                        <br>
+                                        {{ lang == 'en' ? "Cheap price and shipping everywhere" : "سعر رخيص والشحن الي كل مكان" }}
                                     </p>
                                 </div>
-                                <a :herf="hero_slider[2].link">Shop Now</a>
+                                <router-link to="/build-pc">Shop Now</router-link>
                             </div>
                             <img src="./../assets/imgs/hero-card-1.jpg" alt="">
                         </div>
