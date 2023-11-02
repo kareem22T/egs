@@ -34,7 +34,7 @@
                         <select name="per_pag" id="per_page" v-model="sort_by_price" @change="fetchProducts(this.categoryId)">
                             <option value="" selected>.................</option>
                             <option value="asc_price">{{ lang == 'en' ? 'Price Low To High' : 'السعر من الارخص للاعلى' }}</option>
-                            <option value="desc_price">{{ lang == 'en' ? 'price high To Low' : 'السعر من الاعلى للارخص' }}</option>
+                            <option value="desc_price">{{ lang == 'en' ? 'Price High To Low' : 'السعر من الاعلى للارخص' }}</option>
                         </select>
                     </div>
                 </div>
