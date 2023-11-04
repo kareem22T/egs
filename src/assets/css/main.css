@@ -401,6 +401,29 @@ header.main .body .container .left nav .mobile-more, header.main .body .containe
   header.main .body .container .left nav span {
     display: none !important;
   }
+  header.main .body .container .left nav .lang_mobile span {
+    display: block !important;
+    position: static;
+    height: auto !important;
+    border: none;
+    background: transparent;
+    width: auto !important;
+  }
+  header.main .body .container .left nav .lang_mobile .more_lang {
+    position: absolute;
+    background: white;
+    border: 1px solid #d5dfe4;
+    padding: 3px 20px;
+    border-radius: 10px;
+    top: 120%;
+    box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+  }
 }
 header.main .body .container .left nav a {
   font-size: clamp(1rem, calc(-0.3125rem + 1vw), 1.25rem);
@@ -620,9 +643,19 @@ header.main .body .container .right .controls ul a {
   display: none !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 855px) {
   .lang_mobile {
     display: flex !important;
+    position: relative;
+    gap: 6px !important;
+  }
+  .lang_mobile span {
+    display: block !important;
+    position: static;
+    height: auto;
+    border: none;
+    background: transparent;
+    width: auto;
   }
 }
 

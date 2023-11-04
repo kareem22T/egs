@@ -150,6 +150,29 @@ header {
                             span {
                                 display: none !important
                             }
+                            .lang_mobile span {
+                                display: block !important;
+                                position: static;
+                                height: auto !important;
+                                border: none;
+                                background: transparent;
+                                width: auto !important;
+                            }
+                            .lang_mobile .more_lang {
+                                position: absolute;
+                                background: white;
+                                border: 1px solid #d5dfe4;
+                                padding: 3px 20px;
+                                border-radius: 10px;
+                                top: 120%;
+                                box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
+                                display: flex !important;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 10px 20px;
+                            }
                         }
                         a {
                             @extend %flex-center;
@@ -381,8 +404,19 @@ header.main .body .container .right .controls ul a {
 .lang_mobile {
     display: none !important;
 }
-@media (max-width: 600px) {
+@media (max-width: 855px) {
     .lang_mobile {
         display: flex !important;
+        position: relative;
+        gap: 6px !important;
+            
+        span {
+            display: block !important;
+            position: static;
+            height: auto;
+            border: none;
+            background: transparent;
+            width: auto;
+        }
     }
 }

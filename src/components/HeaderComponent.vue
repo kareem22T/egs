@@ -55,12 +55,16 @@
                         <a href="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></a>
                         <a href="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></a>
                         <router-link class="deals_link" to="/deals">{{ page_data.deals }}<span></span></router-link>
-                        <a href="" class="lang_mobile">
+                        <a href="" class="lang_mobile" @click.prevent="this.showLangMore = !this.showLangMore">
                             <i class="fa fa-globe"></i>
-                            <select v-model="lang" @change="changeLang()" style="color: #0b5177;">
-                                <option value="en">English</option>
-                                <option value="ar">العربية</option>
-                            </select>
+                            <span>
+                                {{ lang == 'en' ? "English" : "العربية" }}
+                            </span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <span style="color: #0b5177;" v-if="showLangMore" class="more_lang">
+                                <span @click="lang = 'en', changeLang()">English</span>
+                                <span @click="lang = 'ar', changeLang()">العربية</span>
+                            </span>
                         </a>
 
                         <div class="mobile-more">
@@ -167,6 +171,7 @@ export default {
             cards: null,
             lang: "en",
             page_data: null,
+            showLangMore: false
         }
     },
     methods: {
