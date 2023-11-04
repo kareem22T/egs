@@ -140,7 +140,7 @@
                             <p>{{ item.sub_category.name }}</p>
                             <h4 class="prod-name">
                                 {{ item.name.length >= 39 ? item.name.slice(0, 39) + '...' :  item.name }}
-                                <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
+                                <div class="hint-pop-up" v-if="item && item.name.length > 39">{{ item.name }}</div>
                             </h4>
                         </div>
                         <div>
