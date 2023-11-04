@@ -378,3 +378,11 @@ footer {
 header.main .body .container .right .controls ul a {
     padding: .5rem 1rem;
 }
+.lang_mobile {
+    display: none !important;
+}
+@media (max-width: 600px) {
+    .lang_mobile {
+        display: flex !important;
+    }
+}

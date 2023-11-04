@@ -55,7 +55,7 @@
                         <a href="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></a>
                         <a href="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></a>
                         <router-link class="deals_link" to="/deals">{{ page_data.deals }}<span></span></router-link>
-                        <a href="">
+                        <a href="" class="lang_mobile">
                             <i class="fa fa-globe"></i>
                             <select v-model="lang" @change="changeLang()" style="color: #0b5177;">
                                 <option value="en">English</option>
