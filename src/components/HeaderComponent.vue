@@ -55,17 +55,23 @@
                         <a href="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></a>
                         <a href="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></a>
                         <router-link class="deals_link" to="/deals">{{ page_data.deals }}<span></span></router-link>
+                        <a href="">
+                            <i class="fa fa-globe"></i>
+                            <select v-model="lang" @change="changeLang()" style="color: #0b5177;">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                            </select>
+                        </a>
 
                         <div class="mobile-more">
                             <ul>
                                 <a href="tel:01145636999">
                                     <i class="fa fa-phone"></i>
+                                    {{ lang == 'en' ? "Call Us" : "اتصل بنا" }}
                                 </a>
                                 <a href="mailto:support@egyptgamestore.com">
                                     <i class="fa fa-envelope"></i>
-                                </a>
-                                <a href="">
-                                    <i class="fa fa-globe"></i>
+                                    {{ lang == 'en' ? "Email Us" : "راسلنا" }}
                                 </a>
                             </ul>
                             <ul>

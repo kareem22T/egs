@@ -31,7 +31,7 @@
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
                 <div class="input">
-                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" v-model="password_confirmation">
+                    <input type="password" name="password_confirmation" id="password_confirmation" :placeholder="lang == 'en' ? 'Confirm Password' : 'تاكيد كلمة المرور'" v-model="password_confirmation">
                     <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
                 </div>
                 <button type="submit" class="button" @click="registerMethod(this.email, this.phone, this.dob, this.password, this.password_confirmation)">{{ lang == 'en' ? 'Register Account' : 'انشاء حساب' }}</button>
