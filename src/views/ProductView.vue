@@ -62,7 +62,7 @@
                                 <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>{{ product_data.egp }}</span></h1>
                                 <h1><span>{{ product.price.toLocaleString() }}</span> <span>{{ product_data.egp }}</span></h1>
                             </div>
-                            <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
+                            <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
 
                         <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> {{ product_data.saved }}: {{  (product.price - product.price_after_discount).toLocaleString() }} {{ product_data.egp }}</div>
                         </div>

@@ -67,7 +67,7 @@
                                     <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
                                     <h1>{{ item.price.toLocaleString() }}</h1>
                                 </div>
-                                <p class="stock" :class="item.type == 0 ? 'in' : (item.type == 1 ? 'managed' : 'out')">{{ item.type == 0 ? 'In Stock' : (item.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
+                                <p class="stock" :class="item.type == 0 ? 'in' : (item.type == 1 ? 'managed' : 'out')">{{ item.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (item.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
                             </div>
                         </div>
                     </a>

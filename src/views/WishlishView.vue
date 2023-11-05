@@ -27,7 +27,7 @@
                             <td>
                                 <div class="stock">
                                     <span>{{ lang == 'en' ? 'Stock Status' : 'الكمية المتوفرة' }}</span>
-                                    <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? 'In Stock' : (product.type == 1 ? 'Managed Stock' : 'Out Of Stock') }}</p>
+                                    <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
                                     </div>
                             </td>
                             <td>
