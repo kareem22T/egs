@@ -31,7 +31,7 @@
                 </div>
             </div> -->
 
-            <div class="pagination" v-if="last_page > 1">
+            <div class="pagination" v-if="last_page > 1" style="flex-wrap: wrap;">
             <div v-for="pageNumber in displayedPages" :key="pageNumber">
                 <label :for="`page_num_${pageNumber}`" :class="pageNumber == page ? 'active' : ''" @click="goToTop">{{ pageNumber }}</label>
                 <input type="radio" name="page_num" :id="`page_num_${pageNumber}`" v-model="page" :value="pageNumber" @change="getNews(pageNumber)">

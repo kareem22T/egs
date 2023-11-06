@@ -33,8 +33,8 @@
                             <img src="./../assets/imgs/globe-solid-white.svg" alt="email icon">
                             <li>
                                 <select v-model="lang" @change="changeLang()">
-                                    <option value="en">English</option>
-                                    <option value="ar">العربية</option>
+                                    <option style="color: #000;" value="en">English</option>
+                                    <option style="color: #000;" value="ar">العربية</option>
                                 </select>
                             </li>
                         </router-link>
