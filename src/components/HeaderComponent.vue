@@ -52,8 +52,8 @@
                         <a href="" class="close"><i class="fa fa-close"></i></a>
                         <router-link to="/" class="active home_link">{{ page_data.home }}<span></span></router-link>
                         <a href="https://w2eg.com/">World2Egypt<span></span></a>
-                        <a href="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></a>
-                        <a href="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></a>
+                        <router-link to="/category/physical-store" class="physical-store">{{ page_data.phy_store }}<span></span></router-link>
+                        <router-link to="/category/digital-store" class="digital-store">{{ page_data.card_store }}<span></span></router-link>
                         <router-link class="deals_link" to="/deals">{{ page_data.deals }}<span></span></router-link>
                         <a href="" class="lang_mobile" @click.prevent="this.showLangMore = !this.showLangMore">
                             <i class="fa fa-globe"></i>
@@ -128,7 +128,7 @@
                 <input type="text" name="search" id="search" :placeholder="page_data.search_text" v-model="search" @keyup="getSugesstions()" @keyup.enter="goToSearch" @focus="showSuggesstion = true" @blur="showSuggesstion = false">
                 <i class="fa fa-search" style="cursor: pointer" @click="goToSearch"></i>
                 <div class="suggestions suggestions2" v-if="results && results.length">
-                    <a :href="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id">{{ item.name }}</a>
+                    <router-link :to="item.product_type == 1 ? `/product/${item.id}` : `/card/${item.id}`" v-for="item in results.slice(0, 5)" :key="item.id" @click="showSearchPopUp = false">{{ item.name }}</router-link>
                     <a href="" style="text-align: center !important; font-weight: 600 !important" @click.prevent="goToSearch" v-if="results && results.length > 5">{{ page_data.view_all }}</a>
                 </div>
             </div>

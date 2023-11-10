@@ -2,7 +2,7 @@
     <div class="category_wrapper">
         <div class="page-head">
             <div class="container">
-                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <a href="/category/digital-store">{{ lang == 'en' ? this.$route.meta.category_name : 'المتجر الرقمي' }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ categoryName.replace(/-/g, " ").charAt(0).toUpperCase() + categoryName.replace(/-/g, " ").replace(/,/g, '/').slice(1) }}
+                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <router-link to="/category/digital-store">{{ lang == 'en' ? this.$route.meta.category_name : 'المتجر الرقمي' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ categoryName.replace(/-/g, " ").charAt(0).toUpperCase() + categoryName.replace(/-/g, " ").replace(/,/g, '/').slice(1) }}
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories">

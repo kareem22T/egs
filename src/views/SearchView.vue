@@ -14,7 +14,7 @@
             <div class="body">
                 <div class="product" v-for="item in results" :key="item.id">
                     <img src="./../assets/imgs/shipping_abroad.png" alt="shipping abroad" class="shipping_icon" v-if="item.shipping_abroad">
-                    <a :href="item.product_type == 1 ? `/product/${item.id}` :  `/card/${item.id}`">
+                    <router-link :to="item.product_type == 1 ? `/product/${item.id}` :  `/card/${item.id}`">
                         <div class="img">
                             <img :src="item.product_type == 1 ? item.main_image : item.img">
                             <!-- <p>{{ item.sub_category.name }}</p> -->
@@ -38,7 +38,7 @@
                                 <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
                         </div>
-                    </a>
+                    </router-link>
                     <button class="add-to-cart" @click="
                     (item.product_type == 1 ?
                         addProductToCart(item.id, 1

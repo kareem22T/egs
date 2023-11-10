@@ -2,7 +2,7 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><a :href="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
+                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><router-link :to="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
                         <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
                 </span>
             </div>
@@ -134,7 +134,7 @@
             <h1>{{ product_data.related }}</h1>
             <div class="body">
                 <div class="product" v-for="item in related_products" :key="item.id">
-                    <a :href="`/product/${item.id}`">
+                    <router-link :to="`/product/${item.id}`">
                         <div class="img">
                             <img :src="item.main_image" :alt="item.name">
                             <p>{{ item.sub_category.name }}</p>
@@ -158,7 +158,7 @@
                                 <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
                         </div>
-                    </a>
+                    </router-link>
                     <button class="add-to-cart" @click="addProductToCart(item.id, 1)">
                         {{ product_data.add_cart }}
                     </button>
@@ -471,6 +471,8 @@ export default {
             }
         },
         getHomeData() {
+            window.scrollTo(0, 0);
+            this.productId = this.$route.params.id
             this.setLangCookies()
             let data = require('../assets/api/product.json');
             this.product_data = this.lang == 'ar' ? data.ar : data.en
@@ -488,6 +490,12 @@ export default {
                 left: e.pageX + 10 // Adjust the position to 10px to the right of the mouse
             });
         });
+    },
+    watch: {
+        '$route.params.id': {
+            handler: 'getHomeData', // Call the getHomeData method when $route.params.id changes
+            immediate: true,       // Call it immediately when the component is created
+        },
     },
     created() {
         $(function () {

@@ -6,14 +6,14 @@
             </div>
         </div>
         <div class="container sub_categories" v-if="subCategories" >
-            <a :href="`/${this.$route.meta.category_path}/${item.name.toLowerCase().replace(/\s+/g, '-').replace(/\//g, ',')}/${item.id}`" v-for="item in subCategories" :key="item.id">
+            <router-link :to="`/${this.$route.meta.category_path}/${item.name.toLowerCase().replace(/\s+/g, '-').replace(/\//g, ',')}/${item.id}`" v-for="item in subCategories" :key="item.id">
                 <div class="img">
                     <img :src="item.logo" :alt="item.name">
                 </div>
                 <h4>
                     {{ item.name }}
                 </h4>
-            </a>
+            </router-link>
         </div>
     </div>
 </template>
@@ -123,8 +123,16 @@ export default {
             }
         },
         getHomeData() {
+            this.categoryType = this.$route.meta.type,
+            this.categoryId = this.$route.meta.id,
             this.setLangCookies()
             this.fetchSubCategories(this.categoryId, this.lang)
+        },
+    },
+    watch: {
+        '$route.meta.category_name': {
+            handler: 'getHomeData', // Call the getData method when $route.meta.category_name changes
+            immediate: true,    // Call it immediately when the component is created
         },
     },
     created() {

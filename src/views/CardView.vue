@@ -2,7 +2,7 @@
     <div class="product_wrapper category_wrapper">
         <div class="page-head">
             <div class="container" v-if="product">
-                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><a :href="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</a> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
+                    <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i><router-link :to="`/digital-store/${product.sub_category.name.toLowerCase().replace(/\s+/g, '-')}/${product.sub_category.id}`">{{ product.sub_category.name }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> <span class="prod-name">{{ product.name.split(' ').length > 4 ? product.name.split(' ').slice(0, 4).join(' ') + ' ...' : product.name }}
                         <div class="hint-pop-up" v-if="product && product.name.split(' ').length > 4">{{ product.name }}</div>
                     </span>
                 </div>
@@ -132,7 +132,7 @@
             <h1>{{ card_data.related }}</h1>
             <div class="body">
                 <div class="product" v-for="item in related_cards" :key="item.id">
-                    <a :href="`/card/${item.id}`">
+                    <router-link :to="`/card/${item.id}`">
                         <div class="img">
                             <img :src="item.img" :alt="item.name">
                             <p>{{ item.sub_category.name }}</p>
@@ -157,7 +157,7 @@
                             </div>
                                 <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
                             </div>
-                    </a>
+                    </router-link>
                     <button class="add-to-cart" @click="addCardToCart(item.id, 1)">
                         {{ card_data.add_cart }}
                     </button>
@@ -441,10 +441,18 @@ export default {
             }
         },
         getHomeData() {
+            window.scrollTo(0, 0);
+            this.productId= this.$route.params.id
             this.setLangCookies()
             this.fetchProduct(this.productId, this.lang)
             let data = require('../assets/api/product.json');
             this.card_data = this.lang == 'ar' ? data.ar : data.en
+        },
+    },
+    watch: {
+        '$route.params.id': {
+            handler: 'getHomeData', // Call the getHomeData method when $route.params.id changes
+            immediate: true,       // Call it immediately when the component is created
         },
     },
     mounted() {

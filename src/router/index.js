@@ -192,7 +192,7 @@ const routes = [
       {
         path: '/category/physical-store',
         component: CategoryView,
-        meta: {id: 2, type: 0, category_name: 'Physical Store', category_path: 'physical-store'}
+        meta: {id: 2, type: 0, category_name: 'Physical Store', category_path: 'physical-store'},
       },
       {
         path: '/category/digital-store',
@@ -208,8 +208,8 @@ const routes = [
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
 router.beforeEach(guestMiddleware);
 router.beforeEach(authMiddleware);
