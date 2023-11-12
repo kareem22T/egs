@@ -363,12 +363,10 @@ export default {
                     } else {
                         $('.loader').fadeOut()
                         document.getElementById('errors').innerHTML = ''
-                        $.each(response.data.errors, function (key, value) {
                             let error = document.createElement('div')
                             error.classList = 'error'
-                            error.innerHTML = value
+                            error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
                             document.getElementById('errors').append(error)
-                        });
                         $('#errors').fadeIn('slow')
 
                         setTimeout(() => {
