@@ -2,7 +2,7 @@
   box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
 }
 
-.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container, .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child, .news_wrapper > .container .news .news .news-card .text, .article_wrapper > .container .news .news .news-card .text, .news_wrapper > .container .news .news .news-card .text .date, .article_wrapper > .container .news .news .news-card .text .date, .news_wrapper > .container .news .news .news-card .text .read-more, .article_wrapper > .container .news .news .news-card .text .read-more, .checkout_wrapper > .container .table_wrapper .head {
+.input-search, .page-head .container, .or, .pagination, .pagination > div label, .home_wrapper .hero .container .row-1 .cards > div, .home_wrapper .hero .container .row-1 .cards > div .content, .home_wrapper .hero .container .row-2, .home_wrapper .hero .container .row-2 > div, .home_wrapper .hero .bg, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .head, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details, .home_wrapper .deals_of_week .container .deals-slider .swiper-slide .details .old_price, .home_wrapper .ad-1 .container > div, .home_wrapper .ad-1 .container > div .text, .home_wrapper .latest .latest-slider .swiper-slide, .home_wrapper .latest .latest-slider .swiper-slide .head, .home_wrapper .latest .latest-slider .swiper-slide .body, .home_wrapper .latest .latest-slider .swiper-slide .body .thumbanail, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price h1:last-child, .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate, .home_wrapper .news .container:first-child .head > div, .home_wrapper .news .container:last-child .news .news-card .text, .home_wrapper .news .container:last-child .news .news-card .text .date, .home_wrapper .news .container:last-child .news .news-card .text .read-more, .contact_wrapper > .container .head, .contact_wrapper .contact-info .container, .faq_wrapper > .container, .wishlist_wrapper > .container, .orders_wrapper > .container, .faq_wrapper > .container .questions, .wishlist_wrapper > .container .questions, .orders_wrapper > .container .questions, .faq_wrapper > .container .questions .question .question-value, .wishlist_wrapper > .container .questions .question .question-value, .orders_wrapper > .container .questions .question .question-value, .category_wrapper .products .body .product a .rate, .category_wrapper .products .body .product a .price h1:nth-child(2), .product_wrapper .container .head, .product_wrapper .container .head .cat, .product_wrapper .container .head .right, .product_wrapper .container .head .right > div:first-child a, .product_wrapper .container .head .right > div:last-child, .product_wrapper .container .head .right > div:last-child a, .product_wrapper .container .body .imgs, .product_wrapper .container .body .imgs .side, .product_wrapper .container .body .content .top .rate, .product_wrapper .container .body .content .top .price h1, .product_wrapper .container .body .content .top .price h1:nth-child(2) span:first-child, .news_wrapper > .container .news .news .news-card .text, .article_wrapper > .container .news .news .news-card .text, .news_wrapper > .container .news .news .news-card .text .date, .article_wrapper > .container .news .news .news-card .text .date, .news_wrapper > .container .news .news .news-card .text .read-more, .article_wrapper > .container .news .news .news-card .text .read-more, .checkout_wrapper > .container .table_wrapper .head {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -381,9 +381,11 @@ input:focus, textarea:focus {
 }
 @media (max-width: 690px) {
   .home_wrapper .hero .container .row-1 .cards {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  .home_wrapper .hero .container .row-1 .cards > div {
+    min-height: 200px !important;
   }
 }
 .home_wrapper .hero .container .row-1 .cards > div {
@@ -895,24 +897,24 @@ input:focus, textarea:focus {
   width: fit-content;
   gap: .5rem;
 }
-.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .new_price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #e63b12;
-}
-.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price {
-  font-size: .85rem;
+.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price h1:last-child {
+  font-size: .9rem;
   color: #0b5177;
   font-weight: 700;
   position: relative;
 }
-.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price::after {
+.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .old_price::after, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price h1:last-child::after {
   content: '';
   position: absolute;
   width: 105%;
   height: 1.5px;
   transform: translateY(1px);
   background-color: #000;
+}
+.home_wrapper .latest .latest-slider .swiper-slide .body .details .price .new_price, .home_wrapper .latest .latest-slider .swiper-slide .body .details .price h1:first-child {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e63b12;
 }
 .home_wrapper .latest .latest-slider .swiper-slide .body .details .rate {
   width: fit-content;

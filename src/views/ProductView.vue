@@ -114,15 +114,15 @@
 
             <div class="details">
                 <div class="header">
-                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">{{ product_data.specification }}</a>
+                    <a href="" v-if="product && product.specifications.length > 0" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">{{ product_data.specification }}</a>
                     <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">{{ product_data.descreption }}</a>
                     <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">{{ product_data.reviews }}</a>
                 </div>
                 <div class="body">
                     <div class="table" v-if="show_speci">
-                        <div class="row">
-                            <div class="title">{{ product_data.brand }}</div>
-                            <div class="value">{{ product.sub_sub_category.name }}</div>
+                        <div class="row" v-for="spsi in product.specifications" :key="spsi.id">
+                            <div class="title">{{ spsi.key }}</div>
+                            <div class="value">{{ spsi.value }}</div>
                         </div>
                     </div>
                     <div class="desc" v-if="show_desc" v-html="product.desc">
@@ -469,6 +469,9 @@ export default {
             }
         },
         getHomeData() {
+            this.show_speci = false;
+            this.show_desc = true;
+            this.show_rev = false;
             window.scrollTo(0, 0);
             this.productId = this.$route.params.id
             this.setLangCookies()

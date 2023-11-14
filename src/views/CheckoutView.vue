@@ -56,7 +56,7 @@
                         <form action="">
                             <div class="form-group">
                                 <label for="payment_method_0"  :class="payment_method === '0' ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_0" v-model="payment_method" value="0">
+                                    <input type="radio" name="payment_method" id="payment_method_0" v-model="payment_method" value="0" @change="getCartPrice">
                                     Credit/Debit Cards
                                 </label>
                                 <span v-if="payment_method == '0'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_1" :class="payment_method === '1' ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_1" v-model="payment_method" value="1">
+                                    <input type="radio" name="payment_method" id="payment_method_1" v-model="payment_method" value="1" @change="getCartPrice">
                                     Mobile Wallet
                                 </label>
                                     <span v-if="payment_method == '1'" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_2" :class="payment_method == 2 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_2" v-model="payment_method" value="2">
+                                    <input type="radio" name="payment_method" id="payment_method_2" v-model="payment_method" value="2" @change="getCartPrice">
                                     Fawry
                                 </label>
                                     <span v-if="payment_method == 2" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -84,7 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="payment_method_3" :class="payment_method == 3 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_3" v-model="payment_method" value="3">
+                                    <input type="radio" name="payment_method" id="payment_method_3" v-model="payment_method" value="3" @change="getCartPrice">
                                     Aman / Masary
                                 </label>
                                     <span v-if="payment_method == 3" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_4" :class="payment_method == 4 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_4" v-model="payment_method" value="4">
+                                    <input type="radio" name="payment_method" id="payment_method_4" v-model="payment_method" value="4" @change="getCartPrice">
                                     valU Installment
                                 </label>
                                     <span v-if="payment_method == 4" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -102,7 +102,7 @@
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_5" :class="payment_method == 5 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_5" v-model="payment_method" value="5">
+                                    <input type="radio" name="payment_method" id="payment_method_5" v-model="payment_method" value="5" @change="getCartPrice">
                                     Credit Card Installment
                                 </label>
                                     <span v-if="payment_method == 5" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_6" :class="payment_method == 6 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_6" v-model="payment_method" value="6">
+                                    <input type="radio" name="payment_method" id="payment_method_6" v-model="payment_method" value="6" @change="getCartPrice">
                                     Contact Installment
                                 </label>
                                     <span v-if="payment_method == 6" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -120,16 +120,16 @@
                             </div>
                             <div class="form-group" v-if="installment_option">
                                 <label for="payment_method_7" :class="payment_method == 7 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_7" v-model="payment_method" value="7">
+                                    <input type="radio" name="payment_method" id="payment_method_7" v-model="payment_method" value="7" @change="getCartPrice">
                                     Forsa Installment
                                 </label>
                                     <span v-if="payment_method == 7" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
                                     {{ lang == 'en' ? 'Pay in installments with valid Forsa account - minimum order 500 EGP' : 'التقسيط من خلال خدمة فرصة بحد أدنى 500 جنيه للطلب حتي 24 شهر  بشرط استخدام حساب مفعل' }}  
                                 </span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="shipping_method != '1'">
                                 <label for="payment_method_8" :class="payment_method == 8 ? 'selected' : ''">
-                                    <input type="radio" name="payment_method" id="payment_method_8" v-model="payment_method" value="8">
+                                    <input type="radio" name="payment_method" id="payment_method_8" v-model="payment_method" value="8"  @change="getCartPrice">
                                     Cash on delivery
                                 </label>
                                 <span v-if="payment_method == 8" style="padding: 10px;display: block;margin-top: 10px;border-radius: .4rem;font-size: 13px;background: #d5dfe440;text-align: center;white-space: break-spaces;max-width: 320px;">
@@ -141,7 +141,7 @@
                             {{ lang == 'en' ? 'Choose shipping method' : 'اختر طريقة الشحن' }}  
                         </h5>
                         <form action="">
-                            <div class="form-group" v-if="!products.length">
+                            <div class="form-group" v-if="!products.length && payment_method != 8">
                                 <label for="shipping_method_1"  :class="shipping_method === '1' ? 'selected' : ''">
                                     <input type="radio" name="shipping_method" id="shipping_method_1" v-model="shipping_method" value="1" @change="getCartPrice">
                                     Online
@@ -166,8 +166,9 @@
                         </div>
                         <h5>{{ lang == 'en' ? 'Subtotal' : 'المجموع الفرعي' }} <span>{{ total.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
                         <h5 v-if="shipping_money">{{ lang == 'en' ? 'Shipping' : 'الشحن' }} <span>{{ shipping_money.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
+                        <h5 v-if="payment_fees">{{ lang == 'en' ? 'Payment Fees' : 'تكاليف الدفع' }} <span>{{ payment_fees.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
                         <h5 v-if="coupon_discount && coupon">{{ lang == 'en' ? 'Discount' : 'خصم' }} <span>- {{ coupon_discount.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
-                        <h4>{{ lang == 'en' ? 'Total' : "المجموع" }} <span>{{ (total + shipping_money - coupon_discount).toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h4>
+                        <h4>{{ lang == 'en' ? 'Total' : "المجموع" }} <span>{{ (total + payment_fees + shipping_money - coupon_discount).toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h4>
                     </div>
                     <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">{{ lang == 'en' ? 'Place Order' : 'اكمل الطلب' }}</button>
                 </div>
@@ -217,7 +218,8 @@ export default {
             order_id: null,
             installment_option: false,
             lang: 'en',
-            page_data: null
+            page_data: null,
+            payment_fees: 0,
         }
     },
     methods: {
@@ -333,6 +335,48 @@ export default {
                     $('.loader').fadeOut()
                     this.shipping_money = response.data.data.shipping_fees
                     this.installment_option = response.data.data.installment_option
+                    switch (this.payment_method) {
+                        case '0':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.credit_fees);
+                            break;
+
+                        case '1':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.wallet_fees);
+                            break;
+
+                        case '2':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.fawry_fees);
+                            break;
+
+                        case '3':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.aman_masary_fees);
+                            break;
+
+                        case '4':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.valu_fees);
+                            break;
+
+                        case '5':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.bank_installments_fees);
+                            break;
+
+                        case '6':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.contact_fees);
+                            break;
+
+                        case '7':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.forsa_fees);
+                            break;
+
+                        case '8':
+                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.other_payment_fees);
+                            break;
+                    
+                        default:
+                            this.payment_fees = 0;
+                            break;
+                    }
+
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -500,7 +544,7 @@ export default {
             this.getCart(this.lang)
             this.getIPAddress();
             this.getCartPrice(this.lang)
-        },  
+        },
     },
     created() {
         this.getHomeData()

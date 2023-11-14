@@ -117,9 +117,11 @@
                         height: 220px;
                     }
                     @media (max-width: 690px) {
-                        grid-template-columns: 1fr;
-                        grid-template-rows: repeat(2, 1fr);
-                        min-height: 400px;
+                        display: flex;
+                        flex-direction: column;
+                        >div {
+                            min-height: 200px !important;
+                        }
                     }
                     >div {
                         position: relative;
@@ -607,13 +609,8 @@
                             @extend %flex-center;
                             width: fit-content;
                             gap: .5rem;
-                            .new_price {
-                                font-size: 1.1rem;
-                                font-weight: 700;
-                                color: $main_color;
-                            }
-                            .old_price {
-                                font-size: .85rem;
+                            .old_price, h1:last-child {
+                                font-size: .9rem;
                                 color: $secondary_color;
                                 font-weight: 700;
                                 position: relative;
@@ -628,6 +625,12 @@
                                     background-color: #000;
                                 }
                             }
+                            .new_price, h1:first-child {
+                                font-size: 1.25rem;
+                                font-weight: 700;
+                                color: $main_color;
+                            }
+
                         }
                         .rate {
                             @extend %flex-center;

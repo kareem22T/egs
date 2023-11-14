@@ -112,17 +112,10 @@
 
             <div class="details">
                 <div class="header">
-                    <a href="" :class="show_speci ? 'active' : ''" @click.prevent="this.show_speci = true; this.show_desc = false; this.show_rev = false">{{ card_data.specification }}</a>
                     <a href="" :class="show_desc ? 'active' : ''"  @click.prevent="this.show_speci = false; this.show_desc = true; this.show_rev = false">{{ card_data.descreption }}</a>
                     <a href="" :class="show_rev ? 'active' : ''"   @click.prevent="this.show_speci = false; this.show_desc = false; this.show_rev = true">{{ card_data.reviews }}</a>
                 </div>
                 <div class="body">
-                    <div class="table" v-if="show_speci">
-                        <div class="row">
-                            <div class="title">{{ card_data.brand }}</div>
-                            <div class="value">{{ product.sub_sub_category.name }}</div>
-                        </div>
-                    </div>
                     <div class="desc" v-if="show_desc" v-html="product.desc">
                     </div>
                 </div>
@@ -439,6 +432,9 @@ export default {
             }
         },
         getHomeData() {
+            this.show_speci = false;
+            this.show_desc = true;
+            this.show_rev = false;
             window.scrollTo(0, 0);
             this.productId= this.$route.params.id
             this.setLangCookies()
