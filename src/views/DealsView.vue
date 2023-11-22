@@ -35,7 +35,7 @@
                             <div class="head">
                                 <div class="cat">{{ product.sub_category.name }}</div>
                                 <div class="discount" v-if="product.price_after_discount">{{ lang == "en" ? "Save" : "وفر" }}: {{ (product.price -
-                                    product.price_after_discount).toLocaleString() }} >{{ lang == "en" ? "EGP" : "جنيه" }}</div>
+                                    product.price_after_discount).toLocaleString() }} {{ lang == "en" ? "EGP" : "جنيه" }}</div>
                             </div>
                             <div class="thumbanail">
                                 <img :src="product.product_type == 1 ? product.main_image : product.img">

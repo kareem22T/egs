@@ -368,7 +368,7 @@
                                 content: '';
                                 position: absolute;
                                 width: 105%;
-                                height: 4px;
+                                height: 2px;
                                 background-color: #000;
                             }
                         }
@@ -628,7 +628,15 @@
                             .new_price, h1:first-child {
                                 font-size: 1.25rem;
                                 font-weight: 700;
-                                color: $main_color;
+                                color: $text_gray;
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 105%;
+                                    height: 0;
+                                    transform: none;
+                                    background-color: transparent;
+                                }
                             }
 
                         }
@@ -1395,6 +1403,156 @@
         }
     }
 
+    .build_wrapper {
+        display: flex;
+        gap: 2rem;
+        @media (max-width: 820px) {
+            gap: 0rem;
+            flex-direction: column;
+        }
+        .cartgories {
+            max-width: clamp(20rem, calc(21.7736rem + -7.5676vw), 15.625rem);
+            margin-top: 2rem;
+            th {
+                text-align: left;
+                font-size: 22px;
+                font-weight: 500;
+                color: $main_color;
+                padding: 10px !important;
+            }
+            td {
+                font-size: clamp(1rem, calc(0.8986rem + 0.4324vw), 1.25rem);
+                color: $secondary_color;
+                font-weight: 500;
+                padding: 10px !important;
+                opacity: .5;
+                cursor: pointer;
+                &.selected {
+                    font-weight: 600;
+                    opacity: 1;
+                }
+            }
+            @media (max-width: 820px) {
+                max-width: 100%;
+                tbody {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    text-align: center !important;
+                    td {
+                        border: none !important;
+                        padding: 5px 10px !important;
+                        display: block;
+                        justify-content: center;
+                    }
+                }
+                th {
+                    text-align: center !important;
+                }
+            }
+            @media (max-width: 620px) {
+                tbody {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        }
+        .table_wrapper >button {
+            font-size: clamp(1rem, calc(-0.25rem + 1.6vw), 1.25rem);
+            color: #fff;
+            padding: 0.5rem clamp(3rem, calc(-7rem + 12.8vw), 5rem);
+            border: none;
+            border-radius: .5rem;
+            background: #0472af;
+            background: linear-gradient(270deg, #0472af 0%, #0d4361 100%);
+            margin-top: clamp(0.3rem, calc(-3.2rem + 4.48vw), 1rem);
+            cursor: pointer;
+        }
+        .body {
+            width: 100%;
+            display: flex !important;
+            flex-direction: column;
+            .product {
+                width: 100% !important;
+                max-width: 100% !important;
+                .head {
+                    display: flex;
+                    width: 100%;
+                    justify-content: start;
+                    gap: 2rem;
+                    @media (max-width: 620px) {
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        gap: 1rem;
+                        .rate {
+                            margin: auto !important;
+                        }
+                        .rate +div {
+                            justify-content: center !important;
+                        }
+                    }
+                    .left {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 1rem;
+                        button {
+                            background-color: #ff4012;
+                            color: #fff;
+                            font-size: 21px;
+                            padding: 7px 2rem;
+                            border-radius: 10px;
+                            text-align: center;
+                            border: 2px solid #ff4012;
+                            width: 100%;
+                            transition: all .3s ease-in;
+                            &:hover {
+                                background-color: transparent;
+                                color: #ff4012;
+                                font-weight: 600;
+                            }
+                            &.selected {
+                                border: 2px solid #7dcc00;
+                                background-color: #7dcc00;
+                                
+                                &:hover {
+                                    background-color: transparent;
+                                    color: #7dcc00;
+                                }
+                            }
+                        }
+                    }
+                    .prod-name {
+                        font-weight: 600;
+                        color: $text_gray;
+                        font-size: clamp(1rem, calc(0.9189rem + 0.3459vw), 1.2rem);
+                        margin-top: 10px;
+                        height: max-content !important;
+                    }
+                    .desc.prod-name {
+                        font-weight: 400;
+                        font-size: clamp(0.8125rem, calc(0.7365rem + 0.3243vw), 1rem) !important;
+                        color: $secondary_color;
+                    }
+                    .img {
+                        width: 200px;
+                        height: 200px;
+                        padding: 10px;
+                        min-width: 200px;
+                        border-radius: 1rem;
+                        box-shadow: 0px 0px 15.5px rgba(211, 211, 211, 0.23);
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .countries {
         a {
             border-radius: 1rem;
@@ -1403,7 +1561,7 @@
 
     .products {
         padding: clamp(1rem, calc(0.2727rem + 2.9091vw), 3rem) clamp(1rem, calc(-1rem + 8vw), 6.5rem) clamp(2rem, calc(0.9091rem + 4.3636vw), 5rem) !important;
-        .head {
+        >.head {
             display: flex;
             justify-content: space-between;
             gap: 1rem;
@@ -1479,7 +1637,7 @@
                     left: -15px;
                     width: 100px;
                 }
-                a {
+                a, .a_rep {
                     width: 100%;
                     display: block;
                     text-decoration: none;
@@ -2067,11 +2225,14 @@
                 border: 1px solid $border-color;
                 border-radius: 1.25rem;
                 padding: 0 1.25rem;
+                flex-direction: column !important;
+                gap: 0 !important;
                 .row {
                     display: flex;
+                    width: 100% !important;
                     >div {
                         padding: .7rem;
-                        width: 100%;
+                        width: 100% ;
                     }
                     &:not(:last-child) {
                         div {
@@ -2543,8 +2704,8 @@ p.stock {
         text-align: right;
     }
     .product_wrapper .container .details .table .row .title {
-        border-left: none;
-        border-right: 1px solid #d5dfe4;
+        border-right: none;
+        border-left: 1px solid #d5dfe4;
     }
     .wishlist_wrapper .table_wrapper table td:not(:last-child),
     .card_wrapper .table_wrapper table td:not(:last-child),

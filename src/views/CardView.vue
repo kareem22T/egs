@@ -81,7 +81,7 @@
                 <div class="side">
                     <div class="ad">
                         <img src="./../assets/imgs/hero-card-1.jpg" alt="">
-                        <a href="">{{ card_data.shop_now }}</a>
+                        <a href="/build-pc">{{ card_data.shop_now }}</a>
                         <h1>{{ card_data.build_pc }}</h1>
                     </div>
                     <div class="features">
@@ -148,7 +148,7 @@
                                 <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
                                 <h1>{{ item.price.toLocaleString() }}</h1>
                             </div>
-                                <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
+                                <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Limited Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
                             </div>
                     </router-link>
                     <button class="add-to-cart" @click="addCardToCart(item.id, 1)">
@@ -405,7 +405,7 @@ export default {
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'error'
-                    error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
+                    error.innerHTML = response.data.errors[0] == "quantity is not available" || response.data.errors[0] == "الكمية المطلوبة غير متوفرة" ? (this.lang == "ar" ? "نفذت الكمية" : "Quantity not avilable") : (this.lang == "ar" ? "يجب عليك تسجيل الدخول اولا" :  "You have to login first!" )
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     

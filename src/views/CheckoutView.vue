@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label for="country">{{ lang == 'en' ? 'Country' : 'البلد' }}</label>
-                        <input type="text" name="country" id="country" v-model="country">
+                        <input type="text" name="country" id="country" v-model="country" disabled>
                     </div>
                     <div class="form-group">
                         <label for="city">{{ lang == 'en' ? 'City' : 'المدينة' }}</label>
@@ -203,7 +203,6 @@ export default {
             cards: null,
             ipAddress: null,
             name: '',
-            country: '',
             city: '',
             street: '',
             phone: '',
@@ -218,6 +217,7 @@ export default {
             order_id: null,
             installment_option: false,
             lang: 'en',
+            country: 'Egypt',
             page_data: null,
             payment_fees: 0,
         }
@@ -337,39 +337,39 @@ export default {
                     this.installment_option = response.data.data.installment_option
                     switch (this.payment_method) {
                         case '0':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.credit_fees);
+                            this.payment_fees = parseInt(response.data.data.credit_fees);
                             break;
 
                         case '1':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.wallet_fees);
+                            this.payment_fees = parseInt(response.data.data.wallet_fees);
                             break;
 
                         case '2':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.fawry_fees);
+                            this.payment_fees = parseInt(response.data.data.fawry_fees);
                             break;
 
                         case '3':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.aman_masary_fees);
+                            this.payment_fees = parseInt(response.data.data.aman_masary_fees);
                             break;
 
                         case '4':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.valu_fees);
+                            this.payment_fees = parseInt(response.data.data.valu_fees);
                             break;
 
                         case '5':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.bank_installments_fees);
+                            this.payment_fees = parseInt(response.data.data.bank_installments_fees);
                             break;
 
                         case '6':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.contact_fees);
+                            this.payment_fees = parseInt(response.data.data.contact_fees);
                             break;
 
                         case '7':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.forsa_fees);
+                            this.payment_fees = parseInt(response.data.data.forsa_fees);
                             break;
 
                         case '8':
-                            this.payment_fees = (this.total / 100) * parseInt(response.data.data.other_payment_fees);
+                            this.payment_fees = parseInt(response.data.data.other_payment_fees);
                             break;
                     
                         default:
@@ -544,6 +544,7 @@ export default {
             this.getCart(this.lang)
             this.getIPAddress();
             this.getCartPrice(this.lang)
+            this.country = this.lang == 'ar' ? "مصر" : "Egypt"
         },
     },
     created() {

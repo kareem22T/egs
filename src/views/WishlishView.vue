@@ -27,7 +27,7 @@
                             <td>
                                 <div class="stock">
                                     <span>{{ lang == 'en' ? 'Stock Status' : 'الكمية المتوفرة' }}</span>
-                                    <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
+                                    <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Limited Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
                                     </div>
                             </td>
                             <td>
@@ -156,7 +156,7 @@ export default {
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'error'
-                    error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
+                    error.innerHTML = response.data.errors[0] == "quantity is not available" || response.data.errors[0] == "الكمية المطلوبة غير متوفرة" ? (this.lang == "ar" ? "نفذت الكمية" : "Quantity not avilable") : (this.lang == "ar" ? "يجب عليك تسجيل الدخول اولا" :  "You have to login first!" )
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     
@@ -241,7 +241,7 @@ export default {
                         document.getElementById('errors').innerHTML = ''
                         let error = document.createElement('div')
                         error.classList = 'error'
-                        error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
+                        error.innerHTML = response.data.errors[0] == "quantity is not available" || response.data.errors[0] == "الكمية المطلوبة غير متوفرة" ? (this.lang == "ar" ? "نفذت الكمية" : "Quantity not avilable") : (this.lang == "ar" ? "يجب عليك تسجيل الدخول اولا" :  "You have to login first!" )
                         document.getElementById('errors').append(error)
                         $('#errors').fadeIn('slow')
 

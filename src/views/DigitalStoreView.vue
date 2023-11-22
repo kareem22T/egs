@@ -394,7 +394,7 @@ export default {
                     document.getElementById('errors').innerHTML = ''
                     let error = document.createElement('div')
                     error.classList = 'error'
-                    error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
+                    error.innerHTML = response.data.errors[0] == "quantity is not available" || response.data.errors[0] == "الكمية المطلوبة غير متوفرة" ? (this.lang == "ar" ? "نفذت الكمية" : "Quantity not avilable") : (this.lang == "ar" ? "يجب عليك تسجيل الدخول اولا" :  "You have to login first!" )
                     document.getElementById('errors').append(error)
                     $('#errors').fadeIn('slow')
                     

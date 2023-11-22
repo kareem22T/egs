@@ -409,7 +409,7 @@ export default {
             $('nav').attr("style", "display: flex !important;").addClass('animate__animated animate__fadeInRight')
             $('.hide').fadeIn()
         })
-        $(document).on('click', '.close, .hide', function (e) {
+        $(document).on('click', '.close, .hide, nav a:not(.lang_mobile)', function (e) {
             e.preventDefault()
             $('nav, .hide').fadeOut()
         })

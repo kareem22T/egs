@@ -62,7 +62,7 @@
                                 <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }} <span>{{ product_data.egp }}</span></h1>
                                 <h1><span>{{ product.price.toLocaleString() }}</span> <span>{{ product_data.egp }}</span></h1>
                             </div>
-                            <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Managed Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
+                            <p class="stock" :class="product.type == 0 ? 'in' : (product.type == 1 ? 'managed' : 'out')">{{ product.type == 0 ? (lang == 'en' ? "In Stock" : "متاح")  : (product.type == 1 ? (lang == 'en' ? "Limited Stock" : "كمية محدودة") : (lang == 'en' ? "Out Of Stock" : "نفذت الكمية")) }}</p>
 
                         <div class="saved" v-if="product.price_after_discount"><i class="fa-regular fa-bookmark"></i> {{ product_data.saved }}: {{  (product.price - product.price_after_discount).toLocaleString() }} {{ product_data.egp }}</div>
                         </div>
@@ -83,7 +83,7 @@
                 <div class="side">
                     <div class="ad">
                         <img src="./../assets/imgs/hero-card-1.jpg" alt="">
-                        <a href="">{{ product_data.shop_now }}</a>
+                        <a href="/build-pc">{{ product_data.shop_now }}</a>
                         <h1>{{ product_data.build_pc }}</h1>
                     </div>
                     <div class="features">
@@ -441,7 +441,7 @@ export default {
                         document.getElementById('errors').innerHTML = ''
                             let error = document.createElement('div')
                             error.classList = 'error'
-                            error.innerHTML = this.lange == "en" ? "You have to login first!" : "يجب عليك تسجيل الدخول اولا"
+                            error.innerHTML = response.data.errors[0] == "quantity is not available" || response.data.errors[0] == "الكمية المطلوبة غير متوفرة" ? (this.lang == "ar" ? "نفذت الكمية" : "Quantity not avilable") : (this.lang == "ar" ? "يجب عليك تسجيل الدخول اولا" :  "You have to login first!" )
                             document.getElementById('errors').append(error)
                         $('#errors').fadeIn('slow')
                         

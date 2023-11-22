@@ -571,7 +571,7 @@ export default {
         async getTopAd(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=top`,
+                const response = await axios.get(`https://api.egyptgamestore.com/api/advertisements?type=top`,
                 {
                     headers: {
                         "lang": lang
@@ -617,7 +617,7 @@ export default {
         async getBottomAd(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/ads?type=bottom`,
+                const response = await axios.get(`https://api.egyptgamestore.com/api/advertisements?type=bottom`,
                 {
                     headers: {
                         "lang": lang

@@ -20,6 +20,7 @@ import ChangePassView from '../views/ChangePassView.vue'
 import ResetPassView from '../views/ResetPassView.vue'
 import VerifyView from '../views/VerifyView.vue'
 import SearchView from '../views/SearchView.vue'
+import BuildPcView from '../views/BuildPcView.vue'
 
 import CategoryView from '../views/CategoryView.vue'
 import PhysicalStoreView from '../views/PhysicalStoreView.vue'
@@ -54,6 +55,12 @@ const routes = [
     path: '/about-us',
     name: 'about-us',
     component: AboutView,
+    meta: { auth: false }
+  },
+  {
+    path: '/build-pc',
+    name: 'build',
+    component: BuildPcView,
     meta: { auth: false }
   },
   {
