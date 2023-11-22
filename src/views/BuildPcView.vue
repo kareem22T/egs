@@ -265,7 +265,7 @@ export default {
         async fetchProducts(categoryId) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/category?category_id=${categoryId}&per_page=${this.per_page}&page=${this.page}` + (this.sort_by_price ? `&sort_type=${this.sort_by_price}` : ''), {
+                const response = await axios.get(`https://api.egyptgamestore.com/api/products/category?category_id=${categoryId}&instock=true&per_page=${this.per_page}&page=${this.page}` + (this.sort_by_price ? `&sort_type=${this.sort_by_price}` : ''), {
                     headers: {
                         "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
                         "lang": this.lang
