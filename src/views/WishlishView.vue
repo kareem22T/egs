@@ -22,7 +22,7 @@
                                 <div class="price">
                                     <span>{{ lang == 'en' ? 'Price' : 'السعر' }}</span>
                                     <p>{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : product.price.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه' }}</p>
-                            </div>
+                                </div>
                             </td>
                             <td>
                                 <div class="stock">

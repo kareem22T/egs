@@ -23,6 +23,7 @@ import SearchView from '../views/SearchView.vue'
 import BuildPcView from '../views/BuildPcView.vue'
 
 import CategoryView from '../views/CategoryView.vue'
+import CompareView from '../views/CompareView.vue'
 import PhysicalStoreView from '../views/PhysicalStoreView.vue'
 import DigitalStoreView from '../views/DigitalStoreView.vue'
 import ProductView from '../views/ProductView.vue'
@@ -61,6 +62,12 @@ const routes = [
     path: '/build-pc',
     name: 'build',
     component: BuildPcView,
+    meta: { auth: false }
+  },
+  {
+    path: '/compare',
+    name: 'compare',
+    component: CompareView,
     meta: { auth: false }
   },
   {

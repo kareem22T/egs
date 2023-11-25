@@ -115,7 +115,7 @@
                         <router-link to="/my-cart">
                             <div class="cart_icon_wrapper"><i class="fa-solid fa-cart-shopping"></i><span class="point" v-if="cart && cart.length"></span></div><span>{{page_data.cart}}</span>
                         </router-link>
-                        <router-link to=""><i class="fa-solid fa-arrow-right-arrow-left"></i><span>{{page_data.compare}}</span></router-link>
+                        <router-link to="/compare"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>{{page_data.compare}}</span></router-link>
                         <router-link to="" class="search-icon" @click.prevent="showSearchPopUp = true"><i class="fa-solid fa-search"></i><span>{{page_data.search}}</span></router-link>
                         <router-link to="" class="more"><i class="fa-solid fa-bars"></i></router-link>
                     </div>

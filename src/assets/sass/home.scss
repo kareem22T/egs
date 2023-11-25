@@ -1529,6 +1529,19 @@
                         font-size: clamp(1rem, calc(0.9189rem + 0.3459vw), 1.2rem);
                         margin-top: 10px;
                         height: max-content !important;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        a {
+                            color: #000;
+                        }
+                        i {
+                            color: $secondary_color;
+                            transition: all .3s ease-in;
+                            &:hover {
+                                color: $main_color;
+                            }
+                        }
                     }
                     .desc.prod-name {
                         font-weight: 400;
@@ -2765,4 +2778,19 @@ p.stock {
     object-fit: cover;
     z-index: 1;
     transform: translateX(-50%);
+}
+
+.compare_wrapper {
+    overflow: auto;
+    td {
+        text-align: center;
+        &:first-child {
+            font-size: clamp(0.875rem, calc(0.275rem + 1.2vw), 1.25rem);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        >* {
+            margin: auto;
+        }
+    }
 }

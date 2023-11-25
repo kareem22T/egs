@@ -53,9 +53,12 @@
                                         <button :class="this.selectedItems[selectedCategoryId] == item.id ? 'selected' : ''" @click="(this.selectedItems[selectedCategoryId] == item.id) ? this.selectedItems[selectedCategoryId] = undefined : this.selectedItems[selectedCategoryId] = item.id"><i class="fa-regular fa-circle-check"></i> {{ this.selectedItems[selectedCategoryId] == item.id ? ( this.lang == 'ar' ? "مختار" : "Selected" ) : ( this.lang == 'ar' ? "اختر" : "Select" ) }}</button>
                                     </div>
                                     <div class="text">
-                                        <a :href="`/product/${item.id}`" target="_blanck" class="prod-name">
-                                            {{ item.name }}
-                                        </a>
+                                        <div class="prod-name">
+                                            <a :href="`/product/${item.id}`" target="_blanck">
+                                                {{ item.name }}
+                                            </a>
+                                            <i @click="addProductToCompare(item)" class="fa-solid fa-arrow-right-arrow-left"></i>
+                                        </div>
                                         <div class="prod-name desc" style="cursor: auto;">
                                             <div v-html="item.desc.length > 200 ? item.desc.slice(0, 200) + '...' : item.desc"></div>
                                             <span class="hint-pop-up" v-if="item.desc.length > 200" v-html="item.desc"></span>
@@ -351,6 +354,69 @@ export default {
                 document.body.classList.add(this.lang) // add lang class ##############################
             }
 
+        },
+        addProductToCompare(product) {
+            $('.loader').fadeIn()
+            if (localStorage.getItem('compare_cart')) {
+                if (JSON.parse(localStorage.getItem('compare_cart')).length < 3) {
+                    let compare = JSON.parse(localStorage.getItem('compare_cart'));
+                    let itemExists1 = compare[0] ? compare[0].id == product.id : false
+                    let itemExists2 = compare[1] ? compare[1].id == product.id : false
+                    let itemExists3 = compare[2] ? compare[2].id == product.id : false
+                    if (!itemExists1 && !itemExists2 && !itemExists3) {
+                        compare.push(product)
+                        localStorage.setItem('compare_cart', JSON.stringify(compare))
+                        document.getElementById('errors').innerHTML = ''
+                        let error = document.createElement('div')
+                        error.classList = 'success'
+                        error.innerHTML = this.lang == 'ar' ? 'تمت إضافة المنتج للمقارنة بنجاح' : 'product added to compare successfully'
+                        document.getElementById('errors').append(error)
+                        $('#errors').fadeIn('slow')
+                        setTimeout(() => {
+                            $('input').css('outline', 'none')
+                            $('#errors').fadeOut('slow')
+                            $('.loader').fadeOut()
+                        }, 2000);
+                    } else {
+                        document.getElementById('errors').innerHTML = ''
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = this.lang == 'ar' ? 'هذا المنتج موجود بالفعل في المقارنة' : 'This product is already in the compare'
+                        document.getElementById('errors').append(error)
+                        $('#errors').fadeIn('slow')
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }
+                } else {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'error'
+                    error.innerHTML = this.lang == 'ar' ? 'المقارنة لا يمكن أن تحتوي على أكثر من 3 عناصر' : 'Compare cannot have more than 3 items'
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 2000);
+                }
+            } else {
+                let compare = []
+                compare.push(product)
+                localStorage.setItem('compare_cart', JSON.stringify(compare))
+                document.getElementById('errors').innerHTML = ''
+                let error = document.createElement('div')
+                error.classList = 'success'
+                error.innerHTML = this.lang == 'ar' ? 'تمت إضافة المنتج للمقارنة بنجاح' : 'product added to compare successfully'
+                document.getElementById('errors').append(error)
+                $('#errors').fadeIn('slow')
+                setTimeout(() => {
+                    $('input').css('outline', 'none')
+                    $('#errors').fadeOut('slow')
+                    $('.loader').fadeOut()
+                }, 2000);
+            }
         },
         getHomeData() {
             this.setLangCookies()

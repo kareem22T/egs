@@ -1786,6 +1786,19 @@ input:focus, textarea:focus {
   font-size: clamp(1rem, calc(0.9189rem + 0.3459vw), 1.2rem);
   margin-top: 10px;
   height: max-content !important;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.category_wrapper .build_wrapper .body .product .head .prod-name a {
+  color: #000;
+}
+.category_wrapper .build_wrapper .body .product .head .prod-name i {
+  color: #0b5177;
+  transition: all .3s ease-in;
+}
+.category_wrapper .build_wrapper .body .product .head .prod-name i:hover {
+  color: #e63b12;
 }
 .category_wrapper .build_wrapper .body .product .head .desc.prod-name {
   font-weight: 400;
@@ -3010,6 +3023,21 @@ p.stock.out {
   object-fit: cover;
   z-index: 1;
   transform: translateX(-50%);
+}
+
+.compare_wrapper {
+  overflow: auto;
+}
+.compare_wrapper td {
+  text-align: center;
+}
+.compare_wrapper td:first-child {
+  font-size: clamp(0.875rem, calc(0.275rem + 1.2vw), 1.25rem);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.compare_wrapper td > * {
+  margin: auto;
 }
 
 /*# sourceMappingURL=home.css.map */
