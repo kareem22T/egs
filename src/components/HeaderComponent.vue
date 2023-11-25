@@ -409,9 +409,21 @@ export default {
             $('nav').attr("style", "display: flex !important;").addClass('animate__animated animate__fadeInRight')
             $('.hide').fadeIn()
         })
-        $(document).on('click', '.close, .hide, nav a:not(.lang_mobile)', function (e) {
+        $(document).on('click', '.close, .hide', function (e) {
             e.preventDefault()
             $('nav, .hide').fadeOut()
+        })
+        $(document).on('click', 'nav a:not(.lang_mobile)', function (e) {
+            e.preventDefault()
+            if ($(window).width() < 855) {
+                $('nav, .hide').fadeOut()
+            }
+        })
+        $(window).resize(function () {
+            // Check if the window width is greater than 600 pixels
+            $('.left nav a span').each(function () {
+                $(this).width($(this).parent().width() + 10)
+            })
         })
     },
     created() {
