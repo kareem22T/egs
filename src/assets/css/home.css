@@ -3040,4 +3040,8 @@ p.stock.out {
   margin: auto;
 }
 
+.ar .category_wrapper .build_wrapper .cartgories th {
+  text-align: right;
+}
+
 /*# sourceMappingURL=home.css.map */

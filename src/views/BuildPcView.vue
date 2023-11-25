@@ -32,7 +32,7 @@
                     <div class="table_wrapper cartgories" v-if="categories && categories.length > 0">
                         <table>
                             <thead>
-                                <th>Components</th>
+                                <th>{{ lang == 'ar' ? 'Components' : 'المكونات' }}</th>
                             </thead>
                             <tbody>
                                 <tr v-for="category in categories" :key="category.id"><td :class="this.selectedCategoryId == category.id ? 'selected' : ''" @click="this.selectedCategoryId = category.id; this.fetchProducts(this.selectedCategoryId)">{{ category.name }} <i v-if="this.selectedItems[category.id]" class="fa-solid fa-check"></i></td></tr>
