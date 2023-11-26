@@ -166,7 +166,7 @@
                         <h5 v-if="coupon_discount && coupon">{{ lang == 'en' ? 'Discount' : 'خصم' }} <span>- {{ coupon_discount.toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h5>
                         <h4>{{ lang == 'en' ? 'Total' : "المجموع" }} <span>{{ (total + payment_fees + shipping_money - coupon_discount).toLocaleString() }} {{ lang == 'en' ? 'EGP' : 'جنيه مصري' }}</span></h4>
                     </div>
-                    <button @click="addOrder(name, country, city, street, phone, home, ipAddress, coupon, shipping_method, payment_method)">{{ lang == 'en' ? 'Place Order' : 'اكمل الطلب' }}</button>
+                    <button @click="addOrder(name, country, city, street, phone, ipAddress, coupon, shipping_method, payment_method)">{{ lang == 'en' ? 'Place Order' : 'اكمل الطلب' }}</button>
                 </div>
             </div>
             <h1 v-if="!cart || cart.length == 0"
