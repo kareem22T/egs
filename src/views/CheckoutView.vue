@@ -32,10 +32,6 @@
                         <label for="phone">{{ lang == 'en' ? 'Phone Number' : 'رقم الهاتف' }}</label>
                         <input type="text" name="phone" id="phone" v-model="phone">
                     </div>
-                    <div class="form-group">
-                        <label for="home">{{ lang == 'en' ? 'Home Number' : 'رقم المنزل' }}</label>
-                        <input type="text" name="home" id="home" v-model="home">
-                    </div>
                 </form>
             </div>
             <div class="total" v-if="cart && cart.length > 0">
@@ -410,7 +406,7 @@ export default {
                 console.error(error);
             }
         },
-        async addOrder(name, country, city, street, phone, home, ip_address, coupon, shipping_method, payment_method) {
+        async addOrder(name, country, city, street, phone, ip_address, coupon, shipping_method, payment_method) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`https://api.egyptgamestore.com/api/users/orders`,
@@ -420,7 +416,6 @@ export default {
                         city: city,
                         street_number: street,
                         home_number: phone,
-                        id_home_number: home, 
                         ip_address: ip_address,
                         coupon: coupon,
                         shipping_method: shipping_method,
