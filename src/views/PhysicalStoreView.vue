@@ -62,6 +62,7 @@
                                     <i class="fa-regular fa-star"></i></div>
                                 ( 3 {{ lang == 'en' ? "Reviews" : "مراجعات" }} ) 
                             </div>
+                            <a href="/compare" @click.prevent="addProductToCompare(item)" class="" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px; text-decoration: none; color: rgb(4, 113, 173);height: auto;width: auto;flex-direction: revert;gap: 10px !important;justify-content: start;"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>{{ lang == "ar" ? "اضافة الي المقارنة" : "Add to Compare" }}</span></a>
                             <div>
                                 <div class="price">
                                     <h1 v-if="item.price_after_discount">{{ item.price_after_discount ? item.price_after_discount.toLocaleString() : '' }}</h1>
@@ -417,6 +418,69 @@ export default {
                 }
             } catch (error) {
                 console.error(error);
+            }
+        },
+        addProductToCompare(product) {
+            $('.loader').fadeIn()
+            if (localStorage.getItem('compare_cart')) {
+                if (JSON.parse(localStorage.getItem('compare_cart')).length < 3) {
+                    let compare = JSON.parse(localStorage.getItem('compare_cart'));
+                    let itemExists1 = compare[0] ? compare[0].id == product.id : false
+                    let itemExists2 = compare[1] ? compare[1].id == product.id : false
+                    let itemExists3 = compare[2] ? compare[2].id == product.id : false
+                    if (!itemExists1 && !itemExists2 && !itemExists3) {
+                        compare.push(product)
+                        localStorage.setItem('compare_cart', JSON.stringify(compare))
+                        document.getElementById('errors').innerHTML = ''
+                        let error = document.createElement('div')
+                        error.classList = 'success'
+                        error.innerHTML = this.lang == 'ar' ? 'تمت إضافة المنتج للمقارنة بنجاح' : 'product added to compare successfully'
+                        document.getElementById('errors').append(error)
+                        $('#errors').fadeIn('slow')
+                        setTimeout(() => {
+                            $('input').css('outline', 'none')
+                            $('#errors').fadeOut('slow')
+                            $('.loader').fadeOut()
+                        }, 2000);
+                    } else {
+                        document.getElementById('errors').innerHTML = ''
+                        let error = document.createElement('div')
+                        error.classList = 'error'
+                        error.innerHTML = this.lang == 'ar' ? 'هذا المنتج موجود بالفعل في المقارنة' : 'This product is already in the compare'
+                        document.getElementById('errors').append(error)
+                        $('#errors').fadeIn('slow')
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }
+                } else {
+                    document.getElementById('errors').innerHTML = ''
+                    let error = document.createElement('div')
+                    error.classList = 'error'
+                    error.innerHTML = this.lang == 'ar' ? 'المقارنة لا يمكن أن تحتوي على أكثر من 3 عناصر' : 'Compare cannot have more than 3 items'
+                    document.getElementById('errors').append(error)
+                    $('#errors').fadeIn('slow')
+                    setTimeout(() => {
+                        $('input').css('outline', 'none')
+                        $('#errors').fadeOut('slow')
+                        $('.loader').fadeOut()
+                    }, 2000);
+                }
+            } else {
+                let compare = []
+                compare.push(product)
+                localStorage.setItem('compare_cart', JSON.stringify(compare))
+                document.getElementById('errors').innerHTML = ''
+                let error = document.createElement('div')
+                error.classList = 'success'
+                error.innerHTML = this.lang == 'ar' ? 'تمت إضافة المنتج للمقارنة بنجاح' : 'product added to compare successfully'
+                document.getElementById('errors').append(error)
+                $('#errors').fadeIn('slow')
+                setTimeout(() => {
+                    $('input').css('outline', 'none')
+                    $('#errors').fadeOut('slow')
+                    $('.loader').fadeOut()
+                }, 2000);
             }
         },
         getHomeData() {
