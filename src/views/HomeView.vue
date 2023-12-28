@@ -1,278 +1,287 @@
 <template>
-    <main class="home_wrapper">
-        <section class="hero">
-            <div class="container">
-                <div class="row-1">
-                <swiper
-                    :spaceBetween="30"
-                    :centeredSlides="true"
-                    :autoplay="{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    }"
-                    :pagination="{
-                        clickable: true,
-                    }"
-                    :modules="modules"
-                    class="hero-slider"
-                >
-                    <swiper-slide v-for="item in hero_slider" :key="item.id" :class="`slide_${item.id}`">
-                        <img :src="item.img">
-                        <h1>{{ item.title }}</h1>
-                        <p>{{ item.desc }}</p>
-                        <a :href="item.link" target="_blanck">Shop Now</a>
-                    </swiper-slide>
-                </swiper>
-                    <div class="cards" v-if="hero_slider">
-                        <div>
-                            <div class="content">
-                                <div>
-                                    <h1>{{ lang == 'en' ? "Build your PC!" : "جمع حاسوبك الان!" }}</h1>
-                                    <p>
-                                        {{ lang == 'en' ? "We help you make your dream PC come true with free installation." : "نحن نساعدك على تجميع جهاز الكمبيوتر الذي تحلم به بدون رسوم للخدمة" }}
-                                        <br>
-                                        {{ lang == 'en' ? "Cheap price and shipping everywhere" : "سعر رخيص والشحن الي كل مكان" }}
-                                    </p>
+    <main>
+        <!-- START SECTION BANNER -->
+        <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
+            <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item background_bg active" data-img-src="assets/images/menu_banner1.jpeg"
+                        style="background-image: url(&quot;assets/images/menu_banner1.jpeg&quot;);">
+                        <div class="banner_slide_content">
+                            <div class="container"><!-- STRART CONTAINER -->
+                                <div class="row">
+                                    <div class="col-lg-7 col-9">
+                                        <div class="banner_content overflow-hidden">
+                                            <h5 class="mb-3 staggered-animation font-weight-light animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="0.5s"
+                                                style="animation-delay: 0.5s; opacity: 1;color: #fff">Get up to 50% off Today Only!
+                                            </h5>
+                                            <h2 class="staggered-animation animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="1s"
+                                                style="animation-delay: 1s; opacity: 1;color: #fff">Luxery Perfume</h2>
+                                            <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft"
+                                                href="shop-left-sidebar.html" data-animation="slideInLeft"
+                                                data-animation-delay="1.5s" style="animation-delay: 1.5s; opacity: 1;">Shop
+                                                Now</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <router-link to="/build-pc">Shop Now</router-link>
-                            </div>
-                            <img src="./../assets/imgs/hero-card-1.jpg" alt="">
+                            </div><!-- END CONTAINER-->
                         </div>
-                        <div v-if="topAd">
-                            <a :href="topAd.link" v-if="topAd.link" targe="_blanck">Shop Now</a>
-                            <img :src="topAd.img" alt="">
+                    </div>
+                    <div class="carousel-item background_bg" data-img-src="assets/images/menu_banner2.jpeg"
+                        style="background-image: url(&quot;assets/images/menu_banner2.jpeg&quot;);">
+                        <div class="banner_slide_content">
+                            <div class="container"><!-- STRART CONTAINER -->
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="banner_content overflow-hidden">
+                                            <h5 class="mb-3 staggered-animation font-weight-light animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="0.5s"
+                                                style="animation-delay: 0.5s; opacity: 1;">50% off in all products</h5>
+                                            <h2 class="staggered-animation animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="1s"
+                                                style="animation-delay: 1s; opacity: 1;">Self Care</h2>
+                                            <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft"
+                                                href="shop-left-sidebar.html" data-animation="slideInLeft"
+                                                data-animation-delay="1.5s" style="animation-delay: 1.5s; opacity: 1;">Shop
+                                                Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- END CONTAINER-->
+                        </div>
+                    </div>
+                    <div class="carousel-item background_bg" data-img-src="assets/images/menu_banner3.jpeg"
+                        style="background-image: url(&quot;assets/images/menu_banner3.jpeg&quot;);">
+                        <div class="banner_slide_content">
+                            <div class="container"><!-- STRART CONTAINER -->
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="banner_content overflow-hidden">
+                                            <h5 class="mb-3 staggered-animation font-weight-light animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="0.5s"
+                                                style="animation-delay: 0.5s; opacity: 1;">Taking your Viewing Experience to
+                                                Next Level</h5>
+                                            <h2 class="staggered-animation animated slideInLeft"
+                                                data-animation="slideInLeft" data-animation-delay="1s"
+                                                style="animation-delay: 1s; opacity: 1;">Summer Sale</h2>
+                                            <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft"
+                                                href="shop-left-sidebar.html" data-animation="slideInLeft"
+                                                data-animation-delay="1.5s" style="animation-delay: 1.5s; opacity: 1;">Shop
+                                                Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- END CONTAINER-->
                         </div>
                     </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev"><i
+                        class="fa fa-chevron-left"></i></a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next"><i
+                        class="fa fa-chevron-right"></i></a>
             </div>
+        </div>
+        <!-- END SECTION BANNER -->
+
+        <div class="section pb_20" v-if="home_content && home_content.products_ads && home_content.products_ads.length > 0">
             <div class="container">
-                <div class="row-2">
-                    <div>
-                        <img src="./../assets/imgs/hero-icon-1.png" alt="">
-                        <div class="text">
-                            <h1 @click="testEmit()">World2Egypt</h1>
-                            <p>{{ home_data.hero_p }}</p>
+                <div class="row">
+                    <div class="col-md-6" v-for="item in home_content.products_ads" :key="item.id">
+                        <div class="single_banner">
+                            <img src="assets/images/shop_banner_img2.jpg" alt="shop_banner_img1">
+                            <div class="single_banner_info">
+                                <h5 class="single_bn_title1">Title</h5>
+                                <h3 class="single_bn_title">Sale</h3>
+                                <a href="shop-left-sidebar.html" class="single_bn_link">Shop Now</a>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <img src="./../assets/imgs/hero-icon-2.png" alt="">
-                        <div class="text">
-                            <h1>{{ home_data.phy_store }}</h1>
-                            <p>{{ home_data.hero_p }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <img src="./../assets/imgs/hero-icon-3.png" alt="">
-                        <div class="text">
-                            <h1>{{ home_data.cards_store }}</h1>
-                            <p>{{ home_data.hero_p }}</p>
+                    <div class="col-md-6" v-for="item in home_content.products_ads" :key="item.id">
+                        <div class="single_banner">
+                            <img src="assets/images/shop_banner_img1.jpg" alt="shop_banner_img1">
+                            <div class="single_banner_info">
+                                <h5 class="single_bn_title1">Title</h5>
+                                <h3 class="single_bn_title">Sale</h3>
+                                <a href="shop-left-sidebar.html" class="single_bn_link">Shop Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg">
+        </div>
+
+        <div class="section small_pt pb_70">
                 <div class="container">
-                    <span class="circle"></span>
-                </div>
-                <span class="square"></span>
-            </div>
-        </section>
-        <section class="deals_of_week">
-            <div class="container">
-            <h1 class="section_head_r"><span>{{ home_data.deals_head_span }}</span> {{ home_data.deals_head_complement }}</h1>
-            <swiper
-                :spaceBetween="20"
-                :slidesPerView="1"
-                :slidesPerGroup="1"
-                :pagination="{
-                    clickable: true,
-                }"
-                :breakpoints="{
-                    600: {
-                        slidesPerView: 2,
-                        slidesPerGroup: 2
-                    },
-                    850: {
-                        slidesPerView: 3,
-                        slidesPerGroup: 3
-                    },
-                    1190: {
-                        slidesPerView: 4,
-                        slidesPerGroup: 4,
-                    },
-                    1300: {
-                        slidesPerView: 5,
-                        slidesPerGroup: 5
-                    },
-                }"
-                :modules="modules"
-                class="deals-slider"
-                v-if="deals && deals.length"
-            >
-                <swiper-slide v-for="product in deals" :key="product.id" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)" style="height: auto;justify-content: space-between; cursor: pointer">
-                    <div style="width: 100%;display: flex;flex-direction: column;gap: 1rem;">
-                        <div class="head">
-                            <div class="cat">{{ product.sub_category.name }}</div>
-                            <div class="discount" v-if="product.price_after_discount">Save: {{ (product.price - product.price_after_discount).toLocaleString() }} EGP</div>
-                        </div>
-                        <div class="thumbanail">
-                            <img :src="product.product_type == 1 ? product.main_image : product.img">
-                        </div>
-                    </div>
-                    <div class="details" style="height: 100%; display: flex; flex-dirction: column; justify-content: space-between; align-items: center">
-                        <h3 class="name">
-                            {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
-                            <div class="hint-pop-up-x" v-if="product.name.length > 39">{{ product.name }}</div>
-                        </h3>
-                            <p class="exp" v-html="product.desc.length >= 150 ? product.desc.slice(0, 150) + ' more...' : product.desc">
-                            </p>
-                            <h1 class="price" v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }}</h1>
-                            <h1 :class="product.price_after_discount ? 'old_price' : 'price'">{{ product.price.toLocaleString() }}</h1>
-                    </div>
-                </swiper-slide>
-            </swiper>
-            </div>
-        </section>
-        <section class="ad-1">
-            <div class="container">
-                <div v-if="bottomAd">
-                    <a :href="bottomAd.link" v-if="bottomAd.link" targe="_blanck">Shop Now</a>
-                    <img :src="bottomAd.img" alt="">
-                </div>
-            </div>
-        </section>
-        <section class="latest">
-            <div class="bg">
-                <div class="circle"></div>
-                <div class="square"></div>
-            </div>
-            <h1 class="section_head_b"><span>{{ home_data.latest_head_span }}</span> {{ home_data.latest_head_complement }}</h1>
-            <swiper
-                :spaceBetween="25"
-                :slidesPerView="1"
-                :slidesPerGroup="1"
-                :pagination="{
-                    clickable: true,
-                }"
-                :breakpoints="{
-                    600: {
-                        slidesPerView: 2
-                    },
-                    1100: {
-                        slidesPerView: 3
-                    },
-                    1480: {
-                        slidesPerView: 4
-                    }
-                }"
-                :modules="modules"
-                class="latest-slider"
-                v-if="latest && latest.length"
-            >
-                <swiper-slide v-for="product in latest" :key="product.id" >
-                    <div class="head">
-                        <h1>{{ product.sub_category.name }}</h1>
-                        <a :class="product.isFav ? 'active' : ''" @click.prevent="product.product_type == 1 ? likeProduct(product.id) : likeCard(product.id)"><i class="fa fa-heart"></i></a>
-                    </div>
-                    <div class="body" @click="product.product_type == 1 ? this.$router.push(`/product/${product.id}`) : this.$router.push(`/card/${product.id}`)">
-                        <div class="thumbanail">
-                            <img :src="product.product_type == 1 ? product.main_image : product.img">
-                        </div>
-                        <div class="details">
-                            <h1 class="title name">
-                                {{ product.name.length > 39 ? product.name.slice(0, 39) + '...' : product.name }}
-                                <div class="hint-pop-up-x" v-if="product.name.length > 39">{{ product.name }}</div>
-                            </h1>
-                            <p v-html="product.desc.length >= 70 ? product.desc.slice(0, 70) + '...' : product.desc">
-                            </p>
-                            <div class="price">
-                                <h1 v-if="product.price_after_discount">{{ product.price_after_discount ? product.price_after_discount.toLocaleString() : '' }}</h1>
-                                <h1>{{ product.price.toLocaleString() }}</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="heading_s1 text-center">
+                                <h2>Exclusive Products</h2>
                             </div>
-                            <div class="rate">
-                                <div class="stars">
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star active"></i>
-                                    <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tab-style1">
+                                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                                    <li class="nav-item" role="presentation" v-if="home_content && home_content.new_products && home_content.new_products.length > 0">
+                                        <a class="nav-link active" id="arrival-tab" data-bs-toggle="tab" href="#arrival" role="tab" aria-controls="arrival" aria-selected="true">Latest Products</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="sellers-tab" data-bs-toggle="tab" href="#sellers" role="tab" aria-controls="sellers" aria-selected="false" tabindex="-1">Best Sellers</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="featured-tab" data-bs-toggle="tab" href="#featured" role="tab" aria-controls="featured" aria-selected="false" tabindex="-1">Recommended Products</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="arrival" role="tabpanel" aria-labelledby="arrival-tab"  v-if="home_content && home_content.new_products && home_content.new_products.length > 0">
+                                    <div class="row shop_container">
+                                        <div class="col-lg-3 col-md-4 col-6" v-for="product in home_content.new_products" :key="product.id">
+                                            <div class="product">
+                                                <span class="pr_flash bg-success" v-if="product.on_sale">Sale</span>
+                                                <div class="product_img">
+                                                    <a href="shop-product-detail.html">
+                                                        <img :src="product.first_image" alt="product_img6">
+                                                    </a>
+                                                    <div class="product_action_box">
+                                                        <ul class="list_none pr_action_btn">
+                                                            <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                            <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                            <li><a href="#"><i class="icon-heart"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_title"><a href="shop-product-detail.html">{{ product.name }}</a></h6>
+                                                    <div class="product_price">
+                                                        <span class="price">{{ product.regular_price + "EGP"}}</span>
+                                                        <del v-if="product.on_sale">{{ product.sale_price + "EGP"}}</del>
+                                                        <div class="on_sale" v-if="product.on_sale">
+                                                            <span>{{ product.discount + "EGP"}} Off</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="rating_wrap">
+                                                        <div class="rating">
+                                                            <div class="product_rate" style="width:68%"></div>
+                                                        </div>
+                                                        <span class="rating_num">(15)</span>
+                                                    </div> -->
+                                                    <div class="pr_desc">
+                                                        <p>{{ product.desc }}</p>
+                                                    </div>
+                                                    <!-- <div class="pr_switch_wrap">
+                                                        <div class="product_color_switch">
+                                                            <span class="active" data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
+                                                            <span data-color="#333333" style="background-color: rgb(51, 51, 51);"></span>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                ( 3 Reviews )
+                                <div class="tab-pane fade" id="sellers" role="tabpanel" aria-labelledby="sellers-tab" v-if="home_content && home_content.best_selling_products && home_content.best_selling_products.length > 0">
+                                    <div class="row shop_container">
+                                        <div class="col-lg-3 col-md-4 col-6" v-for="product in home_content.best_selling_products" :key="product.id">
+                                            <div class="product">
+                                                <span class="pr_flash bg-success" v-if="product.on_sale">Sale</span>
+                                                <div class="product_img">
+                                                    <a href="shop-product-detail.html">
+                                                        <img :src="product.first_image" alt="product_img6">
+                                                    </a>
+                                                    <div class="product_action_box">
+                                                        <ul class="list_none pr_action_btn">
+                                                            <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                            <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                            <li><a href="" @click.prevent="likeProduct(product.id)"><i class="icon-heart"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_title"><a href="shop-product-detail.html">{{ product.name }}</a></h6>
+                                                    <div class="product_price">
+                                                        <span class="price">{{ product.regular_price + "EGP" }}</span>
+                                                        <del v-if="product.on_sale">{{ product.sale_price + "EGP" }}</del>
+                                                        <div class="on_sale" v-if="product.on_sale">
+                                                            <span>{{ product.discount + "EGP" }} Off</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="rating_wrap">
+                                                    <div class="rating">
+                                                        <div class="product_rate" style="width:68%"></div>
+                                                    </div>
+                                                    <span class="rating_num">(15)</span>
+                                                </div> -->
+                                                    <div class="pr_desc">
+                                                        <p>{{ product.desc }}</p>
+                                                    </div>
+                                                    <!-- <div class="pr_switch_wrap">
+                                                    <div class="product_color_switch">
+                                                        <span class="active" data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
+                                                        <span data-color="#333333" style="background-color: rgb(51, 51, 51);"></span>
+                                                    </div>
+                                                </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab" v-if="home_content && home_content.recommended_products && home_content.recommended_products.length > 0">
+                                    <div class="row shop_container">
+                                        <div class="col-lg-3 col-md-4 col-6" v-for="product in home_content.recommended_products" :key="product.id">
+                                            <div class="product">
+                                                <span class="pr_flash bg-success" v-if="product.on_sale">Sale</span>
+                                                <div class="product_img">
+                                                    <a href="shop-product-detail.html">
+                                                        <img :src="product.first_image" alt="product_img6">
+                                                    </a>
+                                                    <div class="product_action_box">
+                                                        <ul class="list_none pr_action_btn">
+                                                            <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                            <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                            <li><a href="#"><i class="icon-heart"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_title"><a href="shop-product-detail.html">{{ product.name }}</a></h6>
+                                                    <div class="product_price">
+                                                        <span class="price">{{ product.regular_price + "EGP" }}</span>
+                                                        <del v-if="product.on_sale">{{ product.sale_price + "EGP" }}</del>
+                                                        <div class="on_sale" v-if="product.on_sale">
+                                                            <span>{{ product.discount + "EGP" }} Off</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="rating_wrap">
+                                                    <div class="rating">
+                                                        <div class="product_rate" style="width:68%"></div>
+                                                    </div>
+                                                    <span class="rating_num">(15)</span>
+                                                </div> -->
+                                                    <div class="pr_desc">
+                                                        <p>{{ product.desc }}</p>
+                                                    </div>
+                                                    <!-- <div class="pr_switch_wrap">
+                                                    <div class="product_color_switch">
+                                                        <span class="active" data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
+                                                        <span data-color="#333333" style="background-color: rgb(51, 51, 51);"></span>
+                                                    </div>
+                                                </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </swiper-slide>
-            </swiper>
-        </section>
-        <section class="news">
-            <div class="container">
-                <div class="head">
-                    <div>
-                        <div class="thumbanail">
-                            <i class="fa-solid fa-plane"></i>
-                        </div>
-                        <div class="text">
-                            <h1>{{home_data.news_card_1_head }}</h1>
-                            <p>{{home_data.news_card_1_text }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="thumbanail">
-                            <i class="fa-solid fa-headset"></i>
-                        </div>
-                        <div class="text">
-                            <h1>{{home_data.news_card_2_head }}</h1>
-                            <p>{{home_data.news_card_2_text }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="thumbanail">
-                            <i class="fa-solid fa-gift"></i>
-                        </div>
-                        <div class="text">
-                            <h1>{{home_data.news_card_3_head }}</h1>
-                            <p>{{home_data.news_card_3_text }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="thumbanail">
-                            <i class="fa-solid fa-sack-dollar"></i>
-                        </div>
-                        <div class="text">
-                            <h1>{{home_data.news_card_4_head }}</h1>
-                            <p>{{home_data.news_card_4text }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="thumbanail">
-                            <i class="fa-regular fa-credit-card"></i>
-                        </div>
-                        <div class="text">
-                                <h1>{{ home_data.news_card_5_head }}</h1>
-                                <p>{{ home_data.news_card_5_text }}</p>
-                            </div>
-                    </div>
                 </div>
             </div>
-            <div class="container">
-                <h1 class="section_head_bl"><span>{{home_data.news_head_span }}</span> {{ home_data.news_head_complement }}</h1>
-                <div class="news" v-if="news">
-                    <div class="news-card" v-for="article in news" :key="article.id">
-                        <div class="thumbanail">
-                            <img :src="article.img" alt="">
-                        </div>
-                        <div class="text">
-                            <h1 class="title">{{ article.title}}</h1>
-                            <p class="bref" v-html="article.desc.length >= 750 ? article.desc.slice(0, 750) + '...' : article.desc">
-                            </p>
-                            <span class="date"><i class="fa-regular fa-calendar-days"></i> 30/6/2023</span>
-                            <router-link :to="`/news/${article.id}`" class="read-more">{{  home_data.read_more  }} <i :class="this.lang == 'en' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'"></i></router-link>
-                        </div>
-                    </div>
-                </div>
-                <router-link to="/news">{{ home_data.view_all }}</router-link>
-            </div>
-        </section>
     </main>
 </template>
 
@@ -282,44 +291,17 @@ var $ = global.jQuery;
 window.$ = $;
 import axios from 'axios';
 
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-// Import Swiper styles
-import 'swiper/css';
-
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-// import required modules
-import { Autoplay, Pagination } from 'swiper/modules';
-
 export default {
     name: 'HomeView',
     data() {
         return {
-            hero_slider: null,
+            home_content: null,
             news: null,
             products: null,
             cards: null,
-            latest: null,
-            deal_products: null,
-            deal_cards: null,
-            deals: null,
-            bottomAd: null,
-            topAd: null,
             lang: 'en',
             home_data: null,
         }
-    },
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    setup() {
-        return {
-            modules: [Autoplay, Pagination],
-        };
     },
     methods: {
         setLangCookies() {
@@ -361,10 +343,10 @@ export default {
             }
 
         },
-        async getHomeSLider(lang) {
+        async getHomeContent(lang) {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/sliders`,
+                const response = await axios.get(`https://becleopatra.com/api/home`,
                 {
                     headers: {
                         "lang": lang
@@ -373,260 +355,7 @@ export default {
                 );
                 if (response.data.status === true) {
                     $('.loader').fadeOut()
-                    this.hero_slider = response.data.data
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async getHomeNews(lang) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/news?per_page=2&page=1`,
-                    {
-                        headers: {
-                            "lang": lang
-                        }
-                    }
-                );
-                if (response.data.status === true) {
-                    $('.loader').fadeOut()
-                    this.news = response.data.data.news
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async getLatest(lang) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/latest?limit=7`,
-                    {
-                        headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token'),
-                            "lang": lang
-                        }
-                    },
-                );
-                if (response.data.status === true) {
-                    $('.loader').fadeOut()
-                    this.products = response.data.data.products
-                    for (let i = 0; i < this.products.length; i++) {
-                        this.products[i].product_type = 1;
-                    }
-                    this.cards = response.data.data.cards
-                    for (let i = 0; i < this.cards.length; i++) {
-                        this.cards[i].product_type = 2;
-                    }
-                    this.latest = this.products.concat(this.cards)
-                    this.latest.sort(function (a, b) {
-                        return new Date(b.created_at) - new Date(a.created_at);
-                    });
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async getDeals(lang) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/products/deals`,
-                {
-                    headers: {
-                        "lang": lang
-                    }
-                }
-                );
-                if (response.data.status === true) {
-                    $('.loader').fadeOut()
-                    this.deal_products = response.data.data.products
-                    for (let i = 0; i < this.deal_products.length; i++) {
-                        this.deal_products[i].product_type = 1;
-                    }
-                    this.deal_cards = response.data.data.cards
-                    for (let i = 0; i < this.deal_cards.length; i++) {
-                        this.deal_cards[i].product_type = 2;
-                    }
-                    this.deals = this.deal_products.concat(this.deal_cards)
-                    this.deals.sort(function (a, b) {
-                        return new Date(b.created_at) - new Date(a.created_at);
-                    });
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async getTopAd(lang) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/advertisements?type=top`,
-                {
-                    headers: {
-                        "lang": lang
-                    }
-                }
-                );
-                if (response.data.status === true) {
-                    $('.loader').fadeOut()
-                    this.topAd = response.data.data
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async getBottomAd(lang) {
-            $('.loader').fadeIn().css('display', 'flex')
-            try {
-                const response = await axios.get(`https://api.egyptgamestore.com/api/advertisements?type=bottom`,
-                {
-                    headers: {
-                        "lang": lang
-                    }
-                }
-                );
-                if (response.data.status === true) {
-                    $('.loader').fadeOut()
-                    this.bottomAd = response.data.data
+                    this.home_content = response.data.data
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -662,7 +391,8 @@ export default {
         },
         async likeProduct(product_id) {
             try {
-                const response = await axios.post(`https://api.egyptgamestore.com/api/products/${product_id}/liked`, {
+                const response = await axios.post(`https://becleopatra.com/api/users/favourites/addOrRemoveProduct`, {
+                    product_id: product_id
                 },
                     {
                         headers: {
@@ -673,54 +403,7 @@ export default {
                 if (response.data.status === true) {
                     document.getElementById('errors').innerHTML = ''
                     $('.loader').fadeOut()
-                    this.getLatest()
-                } else {
-                    $('.loader').fadeOut()
-                    document.getElementById('errors').innerHTML = ''
-                    $.each(response.data.errors, function (key, value) {
-                        let error = document.createElement('div')
-                        error.classList = 'error'
-                        error.innerHTML = value
-                        document.getElementById('errors').append(error)
-                    });
-                    $('#errors').fadeIn('slow')
-                    
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                    }, 3500);
-                }
-
-            } catch (error) {
-                document.getElementById('errors').innerHTML = ''
-                let err = document.createElement('div')
-                err.classList = 'error'
-                err.innerHTML = 'server error try again later'
-                document.getElementById('errors').append(err)
-                $('#errors').fadeIn('slow')
-                $('.loader').fadeOut()
-
-                setTimeout(() => {
-                    $('#errors').fadeOut('slow')
-                }, 3500);
-
-                console.error(error);
-            }
-        },
-        async likeCard(card_id) {
-            try {
-                const response = await axios.post(`https://api.egyptgamestore.com/api/cards/${card_id}/liked`, {
-                },
-                    {
-                        headers: {
-                            "AUTHORIZATION": 'Bearer ' + sessionStorage.getItem('user_token')
-                        }
-                    },
-                );
-                if (response.data.status === true) {
-                    document.getElementById('errors').innerHTML = ''
-                    $('.loader').fadeOut()
-                    this.getLatest()
+                    this.getHomeContent()
                 } else {
                     $('.loader').fadeOut()
                     document.getElementById('errors').innerHTML = ''
@@ -758,12 +441,7 @@ export default {
             this.setLangCookies()
             let data = require('../assets/api/home.json');
             this.home_data = this.lang == 'ar' ? data.ar : data.en
-            this.getHomeSLider(this.lang)
-            this.getHomeNews(this.lang)
-            this.getLatest(this.lang)
-            this.getDeals(this.lang)
-            this.getTopAd(this.lang)
-            this.getBottomAd(this.lang)
+            this.getHomeContent(this.lang)
         }, 
 
     },
@@ -791,7 +469,6 @@ export default {
 </script>
 
 <style scoped>
-@import './../assets/css/home.css';
 
 .hint-pop-up {
     position: fixed;

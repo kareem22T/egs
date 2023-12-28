@@ -1,49 +1,70 @@
 <template>
-    <main class="register_wrapper">
-        <div class="page-head">
-            <div class="container">
-                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }}
-            </div>
+    <main>
+        <div class="breadcrumb_section bg_gray page-title-mini">
+            <div class="container"><!-- STRART CONTAINER -->
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="page-title">
+                            <h1>Register</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ol class="breadcrumb justify-content-md-end">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">Register</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- END CONTAINER-->
         </div>
-        <div class="container">
-            <form @submit.prevent>
-                <div class="head">
-                    <h1>
-                        {{ lang == 'en' ? 'Register Your Account' : 'انشئ حسابك' }}
-                    </h1>
-                    <p>{{ lang == 'en' ? 'Already have an account?' : 'هل لديك حساب؟' }} <router-link to="/login">{{ lang == 'en' ? 'Login' : 'تسجيل الدخول' }}</router-link></p>
+        <div class="main_content">
+            <!-- START LOGIN SECTION -->
+            <div class="login_register_wrap section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-md-10">
+                            <div class="login_wrap">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h3>{{ lang == 'en' ? 'Register Your Account' : 'انشئ حسابك' }}</h3>
+                                    </div>
+                                    <form method="post" @submit.prevent>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" name="name" :placeholder="lang == 'en' ? 'Enter Your Name' : 'ادخل اسمك'" v-model="name">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" name="email" :placeholder="lang == 'en' ? 'Email' : 'البريد الالكتروني'" v-model="email">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" name="email" :placeholder="lang == 'en' ? 'Phone Number' : 'رقم الهاتف'" v-model="phone">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input class="form-control" type="password" name="password"  :placeholder="lang == 'en' ? 'Password' : 'كلمة المرور'" v-model="password">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input class="form-control" type="password" name="password" :placeholder="lang == 'en' ? 'Confirm Password' : 'تاكيد كلمة المرور'" v-model="password_confirmation">
+                                        </div>
+                                        <div class="login_footer form-group mb-3">
+                                            <div class="chek-form">
+                                                <div class="custome-checkbox">
+                                                    <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
+                                                    <label class="form-check-label" for="exampleCheckbox2"><span>{{ lang == 'en' ? 'I agree tearms & privacy policy' : 'أوافق على الشروط وسياسة الخصوصية' }}</span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <button type="submit" class="btn btn-fill-out btn-block" name="register" @click="registerMethod(this.name, this.email, this.phone, this.dob, this.password, this.password_confirmation)">{{ lang == 'en' ? 'Register Account' : 'انشاء حساب' }}</button>
+                                        </div>
+                                    </form>
+                                    <div class="form-note text-center">{{ lang == 'en' ? 'Already have an account?' : 'هل لديك حساب؟' }} <router-link to="/login">{{ lang == 'en' ? 'Login' : 'تسجيل الدخول' }}</router-link></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="input">
-                    <input type="email" name="email" id="email" :placeholder="lang == 'en' ? 'Email' : 'البريد الالكتروني'" v-model="email">
-                    <img src="./../assets/imgs/envelope-regular.svg" alt="email icon">
-                </div>
-                <div class="input">
-                    <input type="text" name="phone" id="phone" :placeholder="lang == 'en' ? 'Phone Number' : 'رقم الهاتف'" v-model="phone">
-                    <img src="./../assets/imgs/phone-solid.svg" alt="phone icon">
-                </div>
-                <div class="input">
-                    <input type="text" name="dob" id="dob" :placeholder="lang == 'en' ? 'Date Of Birth' : 'تاريخ الميلاد'"
-                    onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" v-model="dob" @blur="validateDate()">
-                    <img src="./../assets/imgs/calendar-days-regular.svg" alt="calendar icon">
-                </div>
-                <div class="input">
-                    <input type="password" name="password" id="password" :placeholder="lang == 'en' ? 'Password' : 'كلمة المرور'" v-model="password">
-                    <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
-                </div>
-                <div class="input">
-                    <input type="password" name="password_confirmation" id="password_confirmation" :placeholder="lang == 'en' ? 'Confirm Password' : 'تاكيد كلمة المرور'" v-model="password_confirmation">
-                    <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
-                </div>
-                <button type="submit" class="button" @click="registerMethod(this.email, this.phone, this.dob, this.password, this.password_confirmation)">{{ lang == 'en' ? 'Register Account' : 'انشاء حساب' }}</button>
-                <p>{{ lang == 'en' ? 'By clicking here and continuing,' : 'بالضغط هنا والمتابعة،' }} <br> {{ lang == 'en' ? 'I agree to the' : 'أنا أوافق على' }} <router-link to="/terms">{{ lang == 'en' ? 'terms of Service and' : 'بنود الخدمة و' }}</router-link> <router-link to="/privacy-policy">{{ lang == 'en' ? 'Privacy Policy' : 'سياسة الخصوصية' }}</router-link></p>
-                <!-- <div class="or">
-                    <span></span>
-                    or
-                    <span></span>
-                </div>
-                <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With Facebook</router-link>
-                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With Google</router-link> -->
-            </form>
+            </div>
+            <!-- END LOGIN SECTION -->
         </div>
     </main>
 </template>
@@ -63,6 +84,7 @@ export default {
         return {
             phone: null,
             email: null,
+            name: null,
             dob: null,
             password: null,
             password_confirmation: null,
@@ -70,54 +92,15 @@ export default {
         }
     },
     methods: {
-        validateDate() {
-            const currentDate = new Date();
-            const selectedDate = new Date(this.dob);
-            // Check if the year is a 4-digit number
-            const year = selectedDate.getFullYear();
-            const age = Math.floor((currentDate - selectedDate) / (365.25 * 24 * 60 * 60 * 1000));
-            if (this.dob) {
-                this.errorMsg = ''
-                if (!year || year < 1000 || year > 9999) {
-                    document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'error'
-                    error.innerHTML = "Please enter a valid 4-digit year."
-                    this.errorMsg = "Please enter a valid 4-digit year."
-                    document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    $('.loader').fadeOut()
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 3500);
-                } else if (age <= 16 || age >= 100) {
-                    document.getElementById('errors').innerHTML = ''
-                    let error = document.createElement('div')
-                    error.classList = 'error'
-                    error.innerHTML = "You must be more than 16 years old."
-                    this.errorMsg = "You must be more than 16 years old."
-                    document.getElementById('errors').append(error)
-                    $('#errors').fadeIn('slow')
-                    $('.loader').fadeOut()
-                    setTimeout(() => {
-                        $('input').css('outline', 'none')
-                        $('#errors').fadeOut('slow')
-                        $('.loader').fadeOut()
-                    }, 3500);
-                }
-            }
-        },
-        async registerMethod(email, phone, dob, password, password_confirmation) {
+        async registerMethod(name, email, phone, dob, password, password_confirmation) {
             $('.loader').fadeIn().css('display', 'flex')
             if (!this.errorMsg) {
                 if (password == password_confirmation)
                     try {
                         const response = await axios.post( `${window.main_url}/register`, {
+                            name: name,
                             email: email,
                             phone: phone,
-                            dob: dob,
                             password: password,
                             password_confirmation: password_confirmation,
                         }, {

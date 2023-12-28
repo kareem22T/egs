@@ -24,7 +24,6 @@ export default {
 </script>
 
 <style>
-@import './assets/css/main.css';
 #errors {
   position: fixed;
   top: 1.25rem;

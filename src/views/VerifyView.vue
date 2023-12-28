@@ -1,25 +1,53 @@
 <template>
-    <main class="register_wrapper">
-        <div class="page-head">
-            <div class="container">
-                <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }}
-            </div>
+    <main>
+        <div class="breadcrumb_section bg_gray page-title-mini">
+            <div class="container"><!-- STRART CONTAINER -->
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="page-title">
+                            <h1>{{ lang == 'en' ? 'Account' : 'الحساب' }}</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ol class="breadcrumb justify-content-md-end">
+                            <li class="breadcrumb-item"><a href="#">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</a></li>
+                            <li class="breadcrumb-item"><a href="#">{{ lang == 'en' ? 'Pages' : 'الصفحات' }}</a></li>
+                            <li class="breadcrumb-item active">{{ lang == 'en' ? 'Account' : 'الحساب' }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- END CONTAINER-->
         </div>
-        <div class="container">
-            <form @submit.prevent>
-                <div class="head">
-                    <h1>
-                        {{ lang == 'en' ? 'Activation' : 'التفعيل' }}
-                    </h1>
-                    <p>{{ lang == 'en' ? 'Please Enter OTP Sent To Your Phone And Email' : 'الرجاء إدخال رمز  OTP المرسلة إلى هاتفك والبريد الإلكتروني' }}</p>
+        <div class="main_content">
+            <!-- START LOGIN SECTION -->
+            <div class="login_register_wrap section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-md-10">
+                            <div class="login_wrap">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h3 style="text-align: center;">{{ lang == 'en' ? 'Activation' : 'التفعيل' }}</h3>
+                                        <p style="text-align: center;">{{ lang == 'en' ? 'Please Enter OTP Sent To Your Phone And Email' : 'الرجاء إدخال رمز  OTP المرسلة إلى هاتفك والبريد الإلكتروني' }}</p>
+                                    </div>
+                                    <form method="post" @submit.prevent>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" name="verification_code" id="verification_code" :placeholder="lang == 'en' ? 'Type Your Code' : 'ادخل الرمز'" v-model="code">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <button type="submit" class="btn btn-fill-out btn-block" name="login"  @click="verify(this.code)">{{ lang == 'en' ? 'Submit & Complete' : 'تاكيد وإكمال' }}</button>
+                                        </div>
+                                    </form>
+                                    <div class="form-note text-center">  
+                                        <p> <router-link to="" @click.prevent="resend()">{{ lang == 'en' ? 'Send Again ' : 'أعد الإرسال' }}</router-link></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="input">
-                    <input type="text" name="verification_code" id="verification_code" :placeholder="lang == 'en' ? 'Type Your Code' : 'ادخل الرمز'" v-model="code">
-                    <img src="./../assets/imgs/file-pen-solid.svg" alt="lock icon">
-                </div>
-                <button type="submit" class="button" @click="verify(this.code)">{{ lang == 'en' ? 'Submit & Complete' : 'تاكيد وإكمال' }}</button>
-                <p> <router-link to="" @click.prevent="resend()">{{ lang == 'en' ? 'Send Again ' : 'أعد الإرسال' }}</router-link></p>
-            </form>
+            </div>
+            <!-- END LOGIN SECTION -->
         </div>
     </main>
 </template>
@@ -101,7 +129,7 @@ export default {
         async resend() {
             $('.loader').fadeIn().css('display', 'flex')
             try {
-                const response = await axios.post(`${window.main_url}/resendCode`, {
+                const response = await axios.post(`${window.main_url}/resendActivationCode`, {
                 },
                 {
                     headers: {

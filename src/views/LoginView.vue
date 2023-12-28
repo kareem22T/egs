@@ -1,38 +1,76 @@
 <template>
-    <main class="register_wrapper">
-        <div class="page-head">
+    <main>
+        <!-- <div class="page-head">
             <div class="container">
                 <router-link to="/">{{ lang == 'en' ? 'Home' : 'الرئيسية' }}</router-link> <i :class="lang == 'en' ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i> {{ lang == 'en' ? 'Account' : 'الحساب' }}
             </div>
+        </div> -->
+        <div class="breadcrumb_section bg_gray page-title-mini">
+            <div class="container"><!-- STRART CONTAINER -->
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="page-title">
+                            <h1>Login</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ol class="breadcrumb justify-content-md-end">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">Login</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- END CONTAINER-->
         </div>
-        <div class="container">
-            <form @submit.prevent>
-                <div class="head">
-                    <h1>
-                        {{ lang == 'en' ? 'Account Login' : 'تسجل الدخول' }}
-                    </h1>
-                    <p>{{ lang == 'en' ? 'Do not have an account?' : 'ليس لديك حساب؟' }} <router-link to="/register"> {{ lang == 'en' ? 'SignUp' : 'انشاء حساب' }}</router-link></p>
+        <div class="main_content">
+            <!-- START LOGIN SECTION -->
+            <div class="login_register_wrap section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-md-10">
+                            <div class="login_wrap">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h3>{{ lang == 'en' ? 'Account Login' : 'تسجل الدخول' }}</h3>
+                                    </div>
+                                    <form method="post" @submit.prevent>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" name="email"
+                                                :placeholder="lang == 'en' ? 'Email or Phone Number' : 'البريد الالكتروني او رقم الهاتف'"
+                                                v-model="phone">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input class="form-control" type="password" name="password"
+                                                :placeholder="lang == 'en' ? 'Password' : 'كلمة المرور'" v-model="password">
+                                        </div>
+                                        <div class="login_footer form-group mb-3">
+                                            <div class="chek-form">
+                                                <div class="custome-checkbox">
+                                                    <input class="form-check-input" type="checkbox" name="checkbox"
+                                                        id="exampleCheckbox1" value="">
+                                                    <label class="form-check-label" for="exampleCheckbox1"><span>Remember
+                                                            me</span></label>
+                                                </div>
+                                            </div>
+                                            <a href="#">{{ lang == 'en' ? 'Forgot Your Password?' : 'نسيت كلمة السر؟' }}</a>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <button type="submit" class="btn btn-fill-out btn-block" name="login" @click="login(this.phone, this.password)">{{ lang == 'en' ? 'Login' : 'تسجيل الدخول' }}</button>
+                                        </div>
+                                    </form>
+                                    <div class="different_login">
+                                        <span> or</span>
+                                    </div>
+                                    <div class="form-note text-center">{{ lang == 'en' ? 'Do not have an account?' : 'ليس لديك حساب؟' }} <router-link to="/register">{{ lang ==
+                                        'en' ? 'Sign Up Now' : 'انشاء حساب' }}</router-link></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="input">
-                    <input type="text" name="phone" id="phone" :placeholder="lang == 'en' ? 'Email or Phone Number' : 'البريد الالكتروني او رقم الهاتف'" v-model="phone">
-                    <img src="./../assets/imgs/user-solid.svg" alt="phone icon">
-                </div>
-                <div class="input">
-                    <input type="password" name="password" id="password" :placeholder="lang == 'en' ? 'Password' : 'كلمة المرور'" v-model="password">
-                    <img src="./../assets/imgs/lock-solid.svg" alt="lock icon">
-                </div>
-                <button type="submit" class="button" @click="login(this.phone, this.password)">{{ lang == 'en' ? 'Login' : 'تسجل الدخول' }}</button>
-                <p>{{ lang == 'en' ? 'Forgot Your Password?' : 'نسيت كلمة السر؟' }} <router-link to="/forgot-password">{{ lang == 'en' ? 'Click Here' : 'انقر هنا' }}</router-link></p>
-                <!-- <div class="or">
-                    <span></span>
-                    or
-                    <span></span>
-                </div>
-                <router-link to="" class="sign"><img src="./../assets/imgs/facebook_icon.jpg" alt="facebook_icon">Sign up With
-                    Facebook</router-link>
-                <router-link to="" class="sign"><img src="./../assets/imgs/google_icon.jpg" alt="google_icon">Sign up With
-                    Google</router-link> -->
-            </form>
+            </div>
+            <!-- END LOGIN SECTION -->
         </div>
     </main>
 </template>
@@ -60,7 +98,7 @@ export default {
             $('.loader').fadeIn().css('display', 'flex')
             try {
                 const response = await axios.post(`${window.main_url}/login`, {
-                    email: phone,
+                    email_or_phone: phone,
                     password: password,
                 },
                 {
@@ -81,22 +119,11 @@ export default {
                     setTimeout(() => {
                         $('.loader').fadeOut()
                         $('#errors').fadeOut('slow')
-                        if (response.data.data.activation_str == 'Active') {
+                        console.log(response.data)
+                        if (response.data.data.verified == 1) {
                             window.location.href = '/'
-                        } else if (response.data.data.activation_str == 'waiting_Active') {
+                        } else{
                             window.location.href = '/verify'
-                        } else if (response.data.data.activation_str == 'deactivated') {
-                            document.getElementById('errors').innerHTML = ''
-                            let error = document.createElement('div')
-                            error.classList = 'error'
-                            error.innerHTML = 'Your account has been banned'
-                            document.getElementById('errors').append(error)
-                            $('#errors').fadeIn('slow')
-
-                            setTimeout(() => {
-                                $('input').css('outline', 'none')
-                                $('#errors').fadeOut('slow')
-                            }, 3500);
                         }
                     }, 1300);
                 } else {

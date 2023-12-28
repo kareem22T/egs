@@ -17,14 +17,6 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.container {
-  padding-left: 1.25rem !important;
-  padding-right: 1.25rem !important;
-  width: 100%;
-  max-width: 1520px;
-  margin: 0 auto;
-}
-
 input:focus, textarea:focus {
   outline: 1px solid #0b5177;
 }
@@ -234,6 +226,17 @@ input:focus, textarea:focus {
 .pop-up.search-pop-up .input-search {
   position: relative;
   width: 100%;
+}
+
+.ar .pop-up.search-pop-up {
+  top: clamp(3.125rem, calc(1.7314rem + 5.9459vw), 7.5rem) !important;
+}
+.ar .suggestions.suggestions2 {
+  right: 0 !important;
+  left: auto !important;
+}
+.ar .page-head .container {
+  padding: 1rem clamp(0rem, calc(-2.3636rem + 9.4545vw), 6.5rem) 1rem 0rem !important;
 }
 
 .register_wrapper {
